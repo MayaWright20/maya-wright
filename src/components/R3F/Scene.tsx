@@ -1,44 +1,67 @@
-"use client"
+'use client';
 
-import { Canvas } from "@react-three/fiber"
-import { Suspense } from "react"
-import { useProgress, Html, OrbitControls, TransformControls, Text3D, Text } from "@react-three/drei";
-import Model1 from "../R3F/Model1";
-import { CanvasWrapper } from "./style";
-import FaceWrapper from "./Models/Face/FaceWrapper";
-import { Physics, RigidBody } from "@react-three/rapier";
-// import { font } from "../../app/fonts/Permanent_Marker_Regular.json"
+import { Canvas } from '@react-three/fiber';
+import { Suspense } from 'react';
+import { useProgress, Html, OrbitControls } from '@react-three/drei';
+import Model1 from './Model1';
+import { CanvasContainer, GridContainer, SceneWrapper } from './style';
+import DirectionalLights from './models/lights/DirectionalLights';
 
 function Loader() {
   const { progress } = useProgress();
 
-  return <Html center>{progress.toFixed(1)} % loaded</Html>
+  return <Html>hello</Html>;
+  // return <Html center>{progress.toFixed(1)} % loaded</Html>
 }
 
 export default function Scene() {
+  // scenes to create:
+  // ____________________
+  // emtions
+  // pully face
+  // shock with milk pouring down
+  // angry
+  // wink with tongue
+  // kiss
+
+  // Themes
+  // ____________________
+  // 3D red and blue
+  // gold
+  // white milk
+  // anime
+  // playdoe
+  // love - red floating foil balloons / fluffy red baloons/ text
 
   return (
-    <CanvasWrapper>
-      <Canvas gl={{ antialias: true }} dpr={[1, 1.5]}>
-        <directionalLight
-          position={[15, -30, 15]}
-          intensity={2}
-          color={'#00FF77'}
-        />
-        <directionalLight
-          position={[10, -20, 15]}
-          intensity={2}
-          color={'#0084ff'}
-        />
-        <directionalLight position={[-20, -50, -25]} intensity={2} color={'#FF0003'} />
-        <directionalLight position={[10, -12, -25]} intensity={5} color={'#0069FF'} />
-        <directionalLight position={[-10, -10, -10]} intensity={1} color={'#5300FF'} />
-        <directionalLight position={[10, 1000, 20]} intensity={0.5} color={'#D500FF'} />
+    <GridContainer>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <Canvas
+        gl={{ antialias: true, alpha: true }}
+        dpr={[1, 1.5]}
+        style={{
+          overflow: 'visible',
+          backgroundColor: 'gainsboro',
+          position: 'absolute',
+          height: '100vh',
+          width: '100vw',
+          mixBlendMode: 'difference',
+        }}
+      >
+        <DirectionalLights />
         <Suspense fallback={<Loader />}>
           <Model1 />
+          <OrbitControls enableZoom={false} enablePan={false} autoRotate />
         </Suspense>
-        <OrbitControls enableZoom={false} enablePan={false} set={'0, -100.5, 0'} />
       </Canvas>
-    </CanvasWrapper >
-  )
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </GridContainer>
+  );
 }

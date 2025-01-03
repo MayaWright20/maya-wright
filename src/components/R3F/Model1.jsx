@@ -12,23 +12,20 @@ export function Model1(props) {
   const { nodes, materials, animations } = useGLTF('/model1-transformed.glb')
   const { actions } = useAnimations(animations, group);
 
-  console.log(actions)
-  useEffect(() => {
-    if (actions) {
-      actions.MAYA_WINK.play()
-    }
-  }, [actions])
+  // console.log(actions)
+  // useEffect(() => {
+  //   if (actions) {
+  //     actions.MAYA_WINK.play()
+  //   }
+  // }, [actions])
 
   return (
     <group ref={group} {...props} dispose={null}>
-      <group name="Scene">
-        <group name="FRONT" position={[0, 0.194, 0.658]} rotation={[1.573, -0.005, 0.022]} scale={1.246} />
-        <group name="SIDE" position={[-0.022, 0.246, -0.008]} rotation={[Math.PI / 2, 0, Math.PI / 2]} scale={1.321} />
-        <group name="Empty002" position={[0, 0.194, 0.263]} rotation={[1.573, -0.005, 0.022]} scale={1.246} />
-        <group name="frontbackground" position={[-0.025, 0.169, 0.361]} rotation={[1.542, 0.001, -0.026]} scale={1.298} />
+      <group name="Scene" 
+      scale={2}
+      >
         <mesh name="Sphere" geometry={nodes.Sphere.geometry} material={materials.Material} position={[0.079, 0.136, -0.758]} scale={[0.42, 0.376, 0.42]} />
         <mesh name="FBHead" geometry={nodes.FBHead.geometry} material={materials.Material} morphTargetDictionary={nodes.FBHead.morphTargetDictionary} morphTargetInfluences={nodes.FBHead.morphTargetInfluences} position={[0.05, -0.014, 0]} />
-        {/* <mesh name="FBHead001" geometry={nodes.FBHead001.geometry} material={nodes.FBHead001.material} morphTargetDictionary={nodes.FBHead001.morphTargetDictionary} morphTargetInfluences={nodes.FBHead001.morphTargetInfluences} position={[2.182, 0.95, 1.825]} rotation={[-0.559, 0.69, 0.421]} /> */}
       </group>
     </group>
   )
