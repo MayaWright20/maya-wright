@@ -4,25 +4,32 @@ Command: npx gltfjsx@6.5.3 model1.glb --transform
 Files: model1.glb [29.26MB] > /Users/maya/Desktop/MyProjects/maya-wright/public/model1-transformed.glb [25.7MB] (12%)
 */
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 
-export function Model1(props) {
-  const group = React.useRef()
+
+export function Model1({action}) {
+  const group = React.useRef();
   const { nodes, materials, animations } = useGLTF('/model1-transformed.glb')
   const { actions } = useAnimations(animations, group);
-
+  
   // console.log(actions)
-  // useEffect(() => {
-  //   if (actions) {
-  //     actions.MAYA_WINK.play()
-  //   }
-  // }, [actions])
+  // useEffect(()=>{
+    
+  // },[])
+  useEffect(() => {
+    if (actions && action) {
+      // actions.MAYA_WINK.play();
+      actions.action.play();
+    }
+  }, [actions])
 
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group ref={group} 
+    // {...props} 
+    dispose={null}>
       <group name="Scene" 
-      scale={2}
+      // scale={2}
       >
         <mesh name="Sphere" geometry={nodes.Sphere.geometry} material={materials.Material} position={[0.079, 0.136, -0.758]} scale={[0.42, 0.376, 0.42]} />
         <mesh name="FBHead" geometry={nodes.FBHead.geometry} material={materials.Material} morphTargetDictionary={nodes.FBHead.morphTargetDictionary} morphTargetInfluences={nodes.FBHead.morphTargetInfluences} position={[0.05, -0.014, 0]} />

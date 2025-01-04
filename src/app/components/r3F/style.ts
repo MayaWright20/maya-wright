@@ -48,6 +48,6 @@ export const GridContainer = styled.div`
   }
 
   & div:hover {
-    mix-blend-mode: difference;
+    /* mix-blend-mode: difference; */
   }
 `;
