@@ -6,7 +6,7 @@ import { useProgress, Html, OrbitControls } from '@react-three/drei';
 import Model1 from './models/face/face';
 import { CanvasContainer, GridContainer, SceneWrapper } from './style';
 import DirectionalLights from './models/lights/directional-lights';
-import { LevelContext } from '@/app/context/r3f/modelActionsContext';
+import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
 import Scene from './models/scene/scene';
 
 function Loader() {
@@ -36,26 +36,49 @@ export default function HomeScreen() {
   // love - red floating foil balloons / fluffy red baloons/ text
   // colorful mixblendmode difference
 
-  const [modelBgCol, setModelBgCol] = useState(true);
-  const [action, setAction] = useState(null);
+  const [cellIndex, setCellIndex] = useState<number | null>(null);
   const gridCell1 = () => {
-    console.log('hi', modelBgCol);
-    setModelBgCol((bg) => !bg);
-    // setAction(MAYA_WINK);
+    setCellIndex(0);
+  };
+  const gridCell2 = () => {
+    setCellIndex(1);
+  };
+  const gridCell3 = () => {
+    setCellIndex(2);
+  };
+  const gridCell4 = () => {
+    setCellIndex(3);
+  };
+  const gridCell5 = () => {
+    setCellIndex(4);
+  };
+  const gridCell6 = () => {
+    setCellIndex(10);
+  };
+  const gridCell7 = () => {
+    setCellIndex(6);
+  };
+  const gridCell8 = () => {
+    setCellIndex(7);
+  };
+  const gridCell9 = () => {
+    setCellIndex(8);
   };
 
   return (
-    <GridContainer>
-      <div onMouseEnter={gridCell1}>1</div>
-      <div>2</div>
-      <div>3</div>
-      <div>4</div>
-      <Scene />
-      <div>5</div>
-      <div>6</div>
-      <div>7</div>
-      <div>8</div>
-      <div>9</div>
-    </GridContainer>
+    <ModelActionsContext.Provider value={cellIndex}>
+      <GridContainer>
+        <div onMouseEnter={gridCell1}>0 ANGRY</div>
+        <div onMouseEnter={gridCell2}>1KISS</div>
+        <div onMouseEnter={gridCell3}>2PULLY FACE</div>
+        <div onMouseEnter={gridCell4}>3 SAD</div>
+        <Scene />
+        <div onMouseEnter={gridCell5}>4 SHOCK</div>
+        <div onMouseEnter={gridCell6}>5 WINK</div>
+        <div onMouseEnter={gridCell7}>6</div>
+        <div onMouseEnter={gridCell8}>7</div>
+        <div onMouseEnter={gridCell9}>8</div>
+      </GridContainer>
+    </ModelActionsContext.Provider>
   );
 }

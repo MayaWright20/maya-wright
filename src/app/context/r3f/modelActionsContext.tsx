@@ -1,3 +1,3 @@
 import { createContext } from 'react';
 
-export const ModelActionsContext = createContext(null);
+export const ModelActionsContext = createContext<number | null>(null);

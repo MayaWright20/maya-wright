@@ -4,38 +4,77 @@ Command: npx gltfjsx@6.5.3 model1.glb --transform
 Files: model1.glb [29.26MB] > /Users/maya/Desktop/MyProjects/maya-wright/public/model1-transformed.glb [25.7MB] (12%)
 */
 
-import React, { useEffect, useState } from 'react'
-import { useGLTF, useAnimations } from '@react-three/drei'
+import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
+import { useGLTF, useAnimations } from '@react-three/drei';
+import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
 
-
-export function Model1({action}) {
+export function Model1() {
   const group = React.useRef();
-  const { nodes, materials, animations } = useGLTF('/model1-transformed.glb')
+  const { nodes, materials, animations } = useGLTF('/model1-transformed.glb');
   const { actions } = useAnimations(animations, group);
-  
-  // console.log(actions)
-  // useEffect(()=>{
-    
-  // },[])
-  useEffect(() => {
-    if (actions && action) {
-      // actions.MAYA_WINK.play();
-      actions.action.play();
+
+  const actionIndex = useContext(ModelActionsContext);
+  const [actionPlaying, setActionPlaying] = useState(undefined);
+  const [actionsArr, setActionsArr] = useState([]);
+
+  useLayoutEffect(() => {
+    let actionsSet = new Set();
+    for (const item in actions) {
+      if (item.includes('MAYA_')) {
+        actionsSet.add(item);
+      }
     }
-  }, [actions])
+    setActionsArr([...actionsSet]);
+  }, [actions]);
+
+  useEffect(() => {
+    if (actions) {
+      if (actionIndex !== null) {
+        if (actionPlaying !== undefined) {
+          actions[actionPlaying].reset();
+        }
+
+        setActionPlaying(actionsArr[actionIndex]);
+
+        if (actionPlaying !== undefined) {
+          actions[actionPlaying].reset();
+
+          setTimeout(() => {
+            actions[actionPlaying].play();
+          }, 1000);
+        }
+      }
+    }
+  }, [actions, actionIndex, actionPlaying]);
 
   return (
-    <group ref={group} 
-    // {...props} 
-    dispose={null}>
-      <group name="Scene" 
-      // scale={2}
+    <group
+      ref={group}
+      // {...props}
+      dispose={null}
+    >
+      <group
+        name="Scene"
+        // scale={2}
       >
-        <mesh name="Sphere" geometry={nodes.Sphere.geometry} material={materials.Material} position={[0.079, 0.136, -0.758]} scale={[0.42, 0.376, 0.42]} />
-        <mesh name="FBHead" geometry={nodes.FBHead.geometry} material={materials.Material} morphTargetDictionary={nodes.FBHead.morphTargetDictionary} morphTargetInfluences={nodes.FBHead.morphTargetInfluences} position={[0.05, -0.014, 0]} />
+        <mesh
+          name="Sphere"
+          geometry={nodes.Sphere.geometry}
+          material={materials.Material}
+          position={[0.079, 0.136, -0.758]}
+          scale={[0.42, 0.376, 0.42]}
+        />
+        <mesh
+          name="FBHead"
+          geometry={nodes.FBHead.geometry}
+          material={materials.Material}
+          morphTargetDictionary={nodes.FBHead.morphTargetDictionary}
+          morphTargetInfluences={nodes.FBHead.morphTargetInfluences}
+          position={[0.05, -0.014, 0]}
+        />
       </group>
     </group>
-  )
+  );
 }
 
 useGLTF.preload('/model1-transformed.glb');

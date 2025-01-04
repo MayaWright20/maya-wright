@@ -55,8 +55,12 @@ export default function Scene() {
     >
       <DirectionalLights />
       <Suspense fallback={<Loader />}>
-        <Model1 action={action} />
-        <OrbitControls enableZoom={false} enablePan={false} autoRotate />
+        <Model1 />
+        <OrbitControls
+          enableZoom={false}
+          enablePan={false}
+          // autoRotate
+        />
       </Suspense>
     </Canvas>
   );
