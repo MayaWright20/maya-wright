@@ -8,6 +8,8 @@ import { CanvasContainer, GridContainer, SceneWrapper } from './style';
 import DirectionalLights from './models/lights/directional-lights';
 import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
 import Scene from './models/scene/scene';
+import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
+import { ModelActionsPlaySwitchContext } from '@/app/context/r3f/modelActionsPlaySwitchContext';
 
 function Loader() {
   const { progress } = useProgress();
@@ -37,6 +39,8 @@ export default function HomeScreen() {
   // colorful mixblendmode difference
 
   const [cellIndex, setCellIndex] = useState<number | null>(null);
+  const [autoRotate, setAutoRotate] = useState<boolean>(true);
+  const [playModelActions, setPlayModelActions] = useState<boolean>(true);
   const gridCell1 = () => {
     setCellIndex(0);
   };
@@ -60,6 +64,7 @@ export default function HomeScreen() {
   };
   const gridCell8 = () => {
     setCellIndex(7);
+    setPlayModelActions(!playModelActions);
   };
   const gridCell9 = () => {
     setCellIndex(8);
@@ -67,18 +72,32 @@ export default function HomeScreen() {
 
   return (
     <ModelActionsContext.Provider value={cellIndex}>
-      <GridContainer>
-        <div onMouseEnter={gridCell1}>0 ANGRY</div>
-        <div onMouseEnter={gridCell2}>1KISS</div>
-        <div onMouseEnter={gridCell3}>2PULLY FACE</div>
-        <div onMouseEnter={gridCell4}>3 SAD</div>
-        <Scene />
-        <div onMouseEnter={gridCell5}>4 SHOCK</div>
-        <div onMouseEnter={gridCell6}>5 WINK</div>
-        <div onMouseEnter={gridCell7}>6</div>
-        <div onMouseEnter={gridCell8}>7</div>
-        <div onMouseEnter={gridCell9}>8</div>
-      </GridContainer>
+      <ModelAutoRotateContext.Provider value={autoRotate}>
+        <ModelActionsPlaySwitchContext.Provider value={playModelActions}>
+          <GridContainer>
+            <div onMouseEnter={gridCell1} className="gridCell1">
+              0 ANGRY
+            </div>
+            <div onMouseEnter={gridCell2}>1KISS</div>
+            <div onMouseEnter={gridCell3}>2PULLY FACE</div>
+            <div onMouseEnter={gridCell4}>3 SAD</div>
+            <Scene />
+            <div onMouseEnter={gridCell5}>4 SHOCK</div>
+            <div onMouseEnter={gridCell6}>5 WINK</div>
+            <div onMouseEnter={gridCell7}>6</div>
+            <div>
+              <div className="autoRotateButtonWrapper">
+                <button onClick={() => setAutoRotate(true)}>roate</button>
+                <button onClick={() => setAutoRotate(false)}>stablise</button>
+              </div>
+              <button onClick={gridCell8}>
+                {playModelActions ? 'STOP' : 'PLAY'} FACE ANIMATION
+              </button>
+            </div>
+            <div onMouseEnter={gridCell9}>8</div>
+          </GridContainer>
+        </ModelActionsPlaySwitchContext.Provider>
+      </ModelAutoRotateContext.Provider>
     </ModelActionsContext.Provider>
   );
 }
