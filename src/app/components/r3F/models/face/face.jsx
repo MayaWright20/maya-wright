@@ -7,6 +7,9 @@ Files: model1.glb [29.26MB] > /Users/maya/Desktop/MyProjects/maya-wright/public/
 import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
 import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
+import { ModelActionsPlaySwitchContext } from '@/app/context/r3f/modelActionsPlaySwitchContext';
+
+const STOP_ANIMATION = 7;
 
 export function Model1() {
   const group = React.useRef();
@@ -14,6 +17,7 @@ export function Model1() {
   const { actions } = useAnimations(animations, group);
 
   const actionIndex = useContext(ModelActionsContext);
+  const modelPlaySwitchContext = useContext(ModelActionsPlaySwitchContext);
   const [actionPlaying, setActionPlaying] = useState(undefined);
   const [actionsArr, setActionsArr] = useState([]);
 
@@ -37,7 +41,11 @@ export function Model1() {
   }, [actionIndex, actionPlaying]);
 
   useEffect(() => {
-    if (actionPlaying) {
+    if (
+      actionPlaying &&
+      actionIndex !== STOP_ANIMATION &&
+      modelPlaySwitchContext
+    ) {
       actions[actionPlaying].play();
     }
   }, [actionPlaying]);

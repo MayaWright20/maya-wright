@@ -1,10 +1,12 @@
 'use client';
 
 import { Canvas } from '@react-three/fiber';
-import { Suspense, useContext, useState } from 'react';
+import { Suspense, useContext, useEffect, useState } from 'react';
 import { useProgress, Html, OrbitControls } from '@react-three/drei';
 import DirectionalLights from '../lights/directional-lights';
-import Model1 from '../face/face';
+import Face from '../face/face';
+import RedHeart from '../heart/pixelated-heart';
+import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
 
 function Loader() {
   const { progress } = useProgress();
@@ -33,13 +35,7 @@ export default function Scene() {
   // love - red floating foil balloons / fluffy red baloons/ text
   // colorful mixblendmode difference
 
-  const [modelBgCol, setModelBgCol] = useState(true);
-  const [action, setAction] = useState(null);
-  const gridCell1 = () => {
-    console.log('hi', modelBgCol);
-    setModelBgCol((bg) => !bg);
-    // setAction(MAYA_WINK);
-  };
+  const autoRotateContext = useContext(ModelAutoRotateContext);
 
   return (
     <Canvas
@@ -55,11 +51,11 @@ export default function Scene() {
     >
       <DirectionalLights />
       <Suspense fallback={<Loader />}>
-        <Model1 />
+        <Face />
         <OrbitControls
           enableZoom={false}
           enablePan={false}
-          // autoRotate
+          autoRotate={autoRotateContext}
         />
       </Suspense>
     </Canvas>
