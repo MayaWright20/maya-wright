@@ -27,25 +27,20 @@ export function Model1() {
     setActionsArr([...actionsSet]);
   }, [actions]);
 
-  useEffect(() => {
-    if (actions) {
-      if (actionIndex !== null) {
-        if (actionPlaying !== undefined) {
-          actions[actionPlaying].reset();
-        }
-
-        setActionPlaying(actionsArr[actionIndex]);
-
-        if (actionPlaying !== undefined) {
-          actions[actionPlaying].reset();
-
-          setTimeout(() => {
-            actions[actionPlaying].play();
-          }, 1000);
-        }
-      }
+  useLayoutEffect(() => {
+    if (actionPlaying) {
+      actions[actionPlaying].stop();
+      actions[actionPlaying].reset();
     }
-  }, [actions, actionIndex, actionPlaying]);
+    setActionPlaying(actionsArr[actionIndex]);
+    console.log(actionPlaying);
+  }, [actionIndex, actionPlaying]);
+
+  useEffect(() => {
+    if (actionPlaying) {
+      actions[actionPlaying].play();
+    }
+  }, [actionPlaying]);
 
   return (
     <group
@@ -53,10 +48,7 @@ export function Model1() {
       // {...props}
       dispose={null}
     >
-      <group
-        name="Scene"
-        // scale={2}
-      >
+      <group name="Scene" scale={1.2}>
         <mesh
           name="Sphere"
           geometry={nodes.Sphere.geometry}
