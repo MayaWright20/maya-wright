@@ -37,9 +37,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 Things to instal
 
-npm install @react-three/drei
-npm i @react-three/fiber
-npm i @react-three/rapier
+npm install @react-three/drei --legacy-peer-deps
+npm i @react-three/fiber --legacy-peer-deps
+npm i @react-three/rapier --legacy-peer-deps
 Transform glb model to react jsx
 
 npx gltfjsx model.gltf --transform
