@@ -1,0 +1,19 @@
+@mixin min($point) {
+  @if $point == small {
+    @media (min-width: viewports.$small) {
+      @content;
+    }
+  } @else if $point == medium {
+    @media (min-width: viewports.$medium) {
+      @content;
+    }
+  } @else if $point == large {
+    @media (min-width: viewports.$large) {
+      @content;
+    }
+  } @else if $point == x-large {
+    @media (min-width: viewports.$x-large) {
+      @content;
+    }
+  }
+}
