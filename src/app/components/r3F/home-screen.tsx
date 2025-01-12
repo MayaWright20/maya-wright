@@ -10,6 +10,7 @@ import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
 import Scene from './models/scene/scene';
 import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
 import { ModelActionsPlaySwitchContext } from '@/app/context/r3f/modelActionsPlaySwitchContext';
+import { ModelActionsLengthContext } from '@/app/context/r3f/modelActionsLengthContext';
 
 function Loader() {
   const { progress } = useProgress();
@@ -38,63 +39,75 @@ export default function HomeScreen() {
   // love - red floating foil balloons / fluffy red baloons/ text
   // colorful mixblendmode difference
 
-  const [cellIndex, setCellIndex] = useState<number | null>(null);
+  const [cellIndex, setCellIndex] = useState<number | undefined>(undefined);
   const [autoRotate, setAutoRotate] = useState<boolean>(true);
   const [playModelActions, setPlayModelActions] = useState<boolean>(true);
-  const gridCell1 = () => {
-    setCellIndex(0);
+
+  const modelActionsLength = useContext(ModelActionsLengthContext);
+
+  const actionIndex = (
+    index: number | undefined,
+    previous?: boolean,
+    next?: boolean
+  ) => {
+    if (previous) {
+      setCellIndex((i) =>
+        i !== undefined ? (i > 0 ? i - 1 : modelActionsLength.length - 1) : 0
+      );
+      return;
+    }
+
+    if (next) {
+      setCellIndex((i) =>
+        i !== undefined && i < modelActionsLength.length - 1
+          ? i + 1
+          : (i = modelActionsLength.length ? (i = 0) : (i = 0))
+      );
+      return;
+    }
+
+    if (index !== undefined) {
+      setCellIndex(index);
+    }
   };
-  const gridCell2 = () => {
-    setCellIndex(1);
-  };
-  const gridCell3 = () => {
-    setCellIndex(2);
-  };
-  const gridCell4 = () => {
-    setCellIndex(3);
-  };
-  const gridCell5 = () => {
-    setCellIndex(4);
-  };
-  const gridCell6 = () => {
-    setCellIndex(10);
-  };
-  const gridCell7 = () => {
-    setCellIndex(6);
-  };
-  const gridCell8 = () => {
-    setCellIndex(7);
-    setPlayModelActions(!playModelActions);
-  };
-  const gridCell9 = () => {
-    setCellIndex(8);
-  };
+
+  // const gridCell8 = () => {
+  //   setCellIndex(7);
+  //   setPlayModelActions(!playModelActions);
+  // };
 
   return (
     <ModelActionsContext.Provider value={cellIndex}>
       <ModelAutoRotateContext.Provider value={autoRotate}>
         <ModelActionsPlaySwitchContext.Provider value={playModelActions}>
           <GridContainer>
-            <div onMouseEnter={gridCell1} className="gridCell1">
-              0 ANGRY
-            </div>
-            <div onMouseEnter={gridCell2}>1KISS</div>
-            <div onMouseEnter={gridCell3}>2PULLY FACE</div>
-            <div onMouseEnter={gridCell4}>3 SAD</div>
             <Scene />
-            <div onMouseEnter={gridCell5}>4 SHOCK</div>
-            <div onMouseEnter={gridCell6}>5 WINK</div>
-            <div onMouseEnter={gridCell7}>6</div>
-            <div>
-              <div className="autoRotateButtonWrapper">
-                <button onClick={() => setAutoRotate(true)}>roate</button>
-                <button onClick={() => setAutoRotate(false)}>stablise</button>
+            <div className="container">
+              <div className="container-buttons-mobile">
+                <div
+                  className="container-buttons-mobile-next"
+                  onClick={() => actionIndex(cellIndex, true)}
+                >{`<`}</div>
+                {modelActionsLength.map((value, index) => {
+                  return (
+                    <span key={index} onClick={() => actionIndex(index)}>
+                      <div>
+                        <div
+                          style={{
+                            backgroundColor:
+                              index === cellIndex ? 'white' : 'grey',
+                          }}
+                        ></div>
+                      </div>
+                    </span>
+                  );
+                })}
+                <div
+                  className="container-buttons-mobile-next"
+                  onClick={() => actionIndex(cellIndex, false, true)}
+                >{`>`}</div>
               </div>
-              <button onClick={gridCell8}>
-                {playModelActions ? 'STOP' : 'PLAY'} FACE ANIMATION
-              </button>
             </div>
-            <div onMouseEnter={gridCell9}>8</div>
           </GridContainer>
         </ModelActionsPlaySwitchContext.Provider>
       </ModelAutoRotateContext.Provider>

@@ -11,14 +11,21 @@ import { ModelActionsPlaySwitchContext } from '@/app/context/r3f/modelActionsPla
 
 const STOP_ANIMATION = 7;
 
-export function Model1() {
+export function ModelConstructor() {
   const group = React.useRef();
   const { nodes, materials, animations } = useGLTF('/model1-transformed.glb');
   const { actions } = useAnimations(animations, group);
 
-  const actionIndex = useContext(ModelActionsContext);
-  const modelPlaySwitchContext = useContext(ModelActionsPlaySwitchContext);
-  const [actionPlaying, setActionPlaying] = useState(undefined);
+  return {
+    group,
+    nodes,
+    materials,
+    actions,
+  };
+}
+
+export function ModelActions() {
+  const { actions } = ModelConstructor();
   const [actionsArr, setActionsArr] = useState([]);
 
   useLayoutEffect(() => {
@@ -30,6 +37,18 @@ export function Model1() {
     }
     setActionsArr([...actionsSet]);
   }, [actions]);
+
+  return actionsArr;
+}
+
+export function Model1() {
+  const { group, nodes, materials, actions } = ModelConstructor();
+
+  const actionIndex = useContext(ModelActionsContext);
+  const modelPlaySwitchContext = useContext(ModelActionsPlaySwitchContext);
+  const [actionPlaying, setActionPlaying] = useState(undefined);
+
+  const actionsArr = ModelActions();
 
   useLayoutEffect(() => {
     if (actionPlaying) {
