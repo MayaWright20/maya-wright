@@ -1,23 +1,13 @@
 'use client';
 
-import { Canvas } from '@react-three/fiber';
-import { Suspense, useContext, useState } from 'react';
-import { useProgress, Html, OrbitControls } from '@react-three/drei';
-import Model1 from './models/face/face';
-import { CanvasContainer, GridContainer, SceneWrapper } from './style';
-import DirectionalLights from './models/lights/directional-lights';
-import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
 import Scene from './models/scene/scene';
+
+import { useContext, useState } from 'react';
+import { GridContainer } from './style';
+import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
 import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
 import { ModelActionsPlaySwitchContext } from '@/app/context/r3f/modelActionsPlaySwitchContext';
 import { ModelActionsLengthContext } from '@/app/context/r3f/modelActionsLengthContext';
-
-function Loader() {
-  const { progress } = useProgress();
-
-  return <Html>hello</Html>;
-  // return <Html center>{progress.toFixed(1)} % loaded</Html>
-}
 
 export default function HomeScreen() {
   // scenes to create:

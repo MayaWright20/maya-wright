@@ -56,7 +56,6 @@ export function Model1() {
       actions[actionPlaying].reset();
     }
     setActionPlaying(actionsArr[actionIndex]);
-    console.log(actionPlaying);
   }, [actionIndex, actionPlaying]);
 
   useEffect(() => {
