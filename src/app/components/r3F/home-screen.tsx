@@ -59,7 +59,7 @@ export default function HomeScreen() {
 
     if (next) {
       setCellIndex((i) =>
-        i !== undefined && i < modelActionsLength.length
+        i !== undefined && i < modelActionsLength.length - 1
           ? i + 1
           : (i = modelActionsLength.length ? (i = 0) : (i = 0))
       );
@@ -92,7 +92,12 @@ export default function HomeScreen() {
                   return (
                     <span key={index} onClick={() => actionIndex(index)}>
                       <div>
-                        <div></div>
+                        <div
+                          style={{
+                            backgroundColor:
+                              index === cellIndex ? 'white' : 'grey',
+                          }}
+                        ></div>
                       </div>
                     </span>
                   );
