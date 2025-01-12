@@ -19,6 +19,7 @@ export const GridContainer = styled.div`
 
       &-next {
         flex: 1;
+        font-size: 100%;
       }
 
       &-next:first-child {
