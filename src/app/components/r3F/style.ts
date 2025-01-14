@@ -2,11 +2,39 @@ import styled from 'styled-components';
 
 export const GridContainer = styled.div`
   & .grid-container-background {
-    // background that can be seen
+    /* background that can be seen */
     background-color: black;
     position: absolute;
     width: 100vw;
     height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    overflow: hidden;
+    /* background-color: yellow; */
+    background-image: url('https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg');
+    /* justify-content: space-between;
+    display: grid;
+    grid-template: repeat(10, 1fr) / repeat(10, 1fr); */
+  }
+  & .grid-container {
+    /* background that can be seen */
+    /* background-color: black; */
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    justify-content: space-between;
+    display: grid;
+    grid-auto-flow: dense;
+    grid-template: repeat(1, 1fr) / repeat(50, 1fr);
+  }
+  & .grid-item {
+    background-color: black;
+    height: 25px;
+    margin: 0.2px;
+    aspect-ratio: 1;
+    /* width: 25px; */
+    border: 1px solid gray;
   }
 
   & .container {

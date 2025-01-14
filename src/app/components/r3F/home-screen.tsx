@@ -79,7 +79,13 @@ export default function HomeScreen() {
       <ModelAutoRotateContext.Provider value={autoRotate}>
         <ModelActionsPlaySwitchContext.Provider value={playModelActions}>
           <GridContainer>
-            <div className="grid-container-background">s</div>
+            <div className="grid-container-background">
+              <div className="grid-container">
+                {Array.from({ length: 2000 }).map((_, index) => (
+                  <div className="grid-item" key={index}></div>
+                ))}
+              </div>
+            </div>
             <Scene />
             <div className="container">
               <div className="container-increment-buttons-mobile">
