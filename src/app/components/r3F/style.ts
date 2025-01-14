@@ -1,10 +1,18 @@
 import styled from 'styled-components';
 
 export const GridContainer = styled.div`
+  & .grid-container-background {
+    // background that can be seen
+    background-color: black;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+  }
+
   & .container {
     height: 100vh;
     width: 100vw;
-    background-color: black;
+    background-color: transparent;
 
     &-increment-buttons-mobile {
       top: 80vh;

@@ -79,6 +79,7 @@ export default function HomeScreen() {
       <ModelAutoRotateContext.Provider value={autoRotate}>
         <ModelActionsPlaySwitchContext.Provider value={playModelActions}>
           <GridContainer>
+            <div className="grid-container-background">s</div>
             <Scene />
             <div className="container">
               <div className="container-increment-buttons-mobile">
