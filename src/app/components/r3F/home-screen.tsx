@@ -9,6 +9,8 @@ import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext
 import { ModelActionsPlaySwitchContext } from '@/app/context/r3f/modelActionsPlaySwitchContext';
 import { ModelActionsLengthContext } from '@/app/context/r3f/modelActionsLengthContext';
 
+const MAX_MOBILE_WINDOW_WIDTH = 425;
+
 export default function HomeScreen() {
   // scenes to create:
   // ____________________
@@ -62,10 +64,14 @@ export default function HomeScreen() {
     }
   };
 
-  // const gridCell8 = () => {
-  //   setCellIndex(7);
-  //   setPlayModelActions(!playModelActions);
-  // };
+  useEffect(() => {
+    const cellIndexRef = { current: cellIndex };
+
+    const interval = setInterval(() => {
+      actionIndex(cellIndexRef.current, false, true);
+    }, 8000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <ModelActionsContext.Provider value={cellIndex}>
