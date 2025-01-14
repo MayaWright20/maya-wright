@@ -4,7 +4,7 @@ export const GridContainer = styled.div`
   & .container {
     height: 100vh;
     width: 100vw;
-    background-color: palegoldenrod;
+    /* background-color: palegoldenrod; */
 
     &-increment-buttons-mobile {
       top: 80vh;
