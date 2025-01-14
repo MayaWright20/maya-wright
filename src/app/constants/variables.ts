@@ -1,1 +1,1 @@
-export const MAX_MOBILE_SCREEN_WIDTH = 425;
+export const MAX_MOBILE_SCREEN_WIDTH = 600;

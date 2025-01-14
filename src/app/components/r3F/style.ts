@@ -4,12 +4,12 @@ export const GridContainer = styled.div`
   & .container {
     height: 100vh;
     width: 100vw;
+    background-color: palegoldenrod;
 
-    &-buttons-mobile {
+    &-increment-buttons-mobile {
       top: 80vh;
       width: 100%;
       height: 8%;
-      color: red;
       color: grey;
       position: absolute;
       display: flex;
@@ -25,6 +25,7 @@ export const GridContainer = styled.div`
       &-next:first-child {
         text-align: right;
       }
+
       & span {
         background-color: grey;
         height: 25%;

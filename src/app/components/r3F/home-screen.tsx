@@ -33,7 +33,7 @@ export default function HomeScreen() {
   const [cellIndex, setCellIndex] = useState<number | undefined>(undefined);
   const [autoRotate, setAutoRotate] = useState<boolean>(true);
   const [playModelActions, setPlayModelActions] = useState<boolean>(true);
-  const [autoModelActionsPlay, setAutoModelActionsPlay] = useState(true);
+  // const [autoModelActionsPlay, setAutoModelActionsPlay] = useState(true);
 
   const modelActionsLength = useContext(ModelActionsLengthContext);
 
@@ -81,7 +81,7 @@ export default function HomeScreen() {
           <GridContainer>
             <Scene />
             <div className="container">
-              <div className="container-buttons-mobile">
+              <div className="container-increment-buttons-mobile">
                 <div
                   className="container-buttons-mobile-next"
                   onClick={() => actionIndex(cellIndex, true)}
