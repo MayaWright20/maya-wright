@@ -1,0 +1,9 @@
+@use '@/styles/mixins/breakpoints' as breakpoints;
+
+.yellow {
+  background-color: yellow;
+  @include breakpoints.min(medium) {
+    background-color: red;
+    color: yellowgreen;
+  }
+}
