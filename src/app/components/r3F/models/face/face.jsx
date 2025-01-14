@@ -44,11 +44,10 @@ export function ModelActions() {
 export function Model1() {
   const { group, nodes, materials, actions } = ModelConstructor();
 
+  const actionsArr = ModelActions();
   const actionIndex = useContext(ModelActionsContext);
   const modelPlaySwitchContext = useContext(ModelActionsPlaySwitchContext);
   const [actionPlaying, setActionPlaying] = useState(undefined);
-
-  const actionsArr = ModelActions();
 
   useLayoutEffect(() => {
     if (actionPlaying) {

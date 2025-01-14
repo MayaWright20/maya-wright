@@ -2,7 +2,7 @@
 
 import Scene from './models/scene/scene';
 
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import { GridContainer } from './style';
 import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
 import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
@@ -32,6 +32,7 @@ export default function HomeScreen() {
   const [cellIndex, setCellIndex] = useState<number | undefined>(undefined);
   const [autoRotate, setAutoRotate] = useState<boolean>(true);
   const [playModelActions, setPlayModelActions] = useState<boolean>(true);
+  const [autoModelActionsPlay, setAutoModelActionsPlay] = useState(true);
 
   const modelActionsLength = useContext(ModelActionsLengthContext);
 

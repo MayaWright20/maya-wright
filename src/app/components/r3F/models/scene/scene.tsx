@@ -55,7 +55,7 @@ export default function Scene() {
         <OrbitControls
           enableZoom={false}
           enablePan={false}
-          autoRotate={autoRotateContext}
+          // autoRotate={autoRotateContext}
         />
       </Suspense>
     </Canvas>
