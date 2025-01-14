@@ -34,7 +34,7 @@ export default function HomeScreen() {
   const [cellIndex, setCellIndex] = useState<number | undefined>(undefined);
   const [autoRotate, setAutoRotate] = useState<boolean>(true);
   const [playModelActions, setPlayModelActions] = useState<boolean>(true);
-  const [autoModelActionsPlay, setAutoModelActionsPlay] = useState(true);
+  // const [autoModelActionsPlay, setAutoModelActionsPlay] = useState(true);
 
   const modelActionsLength = useContext(ModelActionsLengthContext);
 
