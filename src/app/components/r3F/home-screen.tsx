@@ -8,8 +8,7 @@ import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
 import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
 import { ModelActionsPlaySwitchContext } from '@/app/context/r3f/modelActionsPlaySwitchContext';
 import { ModelActionsLengthContext } from '@/app/context/r3f/modelActionsLengthContext';
-
-const MAX_MOBILE_WINDOW_WIDTH = 425;
+import { MAX_MOBILE_WINDOW_WIDTH } from '@/app/constants/variables';
 
 export default function HomeScreen() {
   // scenes to create:
@@ -35,6 +34,7 @@ export default function HomeScreen() {
   const [autoRotate, setAutoRotate] = useState<boolean>(true);
   const [playModelActions, setPlayModelActions] = useState<boolean>(true);
   const [autoModelActionsPlay, setAutoModelActionsPlay] = useState(true);
+  const [autoPlayActionsTimer, setAutoPlayActionsTimer] = useState(true);
 
   const modelActionsLength = useContext(ModelActionsLengthContext);
 
@@ -65,12 +65,15 @@ export default function HomeScreen() {
   };
 
   useEffect(() => {
-    const cellIndexRef = { current: cellIndex };
+    if (window.innerWidth <= MAX_MOBILE_WINDOW_WIDTH) {
+      const cellIndexRef = { current: cellIndex };
 
-    const interval = setInterval(() => {
-      actionIndex(cellIndexRef.current, false, true);
-    }, 8000);
-    return () => clearInterval(interval);
+      const interval = setInterval(() => {
+        actionIndex(cellIndexRef.current, false, true);
+      }, 8000);
+
+      return () => clearInterval(interval);
+    }
   }, []);
 
   return (
