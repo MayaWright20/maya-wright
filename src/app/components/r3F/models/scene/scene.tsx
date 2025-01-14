@@ -39,14 +39,14 @@ export default function Scene() {
 
   return (
     <Canvas
-      gl={{ antialias: true, alpha: false }}
+      gl={{ antialias: true, alpha: true }}
       dpr={[1, 1.5]}
       style={{
         overflow: 'visible',
         position: 'absolute',
         height: '100vh',
         width: '100vw',
-        backgroundColor: 'pink',
+        backgroundColor: 'transparent',
       }}
     >
       <DirectionalLights />
