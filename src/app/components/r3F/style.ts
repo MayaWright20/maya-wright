@@ -7,11 +7,28 @@ export const GridContainer = styled.div`
 
     &-background {
       // this is the background you need to change and can see
-      background-color: yellow;
+      background-color: grey;
       position: absolute;
       height: 100vh;
       width: 100vw;
       z-index: -1;
+      overflow: hidden;
+
+      display: grid;
+      grid-template: repeat(5, 1fr) / repeat(20, 1fr);
+
+      &-item {
+        color: white;
+        background-color: black;
+        margin: 1px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        aspect-ratio: 1/2;
+        text-align: center;
+        writing-mode: vertical-rl;
+        text-orientation: upright;
+      }
     }
 
     &-buttons-mobile {

@@ -81,7 +81,18 @@ export default function HomeScreen() {
             <Scene />
             <div className="container-background">
               {Array.from({ length: 2000 }).map((_, index) => (
-                <div className="grid-item" key={index}></div>
+                <div
+                  style={{
+                    color:
+                      cellIndex !== undefined && index % cellIndex === 0
+                        ? 'white'
+                        : 'grey',
+                  }}
+                  className="container-background-item"
+                  key={index}
+                >
+                  {cellIndex === 4 ? 'SHOCK' : 'ANGER'}
+                </div>
               ))}
             </div>
             <div className="container">
