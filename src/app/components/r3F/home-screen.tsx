@@ -79,6 +79,11 @@ export default function HomeScreen() {
         <ModelActionsPlaySwitchContext.Provider value={playModelActions}>
           <GridContainer>
             <Scene />
+            <div className="container-background">
+              {Array.from({ length: 2000 }).map((_, index) => (
+                <div className="grid-item" key={index}></div>
+              ))}
+            </div>
             <div className="container">
               <div className="container-buttons-mobile">
                 <div

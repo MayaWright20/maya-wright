@@ -5,6 +5,15 @@ export const GridContainer = styled.div`
     height: 100vh;
     width: 100vw;
 
+    &-background {
+      // this is the background you need to change and can see
+      background-color: yellow;
+      position: absolute;
+      height: 100vh;
+      width: 100vw;
+      z-index: -1;
+    }
+
     &-buttons-mobile {
       top: 80vh;
       width: 100%;
@@ -20,10 +29,14 @@ export const GridContainer = styled.div`
       &-next {
         flex: 1;
         font-size: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: left;
       }
-
       &-next:first-child {
-        text-align: right;
+        justify-content: right;
       }
       & span {
         background-color: grey;
