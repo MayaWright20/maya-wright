@@ -7,39 +7,41 @@ Files: model1.glb [29.26MB] > /Users/maya/Desktop/MyProjects/maya-wright/public/
 import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
 import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
+import ModelActions from '../../../utils/modelActions';
+import ModelConstructor from '../../../utils/modelConstructor';
 import { ModelActionsPlaySwitchContext } from '@/app/context/r3f/modelActionsPlaySwitchContext';
 
 const STOP_ANIMATION = 7;
 
-export function ModelConstructor() {
-  const group = React.useRef();
-  const { nodes, materials, animations } = useGLTF('/model1-transformed.glb');
-  const { actions } = useAnimations(animations, group);
+// export function ModelConstructor() {
+//   const group = React.useRef();
+//   const { nodes, materials, animations } = useGLTF('/model1-transformed.glb');
+//   const { actions } = useAnimations(animations, group);
 
-  return {
-    group,
-    nodes,
-    materials,
-    actions,
-  };
-}
+//   return {
+//     group,
+//     nodes,
+//     materials,
+//     actions,
+//   };
+// }
 
-export function ModelActions() {
-  const { actions } = ModelConstructor();
-  const [actionsArr, setActionsArr] = useState([]);
+// export function ModelActions() {
+//   const { actions } = ModelConstructor();
+//   const [actionsArr, setActionsArr] = useState([]);
 
-  useLayoutEffect(() => {
-    let actionsSet = new Set();
-    for (const item in actions) {
-      if (item.includes('MAYA_')) {
-        actionsSet.add(item);
-      }
-    }
-    setActionsArr([...actionsSet]);
-  }, [actions]);
+//   useLayoutEffect(() => {
+//     let actionsSet = new Set();
+//     for (const item in actions) {
+//       if (item.includes('MAYA_')) {
+//         actionsSet.add(item);
+//       }
+//     }
+//     setActionsArr([...actionsSet]);
+//   }, [actions]);
 
-  return actionsArr;
-}
+//   return actionsArr;
+// }
 
 export function Model1() {
   const { group, nodes, materials, actions } = ModelConstructor();
