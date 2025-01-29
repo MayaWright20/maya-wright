@@ -7,20 +7,18 @@ export const GridContainer = styled.div`
 
     &-background {
       // this is the background you need to change and can see
-      background-color: grey;
+      background-color: yellow;
       position: absolute;
       height: 100vh;
       width: 100vw;
       z-index: -1;
       overflow: hidden;
-
       display: grid;
-      grid-template: repeat(5, 1fr) / repeat(20, 1fr);
+      grid-template: repeat(20, 1fr) / repeat(20, 5%);
 
       &-item {
         color: white;
         background-color: black;
-        margin: 1px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -28,13 +26,17 @@ export const GridContainer = styled.div`
         text-align: center;
         writing-mode: vertical-rl;
         text-orientation: upright;
+        font-size: clamp(0.5rem, 1vw, 1rem);
+        border: 1px solid gray;
+        width: 100%;
+        height: 100%;
       }
     }
 
     &-buttons-mobile {
-      top: 80vh;
+      top: 70vh;
       width: 100%;
-      height: 8%;
+      height: 30%;
       color: red;
       color: grey;
       position: absolute;
@@ -43,8 +45,24 @@ export const GridContainer = styled.div`
       align-items: center;
       justify-content: center;
 
+      &.container-buttons-mobile:not(span:nth-child(1)) {
+        margin: 0;
+      }
+
+      &-background {
+        display: flex;
+        flex-direction: row;
+        width: 50%;
+        height: 25%;
+        align-items: center;
+        justify-content: space-between;
+        background-color: rgba(0, 0, 0, 0.789);
+        border-radius: 500px;
+        padding-inline: 15px;
+        border: 1px solid gray;
+      }
+
       &-next {
-        flex: 1;
         font-size: 100%;
         height: 100%;
         display: flex;
@@ -57,7 +75,7 @@ export const GridContainer = styled.div`
       }
       & span {
         background-color: grey;
-        height: 25%;
+        height: 35%;
         aspect-ratio: 1;
         border-radius: 100px;
         display: flex;
@@ -85,7 +103,7 @@ export const GridContainer = styled.div`
         }
       }
 
-      & :not(span:nth-child(1)) {
+      &:not(span:nth-child(1)) {
         margin-left: 2%;
       }
     }

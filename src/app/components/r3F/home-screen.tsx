@@ -11,20 +11,11 @@ import { ModelActionsLengthContext } from '@/app/context/r3f/modelActionsLengthC
 
 const MAX_MOBILE_WINDOW_WIDTH = 425;
 
-const LARGE_BACKGROUND_WORDS: Record<number, string[]> = {
-  // Arrays have to be in the same order as the emotions of the 3d head
-  0: ['ANGER', 'KISS', 'AWKWARD', 'SAD', 'WINK', 'SHOCK'], //ENGLIST
-  1: ['الغضب', 'قبلة', 'محرج', 'حزين', 'غمزة', 'صدمة'], // ARABIC
-  2: ['ความโกรธ', 'จูบ', 'งุ่มง่าม', 'เศร้า', 'ขยิบตา', 'ช็อก'], //THAI
-  3: ['憤怒', '吻', '尷尬的', '傷心', '眨眼', '震驚'], // TAIWAN
-  4: ['गुस्सा', 'चुंबन', 'अजीब', 'उदास', 'मुखर', 'झटका'], // HINDI
-};
-
 const MOBILE_BACKGROUND_WORDS: Record<number, string[]> = {
   // Arrays have to be in the same order as the emotions of the 3d head
   0: ['ANGER', 'الغضب', 'ความโกรธ', '憤怒', 'गुस्सा'],
   1: ['KISS', 'قبلة', 'จูบ', '吻', 'चुंबन'],
-  2: ['AWKWARD', 'محرج', 'งุ่มง่าม', '尷尬的', 'अजीब'],
+  2: ['AHHH', 'محرج', 'งุ่มง่าม', '尷尬的', 'अजीब'],
   3: ['SAD', 'حزين', 'เศร้า', '傷心', 'उदास'],
   4: ['WINK', 'غمزة', 'ขยิบตา', '眨眼', 'मुखर'],
   5: ['SHOCK', 'صدمة', 'ช็อก', '震驚', 'झटका'],
@@ -34,7 +25,7 @@ const MOBILE_BACKGROUND_WORDS: Record<number, string[]> = {
 export default function HomeScreen() {
   // scenes to create:
   // ____________________
-  // emtions
+  // emotions
   // pully face / AKKWARD
   // shock with milk pouring down
   // angry
@@ -100,14 +91,20 @@ export default function HomeScreen() {
           <GridContainer>
             <Scene />
             <div className="container-background">
-              {Array.from({ length: 2000 }).map((_, index) => (
+              {Array.from({ length: 500 }).map((_, index) => (
                 <div
                   style={{
                     // THIS IS WHERE YOU NEED TO CHANGE THE WHITE TEXT THAT LIGHTS UP
-                    color: [cellIndex === undefined ? 100 : cellIndex][
-                      Math.floor(Math.random() * 5)
-                    ]
-                      ? 'white'
+                    color: [
+                      cellIndex === undefined
+                        ? 100
+                        : cellIndex === 0
+                        ? 100
+                        : cellIndex,
+                    ][Math.floor(Math.random() * 5)]
+                      ? `rgb(${Math.floor(Math.random() * 250)},${Math.floor(
+                          Math.random() * 250
+                        )},${Math.floor(Math.random() * 250)})`
                       : 'grey',
                   }}
                   className="container-background-item"
@@ -123,28 +120,30 @@ export default function HomeScreen() {
             </div>
             <div className="container">
               <div className="container-buttons-mobile">
-                <div
-                  className="container-buttons-mobile-next"
-                  onClick={() => actionIndex(cellIndex, true)}
-                >{`<`}</div>
-                {modelActionsLength.map((value, index) => {
-                  return (
-                    <span key={index} onClick={() => actionIndex(index)}>
-                      <div>
-                        <div
-                          style={{
-                            backgroundColor:
-                              index === cellIndex ? 'white' : 'grey',
-                          }}
-                        ></div>
-                      </div>
-                    </span>
-                  );
-                })}
-                <div
-                  className="container-buttons-mobile-next"
-                  onClick={() => actionIndex(cellIndex, false, true)}
-                >{`>`}</div>
+                <div className="container-buttons-mobile-background">
+                  <div
+                    className="container-buttons-mobile-next"
+                    onClick={() => actionIndex(cellIndex, true)}
+                  >{`<`}</div>
+                  {modelActionsLength.map((value, index) => {
+                    return (
+                      <span key={index} onClick={() => actionIndex(index)}>
+                        <div>
+                          <div
+                            style={{
+                              backgroundColor:
+                                index === cellIndex ? 'white' : 'grey',
+                            }}
+                          ></div>
+                        </div>
+                      </span>
+                    );
+                  })}
+                  <div
+                    className="container-buttons-mobile-next"
+                    onClick={() => actionIndex(cellIndex, false, true)}
+                  >{`>`}</div>
+                </div>
               </div>
             </div>
           </GridContainer>
