@@ -11,11 +11,31 @@ import { ModelActionsLengthContext } from '@/app/context/r3f/modelActionsLengthC
 
 const MAX_MOBILE_WINDOW_WIDTH = 425;
 
+const LARGE_BACKGROUND_WORDS: Record<number, string[]> = {
+  // Arrays have to be in the same order as the emotions of the 3d head
+  0: ['ANGER', 'KISS', 'AWKWARD', 'SAD', 'WINK', 'SHOCK'], //ENGLIST
+  1: ['الغضب', 'قبلة', 'محرج', 'حزين', 'غمزة', 'صدمة'], // ARABIC
+  2: ['ความโกรธ', 'จูบ', 'งุ่มง่าม', 'เศร้า', 'ขยิบตา', 'ช็อก'], //THAI
+  3: ['憤怒', '吻', '尷尬的', '傷心', '眨眼', '震驚'], // TAIWAN
+  4: ['गुस्सा', 'चुंबन', 'अजीब', 'उदास', 'मुखर', 'झटका'], // HINDI
+};
+
+const MOBILE_BACKGROUND_WORDS: Record<number, string[]> = {
+  // Arrays have to be in the same order as the emotions of the 3d head
+  0: ['ANGER', 'الغضب', 'ความโกรธ', '憤怒', 'गुस्सा'],
+  1: ['KISS', 'قبلة', 'จูบ', '吻', 'चुंबन'],
+  2: ['AWKWARD', 'محرج', 'งุ่มง่าม', '尷尬的', 'अजीब'],
+  3: ['SAD', 'حزين', 'เศร้า', '傷心', 'उदास'],
+  4: ['WINK', 'غمزة', 'ขยิบตา', '眨眼', 'मुखर'],
+  5: ['SHOCK', 'صدمة', 'ช็อก', '震驚', 'झटका'],
+  100: ['MAYA', 'مايا', 'มายา', '瑪雅', 'माया'],
+};
+
 export default function HomeScreen() {
   // scenes to create:
   // ____________________
   // emtions
-  // pully face
+  // pully face / AKKWARD
   // shock with milk pouring down
   // angry
   // wink with tongue
@@ -83,15 +103,21 @@ export default function HomeScreen() {
               {Array.from({ length: 2000 }).map((_, index) => (
                 <div
                   style={{
-                    color:
-                      cellIndex !== undefined && index % cellIndex === 0
-                        ? 'white'
-                        : 'grey',
+                    // THIS IS WHERE YOU NEED TO CHANGE THE WHITE TEXT THAT LIGHTS UP
+                    color: [cellIndex === undefined ? 100 : cellIndex][
+                      Math.floor(Math.random() * 5)
+                    ]
+                      ? 'white'
+                      : 'grey',
                   }}
                   className="container-background-item"
                   key={index}
                 >
-                  {cellIndex === 4 ? 'SHOCK' : 'ANGER'}
+                  {
+                    MOBILE_BACKGROUND_WORDS[
+                      cellIndex === undefined ? 100 : cellIndex
+                    ][Math.floor(Math.random() * 5)]
+                  }
                 </div>
               ))}
             </div>
