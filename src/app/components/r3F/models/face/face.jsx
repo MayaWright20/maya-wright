@@ -5,7 +5,7 @@ Files: model1.glb [29.26MB] > /Users/maya/Desktop/MyProjects/maya-wright/public/
 */
 
 import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
-import { useGLTF, useAnimations } from '@react-three/drei';
+import { useGLTF } from '@react-three/drei';
 import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
 import ModelActions from '../../../utils/modelActions';
 import ModelConstructor from '../../../utils/modelConstructor';
