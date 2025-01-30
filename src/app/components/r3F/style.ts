@@ -14,6 +14,7 @@ export const GridContainer = styled.div`
       z-index: -1;
       overflow: hidden;
       display: grid;
+      top: 0;
       grid-template: repeat(20, 1fr) / repeat(20, 5%);
 
       &-item {
@@ -108,4 +109,13 @@ export const GridContainer = styled.div`
       }
     }
   }
+`;
+
+export const Container = styled.div`
+  background-color: rgba(112, 237, 164, 0.36);
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  overflow: hidden;
 `;
