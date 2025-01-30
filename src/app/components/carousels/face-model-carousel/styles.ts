@@ -1,41 +1,18 @@
 import styled from 'styled-components';
 
-export const GridContainer = styled.div`
+import { COLORS } from '@/app/constants/colors';
+
+interface ContainerProps {
+  $loaded: boolean;
+}
+
+export const Container = styled.div<ContainerProps>`
   & .container {
     height: 100vh;
     width: 100vw;
 
-    &-background {
-      // this is the background you need to change and can see
-      background-color: yellow;
-      position: absolute;
-      height: 100vh;
-      width: 100vw;
-      z-index: -1;
-      overflow: hidden;
-      display: grid;
-      top: 0;
-      grid-template: repeat(20, 1fr) / repeat(20, 5%);
-
-      &-item {
-        color: white;
-        background-color: black;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        aspect-ratio: 1/2;
-        text-align: center;
-        writing-mode: vertical-rl;
-        text-orientation: upright;
-        font-size: clamp(0.5rem, 1vw, 1rem);
-        border: 1px solid gray;
-        width: 100%;
-        height: 100%;
-      }
-    }
-
     &-buttons-mobile {
-      top: 70vh;
+      top: ${({ $loaded }) => ($loaded ? '70vh' : '120vh')};
       width: 100%;
       height: 30%;
       color: red;
@@ -45,23 +22,43 @@ export const GridContainer = styled.div`
       flex-direction: row;
       align-items: center;
       justify-content: center;
+      bottom: auto;
+      animation-name: ${({ $loaded }) => ($loaded ? null : 'slideUp')};
+      animation-duration: 4s;
+      animation-timing-function: ease-in-out;
+      animation-timing-function: cubic-bezier(0.9, 0.5, 0.4, 0.9);
+      animation-fill-mode: forwards;
+
+      @keyframes slideUp {
+        from {
+          top: 115vh;
+        }
+        to {
+          top: 70vh;
+        }
+      }
 
       &.container-buttons-mobile:not(span:nth-child(1)) {
         margin: 0;
       }
 
-      &-background {
+      /* &-background {
         display: flex;
         flex-direction: row;
         width: 50%;
         height: 25%;
         align-items: center;
         justify-content: space-between;
-        background-color: rgba(0, 0, 0, 0.789);
+        background-color: ${COLORS.transparent_black};
         border-radius: 500px;
         padding-inline: 15px;
         border: 1px solid gray;
-      }
+
+        animation-name: ${({ $loaded }) => ($loaded ? null : 'slideUp')};
+        animation-duration: 5s;
+        animation-timing-function: ease-in-out;
+        animation-timing-function: cubic-bezier(0.9, 0.4, 0.5, 0.9);
+      } */
 
       &-next {
         font-size: 100%;
@@ -71,9 +68,11 @@ export const GridContainer = styled.div`
         align-items: center;
         justify-content: left;
       }
+
       &-next:first-child {
         justify-content: right;
       }
+
       & span {
         background-color: grey;
         height: 35%;
@@ -107,15 +106,24 @@ export const GridContainer = styled.div`
       &:not(span:nth-child(1)) {
         margin-left: 2%;
       }
+
+      &-background {
+        display: flex;
+        flex-direction: row;
+        width: 50%;
+        height: 25%;
+        align-items: center;
+        justify-content: space-between;
+        background-color: ${COLORS.transparent_black};
+        border-radius: 500px;
+        padding-inline: 15px;
+        border: 1px solid gray;
+
+        /* animation-name: ${({ $loaded }) => ($loaded ? null : 'slideUp')};
+        animation-duration: 5s;
+        animation-timing-function: ease-in-out;
+        animation-timing-function: cubic-bezier(0.9, 0.4, 0.5, 0.9); */
+      }
     }
   }
-`;
-
-export const Container = styled.div`
-  background-color: rgba(112, 237, 164, 0.36);
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  overflow: hidden;
 `;

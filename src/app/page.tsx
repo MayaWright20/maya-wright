@@ -1,7 +1,7 @@
 'use client';
 import dynamic from 'next/dynamic';
 
-const HomeScreen = dynamic(() => import('@/app/components/r3F/home-screen'), {
+const HomeScreen = dynamic(() => import('@/app/screens/home-screen'), {
   ssr: false,
 });
 
