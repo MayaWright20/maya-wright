@@ -3,7 +3,7 @@
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import { Html, OrbitControls } from "@react-three/drei";
-import DirectionalLights from "../lights/directional-lights";
+// import DirectionalLights from "../lights/directional-lights";
 import Face from "../face/face";
 // import RedHeart from '../heart/pixelated-heart';
 // import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
@@ -49,7 +49,7 @@ export default function Scene() {
         backgroundColor: "transparent",
       }}
     >
-      <DirectionalLights />
+      {/* <DirectionalLights /> */}
       <Suspense fallback={<Loader />}>
         <Face />
         <OrbitControls
