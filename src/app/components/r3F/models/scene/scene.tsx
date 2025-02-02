@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { Canvas } from '@react-three/fiber';
-import { Suspense } from 'react';
-import { Html, OrbitControls } from '@react-three/drei';
-import DirectionalLights from '../lights/directional-lights';
-import Face from '../face/face';
+import { Canvas } from "@react-three/fiber";
+import { Suspense } from "react";
+import { Html, OrbitControls } from "@react-three/drei";
+// import DirectionalLights from "../lights/directional-lights";
+import Face from "../face/face";
 // import RedHeart from '../heart/pixelated-heart';
 // import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
 
@@ -42,14 +42,14 @@ export default function Scene() {
       gl={{ antialias: true, alpha: true }}
       dpr={[1, 1.5]}
       style={{
-        overflow: 'visible',
-        position: 'absolute',
-        height: '100vh',
-        width: '100vw',
-        backgroundColor: 'transparent',
+        overflow: "visible",
+        position: "absolute",
+        height: "100vh",
+        width: "100vw",
+        backgroundColor: "transparent",
       }}
     >
-      <DirectionalLights />
+      {/* <DirectionalLights /> */}
       <Suspense fallback={<Loader />}>
         <Face />
         <OrbitControls
