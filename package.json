@@ -20,12 +20,12 @@
     "three": "^0.170.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/node": "^22.13.0",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
     "eslint": "^8",
-    "eslint-config-next": "15.0.3",
-    "leva": "^0.9.34",
+    "eslint-config-next": "^15.1.6",
+    "leva": "^0.10.0",
     "typescript": "^5"
   },
   "resolutions": {
