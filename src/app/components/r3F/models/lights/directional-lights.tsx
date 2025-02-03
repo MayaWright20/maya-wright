@@ -1,7 +1,7 @@
 export default function DirectionalLights() {
   return (
     <>
-      {/* <directionalLight
+      <directionalLight
         position={[15, -30, 15]}
         intensity={2}
         color={'#00FF77'}
@@ -30,7 +30,7 @@ export default function DirectionalLights() {
         position={[10, 1000, 20]}
         intensity={0.5}
         color={'#D500FF'}
-      /> */}
+      />
     </>
   );
 }
