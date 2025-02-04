@@ -52,8 +52,8 @@ export default function Scene() {
       style={{
         overflow: 'visible',
         position: 'absolute',
-        height: '100vh',
-        width: '100vw',
+        height: '100%',
+        width: '100%',
         backgroundColor: 'transparent',
       }}
     >
@@ -105,7 +105,6 @@ export default function Scene() {
           fade
           speed={3}
         />
-
         <OrbitControls
           enableZoom={false}
           enablePan={false}
