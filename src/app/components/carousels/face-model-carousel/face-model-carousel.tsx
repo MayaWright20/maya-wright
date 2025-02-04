@@ -27,12 +27,23 @@ export default function FaceModelCarousel({
             >{``}</div>
             {modelActionsLength.map((value: any, index: number) => {
               return (
-                <span key={index} onClick={() => actionIndex(index)}>
+                <span
+                  style={{
+                    backgroundColor:
+                      index === cellIndex
+                        ? 'rgb(100, 224, 255)'
+                        : `${COLORS.light_blue}`,
+                  }}
+                  key={index}
+                  onClick={() => actionIndex(index)}
+                >
                   <div>
                     <div
                       style={{
                         backgroundColor:
-                          index === cellIndex ? 'grey' : `${COLORS.light_blue}`,
+                          index === cellIndex
+                            ? 'rgb(255, 0, 187)'
+                            : `${COLORS.light_blue}`,
                       }}
                     ></div>
                   </div>
