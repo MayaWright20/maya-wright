@@ -42,24 +42,6 @@ export const Container = styled.div<ContainerProps>`
         margin: 0;
       }
 
-      /* &-background {
-        display: flex;
-        flex-direction: row;
-        width: 50%;
-        height: 25%;
-        align-items: center;
-        justify-content: space-between;
-        background-color: ${COLORS.transparent_black};
-        border-radius: 500px;
-        padding-inline: 15px;
-        border: 1px solid gray;
-
-        animation-name: ${({ $loaded }) => ($loaded ? null : 'slideUp')};
-        animation-duration: 5s;
-        animation-timing-function: ease-in-out;
-        animation-timing-function: cubic-bezier(0.9, 0.4, 0.5, 0.9);
-      } */
-
       &-next {
         font-size: 100%;
         height: 100%;
@@ -74,7 +56,7 @@ export const Container = styled.div<ContainerProps>`
       }
 
       & span {
-        background-color: grey;
+        background-color: white;
         height: 35%;
         aspect-ratio: 1;
         border-radius: 100px;
@@ -89,13 +71,13 @@ export const Container = styled.div<ContainerProps>`
           display: flex;
           align-items: center;
           justify-content: center;
-          background-color: black;
+          background-color: ${COLORS.light_grey};
           height: 90%;
           aspect-ratio: 1;
           overflow: hidden;
+          z-index: 2;
 
           & div {
-            background-color: grey;
             height: 40%;
             aspect-ratio: 1;
             border-radius: 100%;
@@ -114,10 +96,24 @@ export const Container = styled.div<ContainerProps>`
         height: 25%;
         align-items: center;
         justify-content: space-between;
-        background-color: ${COLORS.transparent_black};
-        border-radius: 500px;
-        padding-inline: 15px;
-        border: 1px solid gray;
+        border: 3px solid white;
+        border-radius: 100px;
+
+        &::before {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          transform: translateY(-50%);
+          height: 2px;
+          background: white;
+          content: '';
+          width: 100%; /* Match the parent container width */
+          display: block;
+        }
+
+        /* border-radius: 500px; */
+        /* padding-inline: 15px; */
+        /* border: 1px solid gray; */
 
         /* animation-name: ${({ $loaded }) => ($loaded ? null : 'slideUp')};
         animation-duration: 5s;

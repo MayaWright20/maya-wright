@@ -5,7 +5,6 @@ import Scene from '../components/r3F/models/scene/scene';
 import { useContext, useEffect, useState } from 'react';
 import { Container } from './style';
 import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
-import SkyBackground from '../components/backgrounds/sky/sky-background';
 // import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
 // import { ModelActionsPlaySwitchContext } from '@/app/context/r3f/modelActionsPlaySwitchContext';
 import { ModelActionsLengthContext } from '@/app/context/r3f/modelActionsLengthContext';
@@ -95,7 +94,6 @@ export default function HomeScreen() {
         <Container>
           <BurgerMenu />
           <Scene />
-          <SkyBackground />
           <FaceModelCarousel
             actionIndex={actionIndex}
             cellIndex={cellIndex}

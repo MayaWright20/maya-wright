@@ -16,8 +16,23 @@ export const Container = styled.div<ContainerProps>`
     width: ${({ $isNavOpen }) => ($isNavOpen ? '100%' : 'auto')};
     display: flex;
 
+    & p {
+      color: ${({ $isNavOpen }) => ($isNavOpen ? 'grey' : 'grey')};
+      z-index: 10000;
+    }
+
+    &::before {
+      position: absolute;
+      background-color: white;
+      content: '';
+      width: 2px;
+      margin-left: 8.6vh;
+      height: 100vh;
+    }
+
     & .closed {
-      background-color: ${COLORS.transparent_black};
+      background-color: ${({ $isNavOpen }) =>
+        $isNavOpen ? 'white' : 'transparent'};
       display: flex;
       margin-left: ${({ $isNavOpen }) => ($isNavOpen ? '1vh' : '5vh')};
       margin-top: ${({ $isNavOpen }) => ($isNavOpen ? '1vh' : '5vh')};
@@ -27,13 +42,13 @@ export const Container = styled.div<ContainerProps>`
       flex: ${({ $isNavOpen }) => ($isNavOpen ? '1' : 'auto')};
       width: ${({ $isNavOpen }) => ($isNavOpen ? '100%' : '55px')};
       border-radius: ${({ $isNavOpen }) => ($isNavOpen ? '5px' : '100px')};
-      border: 1px solid gray;
+      border: 2px solid white;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       color: white;
-      //CHANGE BELOW NULL TO ANIMATION WHEN WORKED OUT
+      // CHANGE BELOW NULL TO ANIMATION WHEN WORKED OUT
       animation-name: ${({ $loaded }) => ($loaded ? null : 'slideDown')};
       animation-duration: 4s;
       animation-timing-function: ease-in-out;

@@ -2,7 +2,14 @@
 
 import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
-import { Cloud, Clouds, Html, OrbitControls, Sky } from '@react-three/drei';
+import {
+  Cloud,
+  Clouds,
+  Html,
+  OrbitControls,
+  Sky,
+  Stars,
+} from '@react-three/drei';
 import DirectionalLights from '../lights/directional-lights';
 import Face from '../face/face';
 import * as THREE from 'three';
@@ -89,6 +96,15 @@ export default function Scene() {
             position={[60, 60, 20]}
           />
         </Clouds>
+        <Stars
+          radius={50}
+          depth={50}
+          count={5000}
+          factor={4}
+          saturation={0}
+          fade
+          speed={3}
+        />
 
         <OrbitControls
           enableZoom={false}
