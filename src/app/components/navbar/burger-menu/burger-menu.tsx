@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
-import { Container } from "./styles";
-import { HasScreenLoaded } from "@/app/context/loading/has-screen-loaded";
+import React, { useContext, useState } from 'react';
+import { Container } from './styles';
+import { HasScreenLoaded } from '@/app/context/loading/has-screen-loaded';
 
 export default function BurgerMenu() {
   const hasScreenLoaded = useContext(HasScreenLoaded);
@@ -19,7 +19,11 @@ export default function BurgerMenu() {
     >
       <nav>
         <div className="closed">
-          <p onClick={onClick}>{isNavOpen ? "X" : "="}</p>
+          <span onClick={onClick}>
+            <div className="burger-line"></div>
+            <div className="burger-line"></div>
+            <div className="burger-line"></div>
+          </span>
           {isNavOpen && (
             <ul>
               <li>About</li>
