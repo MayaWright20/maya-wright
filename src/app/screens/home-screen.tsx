@@ -5,12 +5,12 @@ import Scene from '../components/r3F/models/scene/scene';
 import { useContext, useEffect, useState } from 'react';
 import { Container } from './style';
 import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
+import SkyBackground from '../components/backgrounds/sky/sky-background';
 // import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
 // import { ModelActionsPlaySwitchContext } from '@/app/context/r3f/modelActionsPlaySwitchContext';
 import { ModelActionsLengthContext } from '@/app/context/r3f/modelActionsLengthContext';
 import BurgerMenu from '../components/navbar/burger-menu/burger-menu';
 import FaceModelCarousel from '../components/carousels/face-model-carousel/face-model-carousel';
-import WordGridBackground from '../components/grids/word-grid-backgground/WordGridBackground';
 import { HasScreenLoaded } from '@/app/context/loading/has-screen-loaded';
 // const MAX_MOBILE_WINDOW_WIDTH = 425;
 
@@ -95,7 +95,7 @@ export default function HomeScreen() {
         <Container>
           <BurgerMenu />
           <Scene />
-          <WordGridBackground cellIndex={cellIndex} />
+          <SkyBackground />
           <FaceModelCarousel
             actionIndex={actionIndex}
             cellIndex={cellIndex}
