@@ -2,9 +2,17 @@
 
 import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
-import { Html, OrbitControls } from '@react-three/drei';
+import {
+  Cloud,
+  Clouds,
+  Html,
+  OrbitControls,
+  Sky,
+  Stars,
+} from '@react-three/drei';
 import DirectionalLights from '../lights/directional-lights';
 import Face from '../face/face';
+import * as THREE from 'three';
 // import RedHeart from '../heart/pixelated-heart';
 // import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
 
@@ -52,6 +60,52 @@ export default function Scene() {
       <DirectionalLights />
       <Suspense fallback={<Loader />}>
         <Face />
+        <Sky
+          distance={450000}
+          sunPosition={[0, 1, 0]}
+          inclination={0}
+          azimuth={0.25}
+        />
+        <Clouds material={THREE.MeshBasicMaterial}>
+          <Cloud
+            segments={40}
+            bounds={[10, 2, 100]}
+            volume={10}
+            color="white"
+            position={[60, 60, 20]}
+          />
+          <Cloud
+            segments={10}
+            bounds={[60, 60, 20]}
+            seed={1}
+            scale={5}
+            volume={20}
+            color="white"
+            fade={100}
+            position={[60, 60, 20]}
+          />
+
+          <Cloud
+            segments={10}
+            bounds={[-50, -10, -10]}
+            seed={1}
+            scale={5}
+            volume={20}
+            color="white"
+            fade={100}
+            position={[60, 60, 20]}
+          />
+        </Clouds>
+        <Stars
+          radius={50}
+          depth={50}
+          count={5000}
+          factor={4}
+          saturation={0}
+          fade
+          speed={3}
+        />
+
         <OrbitControls
           enableZoom={false}
           enablePan={false}

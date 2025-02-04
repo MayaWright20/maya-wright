@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { useContext } from "react";
-import { Container } from "./styles";
-import { HasScreenLoaded } from "@/app/context/loading/has-screen-loaded";
+import { useContext } from 'react';
+import { Container } from './styles';
+import { HasScreenLoaded } from '@/app/context/loading/has-screen-loaded';
+import { COLORS } from '@/app/constants/colors';
 
 export default function FaceModelCarousel({
   actionIndex,
@@ -23,14 +24,15 @@ export default function FaceModelCarousel({
             <div
               className="container-buttons-mobile-next"
               onClick={() => actionIndex(cellIndex, true)}
-            >{`<`}</div>
+            >{``}</div>
             {modelActionsLength.map((value: any, index: number) => {
               return (
                 <span key={index} onClick={() => actionIndex(index)}>
                   <div>
                     <div
                       style={{
-                        backgroundColor: index === cellIndex ? "white" : "grey",
+                        backgroundColor:
+                          index === cellIndex ? 'grey' : `${COLORS.light_blue}`,
                       }}
                     ></div>
                   </div>
@@ -40,7 +42,7 @@ export default function FaceModelCarousel({
             <div
               className="container-buttons-mobile-next"
               onClick={() => actionIndex(cellIndex, false, true)}
-            >{`>`}</div>
+            >{``}</div>
           </div>
         </div>
       </div>

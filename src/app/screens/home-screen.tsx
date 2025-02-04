@@ -10,7 +10,6 @@ import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
 import { ModelActionsLengthContext } from '@/app/context/r3f/modelActionsLengthContext';
 import BurgerMenu from '../components/navbar/burger-menu/burger-menu';
 import FaceModelCarousel from '../components/carousels/face-model-carousel/face-model-carousel';
-import WordGridBackground from '../components/grids/word-grid-backgground/WordGridBackground';
 import { HasScreenLoaded } from '@/app/context/loading/has-screen-loaded';
 // const MAX_MOBILE_WINDOW_WIDTH = 425;
 
@@ -95,7 +94,6 @@ export default function HomeScreen() {
         <Container>
           <BurgerMenu />
           <Scene />
-          <WordGridBackground cellIndex={cellIndex} />
           <FaceModelCarousel
             actionIndex={actionIndex}
             cellIndex={cellIndex}
