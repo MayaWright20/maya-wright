@@ -31,7 +31,7 @@ export const Container = styled.div<ContainerProps>`
       background-color: white;
       content: '';
       width: 2px;
-      margin-left: 8.6vh;
+      margin-left: 68px;
       height: 100vh;
     }
 
@@ -39,13 +39,13 @@ export const Container = styled.div<ContainerProps>`
       background-color: ${({ $isNavOpen }) =>
         $isNavOpen ? 'white' : 'transparent'};
       display: flex;
-      margin-left: ${({ $isNavOpen }) => ($isNavOpen ? '1vh' : '5vh')};
-      margin-top: ${({ $isNavOpen }) => ($isNavOpen ? '1vh' : '5vh')};
-      margin-bottom: ${({ $isNavOpen }) => ($isNavOpen ? '1vh' : 'auto')};
-      margin-right: ${({ $isNavOpen }) => ($isNavOpen ? '1vh' : 'auto')};
+      margin-left: ${({ $isNavOpen }) => ($isNavOpen ? '3%' : '40px')};
+      margin-top: ${({ $isNavOpen }) => ($isNavOpen ? '3%' : '40px')};
+      margin-bottom: ${({ $isNavOpen }) => ($isNavOpen ? '3%' : 'auto')};
+      margin-right: ${({ $isNavOpen }) => ($isNavOpen ? '3%' : 'auto')};
       aspect-ratio: ${({ $isNavOpen }) => ($isNavOpen ? 'auto' : '1')};
       flex: ${({ $isNavOpen }) => ($isNavOpen ? '1' : 'auto')};
-      width: ${({ $isNavOpen }) => ($isNavOpen ? '100%' : '55px')};
+      width: ${({ $isNavOpen }) => ($isNavOpen ? '100%' : '56px')};
       border-radius: ${({ $isNavOpen }) => ($isNavOpen ? '5px' : '100px')};
       border: 2px solid white;
       display: flex;
