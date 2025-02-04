@@ -16,9 +16,14 @@ export const Container = styled.div<ContainerProps>`
     width: ${({ $isNavOpen }) => ($isNavOpen ? '100%' : 'auto')};
     display: flex;
 
+    animation-name: ${({ $loaded }) => ($loaded ? null : 'slideDown')};
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out;
+    animation-timing-function: cubic-bezier(0.9, 0.4, 0.5, 0.9);
+
     & p {
       color: ${({ $isNavOpen }) => ($isNavOpen ? 'grey' : 'grey')};
-      z-index: 10000;
+      z-index: ${Z_INDEXES.level_10};
     }
 
     &::before {
@@ -48,11 +53,6 @@ export const Container = styled.div<ContainerProps>`
       align-items: center;
       justify-content: center;
       color: white;
-      // CHANGE BELOW NULL TO ANIMATION WHEN WORKED OUT
-      animation-name: ${({ $loaded }) => ($loaded ? null : 'slideDown')};
-      animation-duration: 4s;
-      animation-timing-function: ease-in-out;
-      animation-timing-function: cubic-bezier(0.9, 0.4, 0.5, 0.9);
     }
   }
 
@@ -67,10 +67,10 @@ export const Container = styled.div<ContainerProps>`
 
   @keyframes slideDown {
     from {
-      margin-top: -15vh;
+      margin-top: -115vh;
     }
     to {
-      margin-top: 5vh;
+      margin-top: 0vh;
     }
   }
 `;

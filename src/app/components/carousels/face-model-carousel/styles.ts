@@ -12,7 +12,7 @@ export const Container = styled.div<ContainerProps>`
     width: 100vw;
 
     &-buttons-mobile {
-      top: ${({ $loaded }) => ($loaded ? '70vh' : '120vh')};
+      top: 70vh;
       width: 100%;
       height: 30%;
       color: red;
@@ -23,18 +23,18 @@ export const Container = styled.div<ContainerProps>`
       align-items: center;
       justify-content: center;
       bottom: auto;
-      animation-name: ${({ $loaded }) => ($loaded ? null : 'slideUp')};
+      animation-name: ${({ $loaded }) => ($loaded ? null : 'slideLeft')};
       animation-duration: 4s;
       animation-timing-function: ease-in-out;
       animation-timing-function: cubic-bezier(0.9, 0.5, 0.4, 0.9);
       animation-fill-mode: forwards;
 
-      @keyframes slideUp {
+      @keyframes slideLeft {
         from {
-          top: 115vh;
+          left: 115vw;
         }
         to {
-          top: 70vh;
+          left: 0;
         }
       }
 
@@ -110,15 +110,6 @@ export const Container = styled.div<ContainerProps>`
           width: 100%; /* Match the parent container width */
           display: block;
         }
-
-        /* border-radius: 500px; */
-        /* padding-inline: 15px; */
-        /* border: 1px solid gray; */
-
-        /* animation-name: ${({ $loaded }) => ($loaded ? null : 'slideUp')};
-        animation-duration: 5s;
-        animation-timing-function: ease-in-out;
-        animation-timing-function: cubic-bezier(0.9, 0.4, 0.5, 0.9); */
       }
     }
   }
