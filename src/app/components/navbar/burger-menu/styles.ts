@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { COLORS } from '@/app/constants/colors';
 import { Z_INDEXES } from '@/app/constants/z-indexes';
 
 interface ContainerProps {
@@ -24,6 +23,32 @@ export const Container = styled.div<ContainerProps>`
     & p {
       color: ${({ $isNavOpen }) => ($isNavOpen ? 'grey' : 'grey')};
       z-index: ${Z_INDEXES.level_10};
+    }
+
+    &:hover .burger-line {
+      left: 5px;
+    }
+
+    &:hover .burger-line:nth-child(2) {
+      left: -5px;
+    }
+
+    & .burger-line {
+      position: relative;
+      width: 20px;
+      height: 2.5px;
+      background-color: rgb(81, 255, 101);
+      border-radius: 10px;
+
+      &:first-child {
+        top: -4px;
+        background-color: rgb(81, 191, 255);
+      }
+
+      &:last-child {
+        background-color: rgb(254, 95, 95);
+        top: 4px;
+      }
     }
 
     &::before {
