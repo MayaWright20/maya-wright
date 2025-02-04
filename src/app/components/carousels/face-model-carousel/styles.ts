@@ -64,6 +64,7 @@ export const Container = styled.div<ContainerProps>`
         justify-content: center;
         align-items: center;
         overflow: hidden;
+        z-index: 2;
 
         & div {
           text-align: center;
@@ -72,7 +73,8 @@ export const Container = styled.div<ContainerProps>`
           align-items: center;
           justify-content: center;
           background-color: ${COLORS.light_grey};
-          height: 90%;
+          height: 80%;
+          border-radius: 100px;
           aspect-ratio: 1;
           overflow: hidden;
           z-index: 2;
