@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { useContext } from 'react';
-import { Container } from './styles';
+import { Styled_Container } from './styles';
 import { HasScreenLoaded } from '@/app/context/loading/has-screen-loaded';
 import { COLORS } from '@/app/constants/colors';
 
@@ -17,7 +17,7 @@ export default function FaceModelCarousel({
   const hasScreenLoaded = useContext(HasScreenLoaded);
 
   return (
-    <Container $loaded={hasScreenLoaded}>
+    <Styled_Container $loaded={hasScreenLoaded}>
       <div className="container">
         <div className="container-buttons-mobile">
           <div className="container-buttons-mobile-background">
@@ -57,6 +57,6 @@ export default function FaceModelCarousel({
           </div>
         </div>
       </div>
-    </Container>
+    </Styled_Container>
   );
 }

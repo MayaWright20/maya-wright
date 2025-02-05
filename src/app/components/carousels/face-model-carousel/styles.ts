@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 import { COLORS } from '@/app/constants/colors';
 
-interface ContainerProps {
+interface StyledContainerProps {
   $loaded: boolean;
 }
 
-export const Container = styled.div<ContainerProps>`
+export const Styled_Container = styled.div<StyledContainerProps>`
   & .container {
     height: 100%;
     width: 100%;

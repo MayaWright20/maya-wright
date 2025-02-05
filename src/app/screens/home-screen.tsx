@@ -3,7 +3,7 @@
 import Scene from '../components/r3F/models/scene/scene';
 
 import { useContext, useEffect, useState } from 'react';
-import { Container } from './style';
+import { Styled_Container } from './style';
 import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
 // import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
 // import { ModelActionsPlaySwitchContext } from '@/app/context/r3f/modelActionsPlaySwitchContext';
@@ -91,7 +91,7 @@ export default function HomeScreen() {
       <ModelActionsContext.Provider value={cellIndex}>
         {/* <ModelAutoRotateContext.Provider value={autoRotate}>
         <ModelActionsPlaySwitchContext.Provider value={playModelActions}> */}
-        <Container>
+        <Styled_Container>
           <BurgerMenu />
           <Scene />
           <FaceModelCarousel
@@ -99,7 +99,7 @@ export default function HomeScreen() {
             cellIndex={cellIndex}
             modelActionsLength={modelActionsLength}
           />
-        </Container>
+        </Styled_Container>
         {/* </ModelActionsPlaySwitchContext.Provider>
       </ModelAutoRotateContext.Provider> */}
       </ModelActionsContext.Provider>
