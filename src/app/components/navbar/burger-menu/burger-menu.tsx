@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Container } from './styles';
+import { Styled_Container } from './styles';
 import { HasScreenLoaded } from '@/app/context/loading/has-screen-loaded';
 
 export default function BurgerMenu() {
@@ -12,37 +12,16 @@ export default function BurgerMenu() {
   };
 
   return (
-    <Container
+    <Styled_Container
       $loaded={hasScreenLoaded}
       $isNavAnimationOpening={isNavAnimationOpening}
       $isNavOpen={isNavOpen}
     >
       <nav>
-        <div className="closed">
-          <span onClick={onClick}>
-            <div className="burger-line"></div>
-            <div className="burger-line"></div>
-            <div className="burger-line"></div>
-          </span>
-          {isNavOpen && (
-            <ul>
-              <li>About</li>
-              <li>Experience</li>
-              <li>Projects</li>
-            </ul>
-          )}
+        <div onClick={onClick} className="closed">
+          <div className="burger-line"></div>
         </div>
-        {/* {isNavOpen && (
-          <div>
-            <div onClick={onClick}>exit</div>
-            <ul>
-              <li>About</li>
-              <li>Experience</li>
-              <li>Projects</li>
-            </ul>
-          </div>
-        )} */}
       </nav>
-    </Container>
+    </Styled_Container>
   );
 }

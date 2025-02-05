@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import { Z_INDEXES } from '@/app/constants/z-indexes';
 
-interface ContainerProps {
+interface StyledContainerProps {
   $loaded: boolean;
   $isNavOpen: boolean;
   $isNavAnimationOpening: boolean;
 }
 
-export const Container = styled.div<ContainerProps>`
+export const Styled_Container = styled.div<StyledContainerProps>`
   nav {
     position: absolute;
     z-index: ${Z_INDEXES.level_10};
@@ -25,42 +25,17 @@ export const Container = styled.div<ContainerProps>`
       z-index: ${Z_INDEXES.level_10};
     }
 
-    &:hover .burger-line {
-      left: 5px;
-    }
-
-    &:hover .burger-line:nth-child(2) {
-      left: -5px;
-    }
-
-    & .burger-line {
-      position: relative;
-      width: 20px;
-      height: 2.5px;
-      background-color: rgb(81, 255, 101);
-      border-radius: 10px;
-
-      &:first-child {
-        top: -4px;
-        background-color: rgb(81, 191, 255);
-      }
-
-      &:last-child {
-        background-color: rgb(254, 95, 95);
-        top: 4px;
-      }
-    }
-
     &::before {
       position: absolute;
       background-color: white;
       content: '';
       width: 2px;
-      margin-left: 68px;
       height: 100vh;
+      margin-left: calc(40px + 27px);
     }
 
     & .closed {
+      position: relative;
       background-color: ${({ $isNavOpen }) =>
         $isNavOpen ? 'white' : 'transparent'};
       display: flex;
@@ -78,6 +53,31 @@ export const Container = styled.div<ContainerProps>`
       align-items: center;
       justify-content: center;
       color: white;
+
+      &:hover {
+        &::before {
+          position: absolute;
+          border: 2.5px rgb(255, 150, 13) solid;
+        }
+      }
+
+      &::before {
+        position: absolute;
+        border: 1.5px rgb(255, 150, 13) solid;
+        content: '';
+        width: 20px;
+        height: 20px;
+        border-radius: 100%;
+      }
+
+      &::after {
+        position: absolute;
+        background-color: rgb(255, 243, 13);
+        content: '';
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+      }
     }
   }
 
