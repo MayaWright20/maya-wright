@@ -3,14 +3,15 @@
 import Scene from '../components/r3F/models/scene/scene';
 
 import { useContext, useEffect, useState } from 'react';
-import { Styled_Container } from './style';
+import { Styled_Container, Styled_Face_Actions_Carousel } from './style';
 import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
 // import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
 // import { ModelActionsPlaySwitchContext } from '@/app/context/r3f/modelActionsPlaySwitchContext';
 import { ModelActionsLengthContext } from '@/app/context/r3f/modelActionsLengthContext';
 import BurgerMenu from '../components/navbar/burger-menu/burger-menu';
-import CircleCarousel from '../components/carousels/circle-carousel/circle-carousel';
 import { HasScreenLoaded } from '@/app/context/loading/has-screen-loaded';
+import Carousel from '../components/carousels/carousel/carousel';
+import { COLORS } from '../constants/colors';
 // const MAX_MOBILE_WINDOW_WIDTH = 425;
 
 export default function HomeScreen() {
@@ -33,7 +34,7 @@ export default function HomeScreen() {
   // love - red floating foil balloons / fluffy red baloons/ text
   // colorful mixblendmode difference
 
-  const [cellIndex, setCellIndex] = useState<number | undefined>(undefined);
+  const [cellIndex, setCellIndex] = useState<number>(0);
 
   // const [autoRotate, setAutoRotate] = useState<boolean>(true);
   // const [playModelActions, setPlayModelActions] = useState<boolean>(true);
@@ -94,11 +95,19 @@ export default function HomeScreen() {
         <Styled_Container>
           <BurgerMenu />
           <Scene />
-          <CircleCarousel
-            actionIndex={actionIndex}
-            cellIndex={cellIndex}
-            modelActionsLength={modelActionsLength}
-          />
+          <Styled_Face_Actions_Carousel $loaded={hasScreenLoaded}>
+            <div className="face-actions-carousel">
+              <Carousel
+                innerColor={`${COLORS.fuchia_pink}`}
+                middleColor={`${COLORS.light_grey}`}
+                outterColor={`${COLORS.bright_blue}`}
+                outterHeight={'20px'}
+                items={modelActionsLength}
+                isActive={cellIndex}
+                onClick={(index) => actionIndex(index)}
+              />
+            </div>
+          </Styled_Face_Actions_Carousel>
         </Styled_Container>
         {/* </ModelActionsPlaySwitchContext.Provider>
       </ModelAutoRotateContext.Provider> */}
