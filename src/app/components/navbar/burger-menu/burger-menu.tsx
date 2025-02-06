@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { Styled_Container } from './styles';
 import { HasScreenLoaded } from '@/app/context/loading/has-screen-loaded';
+import { COLORS } from '@/app/constants/colors';
 
 export default function BurgerMenu() {
   const hasScreenLoaded = useContext(HasScreenLoaded);
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
-  const isNavAnimationOpening = isNavOpen && hasScreenLoaded;
 
   const onClick = () => {
     setIsNavOpen((nav) => !nav);
@@ -13,8 +13,9 @@ export default function BurgerMenu() {
 
   return (
     <Styled_Container
+      $bright_yellow={COLORS.bright_yellow}
+      $bright_orange={COLORS.bright_orange}
       $loaded={hasScreenLoaded}
-      $isNavAnimationOpening={isNavAnimationOpening}
       $isNavOpen={isNavOpen}
     >
       <nav>

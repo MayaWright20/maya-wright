@@ -9,7 +9,7 @@ import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
 // import { ModelActionsPlaySwitchContext } from '@/app/context/r3f/modelActionsPlaySwitchContext';
 import { ModelActionsLengthContext } from '@/app/context/r3f/modelActionsLengthContext';
 import BurgerMenu from '../components/navbar/burger-menu/burger-menu';
-import FaceModelCarousel from '../components/carousels/face-model-carousel/face-model-carousel';
+import CircleCarousel from '../components/carousels/circle-carousel/circle-carousel';
 import { HasScreenLoaded } from '@/app/context/loading/has-screen-loaded';
 // const MAX_MOBILE_WINDOW_WIDTH = 425;
 
@@ -94,7 +94,7 @@ export default function HomeScreen() {
         <Styled_Container>
           <BurgerMenu />
           <Scene />
-          <FaceModelCarousel
+          <CircleCarousel
             actionIndex={actionIndex}
             cellIndex={cellIndex}
             modelActionsLength={modelActionsLength}
