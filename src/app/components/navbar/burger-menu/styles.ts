@@ -27,7 +27,7 @@ export const Styled_Container = styled.div<StyledContainerProps>`
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-left: -30px;
+      margin-left: -29px;
       margin-top: 40px;
       z-index: +1;
     }
