@@ -22,7 +22,9 @@ export default function Circle({
       $outter_color={outterColor}
       $outter_height={outterHeight}
     >
-      <div onClick={onClick}></div>
+      <div onClick={onClick} className="circle-container">
+        <div className="circle"></div>
+      </div>
     </Styled_Container>
   );
 }

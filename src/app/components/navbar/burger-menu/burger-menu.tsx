@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Styled_Container } from './styles';
 import { HasScreenLoaded } from '@/app/context/loading/has-screen-loaded';
 import { COLORS } from '@/app/constants/colors';
+import Circle from '../../circle/circle';
 
 export default function BurgerMenu() {
   const hasScreenLoaded = useContext(HasScreenLoaded);
@@ -19,8 +20,12 @@ export default function BurgerMenu() {
       $isNavOpen={isNavOpen}
     >
       <nav>
-        <div onClick={onClick} className="closed">
-          <div className="burger-line"></div>
+        <div onClick={onClick} className="container-circle">
+          <Circle
+            innerColor={COLORS.bright_yellow}
+            outterColor={COLORS.bright_orange}
+            outterHeight={'25px'}
+          />
         </div>
       </nav>
     </Styled_Container>
