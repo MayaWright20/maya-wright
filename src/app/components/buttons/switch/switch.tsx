@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Styled_Container, Styled_CircleWrapper } from './styles';
 import { COLORS } from '@/app/constants/colors';
-import Circle from '../circle/circle';
+import Circle from '../../circle/circle';
+import { Styled_CircleWrapper, Styled_Container } from './styles';
 
-export default function Carousel({
+export default function Switch({
   onClick,
   isActive,
   items,
@@ -13,7 +13,6 @@ export default function Carousel({
   outterColor = 'transparent',
   outterHeight = '20px',
   vertical = false,
-  paddingInline,
   paddingBlock,
 }: {
   innerColor?: string;
@@ -24,31 +23,29 @@ export default function Carousel({
   isActive: number;
   items: Array<any>;
   vertical?: boolean;
-  paddingInline?: string;
   paddingBlock?: string;
 }) {
   return (
-    <Styled_Container
-      $paddingBlock={paddingBlock}
-      $paddingInline={paddingInline}
-      $vertical={vertical}
-    >
+    <Styled_Container $paddingBlock={paddingBlock} $vertical={vertical}>
       <div className="container">
         {items.map((_: any, index: number) => {
           return (
             <Styled_CircleWrapper key={index}>
-              <Circle
-                key={index}
+              <div
                 onClick={(...args) => onClick(index, ...args)}
-                innerColor={
-                  index === isActive ? innerColor : `${COLORS.light_blue}`
-                }
-                middleColor={middleColor}
-                outterColor={
-                  index === isActive ? outterColor : `${COLORS.light_blue}`
-                }
-                outterHeight={outterHeight}
-              />
+                className="container-circle"
+              >
+                <Circle
+                  innerColor={
+                    index === isActive ? innerColor : `${COLORS.light_blue}`
+                  }
+                  middleColor={middleColor}
+                  outterColor={
+                    index === isActive ? outterColor : `${COLORS.light_blue}`
+                  }
+                  outterHeight={outterHeight}
+                />
+              </div>
             </Styled_CircleWrapper>
           );
         })}

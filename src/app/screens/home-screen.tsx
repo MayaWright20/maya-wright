@@ -13,6 +13,7 @@ import { HasScreenLoaded } from '@/app/context/loading/has-screen-loaded';
 import Slider from '../components/carousel/carousel';
 import { COLORS } from '../constants/colors';
 import Carousel from '../components/carousel/carousel';
+import Switch from '../components/buttons/switch/switch';
 
 // const MAX_MOBILE_WINDOW_WIDTH = 425;
 
@@ -97,16 +98,7 @@ export default function HomeScreen() {
         <Styled_Container>
           <BurgerMenu />
           <Scene />
-          <Carousel
-            innerColor={`${COLORS.fuchia_pink}`}
-            middleColor={`${COLORS.light_grey}`}
-            outterColor={`${COLORS.bright_blue}`}
-            outterHeight={'20px'}
-            items={modelActionsLength}
-            isActive={cellIndex}
-            onClick={(index) => actionIndex(index)}
-          />
-          {/* <Styled_Face_Actions_Carousel $loaded={hasScreenLoaded}>
+          <Styled_Face_Actions_Carousel $loaded={hasScreenLoaded}>
             <div className="face-actions-carousel">
               <Carousel
                 innerColor={`${COLORS.fuchia_pink}`}
@@ -118,7 +110,7 @@ export default function HomeScreen() {
                 onClick={(index) => actionIndex(index)}
               />
             </div>
-          </Styled_Face_Actions_Carousel> */}
+          </Styled_Face_Actions_Carousel>
         </Styled_Container>
         {/* </ModelActionsPlaySwitchContext.Provider>
       </ModelAutoRotateContext.Provider> */}
