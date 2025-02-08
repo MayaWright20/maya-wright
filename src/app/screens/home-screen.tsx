@@ -10,8 +10,11 @@ import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
 import { ModelActionsLengthContext } from '@/app/context/r3f/modelActionsLengthContext';
 import BurgerMenu from '../components/navbar/burger-menu/burger-menu';
 import { HasScreenLoaded } from '@/app/context/loading/has-screen-loaded';
-import Carousel from '../components/carousels/carousel/carousel';
+import Slider from '../components/carousel/carousel';
 import { COLORS } from '../constants/colors';
+import Carousel from '../components/carousel/carousel';
+import Switch from '../components/buttons/switch/switch';
+
 // const MAX_MOBILE_WINDOW_WIDTH = 425;
 
 export default function HomeScreen() {

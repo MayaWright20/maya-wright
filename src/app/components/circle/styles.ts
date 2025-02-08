@@ -19,6 +19,7 @@ export const Styled_Container = styled.div<StyledContainerProps>`
       $inner_color ? $inner_color : 'transparent'};
 
     &-container {
+      position: relative;
       background-color: ${({ $middle_color }) =>
         $middle_color ? $middle_color : 'transparent'};
       height: ${({ $outter_height }) => $outter_height};

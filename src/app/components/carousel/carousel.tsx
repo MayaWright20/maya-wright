@@ -2,7 +2,7 @@
 
 import { Styled_Container, Styled_CircleWrapper } from './styles';
 import { COLORS } from '@/app/constants/colors';
-import Circle from '../../circle/circle';
+import Circle from '../circle/circle';
 
 export default function Carousel({
   onClick,
@@ -36,7 +36,7 @@ export default function Carousel({
       <div className="container">
         {items.map((_: any, index: number) => {
           return (
-            <Styled_CircleWrapper>
+            <Styled_CircleWrapper key={index}>
               <Circle
                 key={index}
                 onClick={(...args) => onClick(index, ...args)}
