@@ -10,8 +10,9 @@ import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
 import { ModelActionsLengthContext } from '@/app/context/r3f/modelActionsLengthContext';
 import BurgerMenu from '../components/navbar/burger-menu/burger-menu';
 import { HasScreenLoaded } from '@/app/context/loading/has-screen-loaded';
-import Slider from '../components/slider/slider';
+import Slider from '../components/carousel/carousel';
 import { COLORS } from '../constants/colors';
+import Carousel from '../components/carousel/carousel';
 
 // const MAX_MOBILE_WINDOW_WIDTH = 425;
 
@@ -96,7 +97,7 @@ export default function HomeScreen() {
         <Styled_Container>
           <BurgerMenu />
           <Scene />
-          <Slider
+          <Carousel
             innerColor={`${COLORS.fuchia_pink}`}
             middleColor={`${COLORS.light_grey}`}
             outterColor={`${COLORS.bright_blue}`}
@@ -107,7 +108,7 @@ export default function HomeScreen() {
           />
           {/* <Styled_Face_Actions_Carousel $loaded={hasScreenLoaded}>
             <div className="face-actions-carousel">
-              <Slider
+              <Carousel
                 innerColor={`${COLORS.fuchia_pink}`}
                 middleColor={`${COLORS.light_grey}`}
                 outterColor={`${COLORS.bright_blue}`}

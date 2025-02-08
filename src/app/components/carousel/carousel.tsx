@@ -4,7 +4,7 @@ import { Styled_Container, Styled_CircleWrapper } from './styles';
 import { COLORS } from '@/app/constants/colors';
 import Circle from '../circle/circle';
 
-export default function Slider({
+export default function Carousel({
   onClick,
   isActive,
   items,
