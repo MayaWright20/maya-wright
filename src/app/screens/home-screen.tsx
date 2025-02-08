@@ -41,16 +41,13 @@ export default function HomeScreen() {
   // playdoe
   // love - red floating foil balloons / fluffy red baloons/ text
   // colorful mixblendmode difference
-
-  const [cellIndex, setCellIndex] = useState<number>(0);
-
-  const [autoRotate, setAutoRotate] = useState<boolean>(false);
-  // const [playModelActions, setPlayModelActions] = useState<boolean>(true);
-  // const [autoModelActionsPlay, setAutoModelActionsPlay] = useState(true);
-
   const modelActionsLength = useContext(ModelActionsLengthContext);
 
   const [hasScreenLoaded, setHasScreenLoaded] = useState(false);
+  const [autoRotate, setAutoRotate] = useState<boolean>(false);
+  const [cellIndex, setCellIndex] = useState<number>(0);
+  // const [playModelActions, setPlayModelActions] = useState<boolean>(true);
+  // const [autoModelActionsPlay, setAutoModelActionsPlay] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
@@ -86,6 +83,14 @@ export default function HomeScreen() {
     }
   };
 
+  const setAutoPlaySwitch = (index: number) => {
+    if (index === 0) {
+      setAutoRotate(false);
+    } else {
+      setAutoRotate(true);
+    }
+  };
+
   useEffect(() => {
     const cellIndexRef = { current: cellIndex };
 
@@ -109,8 +114,8 @@ export default function HomeScreen() {
                 outterColor={`${COLORS.bright_red}`}
                 outterHeight={'20px'}
                 items={AUTOPLAY_SWITCH_LABELS}
-                isActive={cellIndex}
-                onClick={(index) => actionIndex(index)}
+                isActive={autoRotate ? 1 : 0}
+                onClick={(index) => setAutoPlaySwitch(index)}
               />
             </Styled_AutoRotate_Switch>
             <Scene />
