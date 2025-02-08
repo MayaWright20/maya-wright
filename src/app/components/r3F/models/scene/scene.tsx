@@ -1,10 +1,12 @@
 'use client';
 
 import { Canvas } from '@react-three/fiber';
-import { Suspense } from 'react';
+import { Suspense, useContext } from 'react';
 import {
+  CameraControls,
   Cloud,
   Clouds,
+  FaceControls,
   Html,
   OrbitControls,
   Sky,
@@ -14,7 +16,7 @@ import DirectionalLights from '../lights/directional-lights';
 import Face from '../face/face';
 import * as THREE from 'three';
 // import RedHeart from '../heart/pixelated-heart';
-// import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
+import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
 
 function Loader() {
   // const { progress } = useProgress();
@@ -43,7 +45,7 @@ export default function Scene() {
   // love - red floating foil balloons / fluffy red baloons/ text
   // colorful mixblendmode difference
 
-  // const autoRotateContext = useContext(ModelAutoRotateContext);
+  const autoRotateContext = useContext(ModelAutoRotateContext);
 
   return (
     <Canvas
@@ -60,6 +62,11 @@ export default function Scene() {
     >
       <DirectionalLights />
       <Suspense fallback={<Loader />}>
+        <OrbitControls
+          enableZoom={false}
+          enablePan={false}
+          autoRotate={autoRotateContext}
+        />
         <Face />
         <Sky
           distance={450000}
@@ -105,11 +112,6 @@ export default function Scene() {
           saturation={0}
           fade
           speed={3}
-        />
-        <OrbitControls
-          enableZoom={false}
-          enablePan={false}
-          // autoRotate={autoRotateContext}
         />
       </Suspense>
     </Canvas>

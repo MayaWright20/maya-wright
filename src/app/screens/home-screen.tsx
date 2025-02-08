@@ -3,9 +3,13 @@
 import Scene from '../components/r3F/models/scene/scene';
 
 import { useContext, useEffect, useState } from 'react';
-import { Styled_Container, Styled_Face_Actions_Carousel } from './style';
+import {
+  Styled_AutoRotate_Switch,
+  Styled_Container,
+  Styled_Face_Actions_Carousel,
+} from './style';
 import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
-// import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
+import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
 // import { ModelActionsPlaySwitchContext } from '@/app/context/r3f/modelActionsPlaySwitchContext';
 import { ModelActionsLengthContext } from '@/app/context/r3f/modelActionsLengthContext';
 import BurgerMenu from '../components/navbar/burger-menu/burger-menu';
@@ -16,6 +20,7 @@ import Carousel from '../components/carousel/carousel';
 import Switch from '../components/buttons/switch/switch';
 
 // const MAX_MOBILE_WINDOW_WIDTH = 425;
+const AUTOPLAY_SWITCH_LABELS = ['rotate on', 'rotate off'];
 
 export default function HomeScreen() {
   // scenes to create:
@@ -39,7 +44,7 @@ export default function HomeScreen() {
 
   const [cellIndex, setCellIndex] = useState<number>(0);
 
-  // const [autoRotate, setAutoRotate] = useState<boolean>(true);
+  const [autoRotate, setAutoRotate] = useState<boolean>(false);
   // const [playModelActions, setPlayModelActions] = useState<boolean>(true);
   // const [autoModelActionsPlay, setAutoModelActionsPlay] = useState(true);
 
@@ -93,27 +98,38 @@ export default function HomeScreen() {
   return (
     <HasScreenLoaded.Provider value={hasScreenLoaded}>
       <ModelActionsContext.Provider value={cellIndex}>
-        {/* <ModelAutoRotateContext.Provider value={autoRotate}>
-        <ModelActionsPlaySwitchContext.Provider value={playModelActions}> */}
-        <Styled_Container>
-          <BurgerMenu />
-          <Scene />
-          <Styled_Face_Actions_Carousel $loaded={hasScreenLoaded}>
-            <div className="face-actions-carousel">
-              <Carousel
-                innerColor={`${COLORS.fuchia_pink}`}
+        <ModelAutoRotateContext.Provider value={autoRotate}>
+          {/* <ModelActionsPlaySwitchContext.Provider value={playModelActions}> */}
+          <Styled_Container>
+            <BurgerMenu />
+            <Styled_AutoRotate_Switch>
+              <Switch
+                innerColor={`${COLORS.bright_green}`}
                 middleColor={`${COLORS.light_grey}`}
-                outterColor={`${COLORS.bright_blue}`}
+                outterColor={`${COLORS.bright_red}`}
                 outterHeight={'20px'}
-                items={modelActionsLength}
+                items={AUTOPLAY_SWITCH_LABELS}
                 isActive={cellIndex}
                 onClick={(index) => actionIndex(index)}
               />
-            </div>
-          </Styled_Face_Actions_Carousel>
-        </Styled_Container>
-        {/* </ModelActionsPlaySwitchContext.Provider>
-      </ModelAutoRotateContext.Provider> */}
+            </Styled_AutoRotate_Switch>
+            <Scene />
+            <Styled_Face_Actions_Carousel $loaded={hasScreenLoaded}>
+              <div className="face-actions-carousel">
+                <Carousel
+                  innerColor={`${COLORS.fuchia_pink}`}
+                  middleColor={`${COLORS.light_grey}`}
+                  outterColor={`${COLORS.bright_blue}`}
+                  outterHeight={'20px'}
+                  items={modelActionsLength}
+                  isActive={cellIndex}
+                  onClick={(index) => actionIndex(index)}
+                />
+              </div>
+            </Styled_Face_Actions_Carousel>
+          </Styled_Container>
+          {/* </ModelActionsPlaySwitchContext.Provider> */}
+        </ModelAutoRotateContext.Provider>
       </ModelActionsContext.Provider>
     </HasScreenLoaded.Provider>
   );

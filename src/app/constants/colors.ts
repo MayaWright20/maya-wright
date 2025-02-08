@@ -9,4 +9,6 @@ export const COLORS = {
   fuchia_pink: 'rgb(255, 0, 187)',
   bright_orange: 'rgb(255, 150, 13)',
   bright_yellow: 'rgb(255, 243, 13)',
+  bright_green: 'rgb(114, 255, 109)',
+  bright_red: 'rgb(157, 77, 255)',
 };

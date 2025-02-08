@@ -46,3 +46,25 @@ export const Styled_Face_Actions_Carousel = styled.div<StyledFaceActionsCarousel
     }
   }
 `;
+
+export const Styled_AutoRotate_Switch = styled.div`
+  position: absolute;
+  left: 67%;
+  top: 20%;
+  /* background-color: rgba(0, 0, 0, 0.163); */
+  padding-left: 15px;
+  width: 100%;
+  overflow: hidden;
+
+  &::before {
+    position: absolute;
+    top: 49%;
+    height: 2px;
+    background: white;
+    content: '';
+    width: 100vw;
+    z-index: -1;
+    overflow: visible;
+    transform: translateX(-50%);
+  }
+`;

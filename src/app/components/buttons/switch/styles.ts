@@ -30,7 +30,7 @@ export const Styled_Container = styled.div<StyledContainerProps>`
       height: 2px;
       background: white;
       content: '';
-      width: ${({ $vertical }) => ($vertical ? '100vw' : '100%')};
+      width: ${({ $vertical }) => ($vertical ? '100vw' : '100vw')};
       z-index: -1;
     }
 
