@@ -5,10 +5,11 @@ export const COLORS = {
   transparent_black: 'rgba(0, 0, 0, 0.789)',
   light_grey: 'rgb(233,238,241)',
   light_blue: '#d5dde4',
-  bright_blue: 'rgb(100, 224, 255)',
+  bright_blue: 'rgb(32, 251, 255)',
   fuchia_pink: 'rgb(255, 0, 187)',
   bright_orange: 'rgb(255, 150, 13)',
   bright_yellow: 'rgb(255, 243, 13)',
   bright_green: 'rgb(114, 255, 109)',
-  bright_red: 'rgb(157, 77, 255)',
+  bright_purple: 'rgb(157, 77, 255)',
+  bright_red: 'rgb(255, 32, 32)',
 };

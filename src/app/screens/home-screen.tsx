@@ -7,14 +7,14 @@ import {
   Styled_AutoRotate_Switch,
   Styled_Container,
   Styled_Face_Actions_Carousel,
+  Styled_Auto_Actions_Play_Switch,
 } from './style';
 import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
 import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
-// import { ModelActionsPlaySwitchContext } from '@/app/context/r3f/modelActionsPlaySwitchContext';
+import { ModelActionsPlaySwitchContext } from '@/app/context/r3f/modelActionsPlaySwitchContext';
 import { ModelActionsLengthContext } from '@/app/context/r3f/modelActionsLengthContext';
 import BurgerMenu from '../components/navbar/burger-menu/burger-menu';
 import { HasScreenLoaded } from '@/app/context/loading/has-screen-loaded';
-import Slider from '../components/carousel/carousel';
 import { COLORS } from '../constants/colors';
 import Carousel from '../components/carousel/carousel';
 import Switch from '../components/buttons/switch/switch';
@@ -46,7 +46,7 @@ export default function HomeScreen() {
   const [hasScreenLoaded, setHasScreenLoaded] = useState(false);
   const [autoRotate, setAutoRotate] = useState<boolean>(false);
   const [cellIndex, setCellIndex] = useState<number>(0);
-  // const [playModelActions, setPlayModelActions] = useState<boolean>(true);
+  const [playModelActions, setPlayModelActions] = useState<boolean>(true);
   // const [autoModelActionsPlay, setAutoModelActionsPlay] = useState(true);
 
   useEffect(() => {
@@ -83,6 +83,14 @@ export default function HomeScreen() {
     }
   };
 
+  const setPlayModelActionsSwitch = (index: number) => {
+    if (index === 0) {
+      setPlayModelActions(false);
+    } else {
+      setPlayModelActions(true);
+    }
+  };
+
   const setAutoPlaySwitch = (index: number) => {
     if (index === 0) {
       setAutoRotate(false);
@@ -92,48 +100,68 @@ export default function HomeScreen() {
   };
 
   useEffect(() => {
-    const cellIndexRef = { current: cellIndex };
-
-    const interval = setInterval(() => {
-      actionIndex(cellIndexRef.current, false, true);
-    }, 8000);
-    return () => clearInterval(interval);
-  }, []);
+    if (playModelActions) {
+      const cellIndexRef = { current: cellIndex };
+      const interval = setInterval(() => {
+        actionIndex(cellIndexRef.current, false, true);
+      }, 8000);
+      return () => clearInterval(interval);
+    }
+  }, [playModelActions, cellIndex]);
 
   return (
     <HasScreenLoaded.Provider value={hasScreenLoaded}>
       <ModelActionsContext.Provider value={cellIndex}>
         <ModelAutoRotateContext.Provider value={autoRotate}>
-          {/* <ModelActionsPlaySwitchContext.Provider value={playModelActions}> */}
-          <Styled_Container>
-            <BurgerMenu />
-            <Styled_AutoRotate_Switch>
-              <Switch
-                innerColor={`${COLORS.bright_green}`}
-                middleColor={`${COLORS.light_grey}`}
-                outterColor={`${COLORS.bright_red}`}
-                outterHeight={'20px'}
-                items={AUTOPLAY_SWITCH_LABELS}
-                isActive={autoRotate ? 1 : 0}
-                onClick={(index) => setAutoPlaySwitch(index)}
-              />
-            </Styled_AutoRotate_Switch>
-            <Scene />
-            <Styled_Face_Actions_Carousel $loaded={hasScreenLoaded}>
-              <div className="face-actions-carousel">
-                <Carousel
-                  innerColor={`${COLORS.fuchia_pink}`}
+          <ModelActionsPlaySwitchContext.Provider value={playModelActions}>
+            <Styled_Container>
+              <BurgerMenu />
+              <Styled_Auto_Actions_Play_Switch $loaded={hasScreenLoaded}>
+                <Switch
+                  innerColor={`${COLORS.bright_blue}`}
                   middleColor={`${COLORS.light_grey}`}
-                  outterColor={`${COLORS.bright_blue}`}
+                  outterColor={`${COLORS.bright_red}`}
                   outterHeight={'20px'}
-                  items={modelActionsLength}
-                  isActive={cellIndex}
-                  onClick={(index) => actionIndex(index)}
+                  items={AUTOPLAY_SWITCH_LABELS}
+                  isActive={playModelActions ? 1 : 0}
+                  onClick={(index) => setPlayModelActionsSwitch(index)}
                 />
-              </div>
-            </Styled_Face_Actions_Carousel>
-          </Styled_Container>
-          {/* </ModelActionsPlaySwitchContext.Provider> */}
+              </Styled_Auto_Actions_Play_Switch>
+              <Styled_AutoRotate_Switch $loaded={hasScreenLoaded}>
+                <Switch
+                  innerColor={`${COLORS.bright_green}`}
+                  middleColor={`${COLORS.light_grey}`}
+                  outterColor={`${COLORS.bright_purple}`}
+                  outterHeight={'20px'}
+                  items={AUTOPLAY_SWITCH_LABELS}
+                  isActive={autoRotate ? 1 : 0}
+                  onClick={(index) => setAutoPlaySwitch(index)}
+                />
+              </Styled_AutoRotate_Switch>
+              <Scene />
+              <Styled_Face_Actions_Carousel $loaded={hasScreenLoaded}>
+                <div className="face-actions-carousel">
+                  <Carousel
+                    innerColor={
+                      playModelActions
+                        ? `${COLORS.fuchia_pink}`
+                        : `${COLORS.light_blue}`
+                    }
+                    middleColor={`${COLORS.light_grey}`}
+                    outterColor={
+                      playModelActions
+                        ? `${COLORS.bright_blue}`
+                        : `${COLORS.light_blue}`
+                    }
+                    outterHeight={'20px'}
+                    items={modelActionsLength}
+                    isActive={cellIndex}
+                    onClick={(index) => actionIndex(index)}
+                  />
+                </div>
+              </Styled_Face_Actions_Carousel>
+            </Styled_Container>
+          </ModelActionsPlaySwitchContext.Provider>
         </ModelAutoRotateContext.Provider>
       </ModelActionsContext.Provider>
     </HasScreenLoaded.Provider>

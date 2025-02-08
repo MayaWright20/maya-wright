@@ -12,7 +12,7 @@ export function Model1() {
   const { group, nodes, materials, actions } = ModelConstructor();
   const actionsArr = ModelActions();
   const actionIndex = useContext(ModelActionsContext);
-  const modelPlaySwitchContext = useContext(ModelActionsPlaySwitchContext);
+  const playModelActionsContext = useContext(ModelActionsPlaySwitchContext);
   const [actionPlaying, setActionPlaying] = useState(undefined);
   const [scale, setScale] = useState(0);
 
@@ -22,17 +22,17 @@ export function Model1() {
       actions[actionPlaying].reset();
     }
     setActionPlaying(actionsArr[actionIndex]);
-  }, [actionIndex, actionPlaying]);
+  }, [actionIndex, actionPlaying, playModelActionsContext]);
 
   useEffect(() => {
     if (
       actionPlaying &&
       actionIndex !== STOP_ANIMATION &&
-      modelPlaySwitchContext
+      playModelActionsContext
     ) {
       actions[actionPlaying].play();
     }
-  }, [actionPlaying]);
+  }, [actionPlaying, playModelActionsContext]);
 
   const hasScreenLoaded = useContext(HasScreenLoaded);
 
