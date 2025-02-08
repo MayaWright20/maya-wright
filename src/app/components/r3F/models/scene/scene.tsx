@@ -55,6 +55,7 @@ export default function Scene() {
         height: '100%',
         width: '100%',
         backgroundColor: 'transparent',
+        zIndex: -9999,
       }}
     >
       <DirectionalLights />

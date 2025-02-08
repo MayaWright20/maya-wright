@@ -1,4 +1,5 @@
 export const Z_INDEXES = {
+  level_minus_9999: -9999,
   level_0: 0,
   level_1: 1,
   level_2: 2,
@@ -10,4 +11,14 @@ export const Z_INDEXES = {
   level_8: 8,
   level_9: 9,
   level_10: 10,
+  level_100: 100,
+  level_200: 200,
+  level_300: 300,
+  level_400: 400,
+  level_500: 500,
+  level_600: 600,
+  level_700: 700,
+  level_800: 800,
+  level_900: 900,
+  level_1000: 1000,
 };

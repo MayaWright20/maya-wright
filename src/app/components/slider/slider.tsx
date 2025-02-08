@@ -2,9 +2,9 @@
 
 import { Styled_Container, Styled_CircleWrapper } from './styles';
 import { COLORS } from '@/app/constants/colors';
-import Circle from '../../circle/circle';
+import Circle from '../circle/circle';
 
-export default function Carousel({
+export default function Slider({
   onClick,
   isActive,
   items,
