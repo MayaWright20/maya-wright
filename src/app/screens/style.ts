@@ -51,7 +51,6 @@ export const Styled_AutoRotate_Switch = styled.div`
   position: absolute;
   left: 67%;
   top: 20%;
-  /* background-color: rgba(0, 0, 0, 0.163); */
   padding-left: 15px;
   width: 100%;
   overflow: hidden;
@@ -59,7 +58,7 @@ export const Styled_AutoRotate_Switch = styled.div`
   &::before {
     position: absolute;
     top: 49%;
-    height: 2px;
+    height: 1.5px;
     background: white;
     content: '';
     width: 100vw;
