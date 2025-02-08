@@ -27,10 +27,10 @@ export const Styled_Container = styled.div<StyledContainerProps>`
       left: ${({ $vertical }) => ($vertical ? '50%' : '0')};
       transform: ${({ $vertical }) =>
         $vertical ? 'translate(-50%, -50%) rotate(90deg)' : 'translateY(-50%)'};
-      height: 2px;
+      height: 1.5px;
       background: white;
       content: '';
-      width: ${({ $vertical }) => ($vertical ? '100vw' : '100%')};
+      width: ${({ $vertical }) => ($vertical ? '100vw' : '100vw')};
       z-index: -1;
     }
 
