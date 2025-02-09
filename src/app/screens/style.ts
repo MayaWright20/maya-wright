@@ -74,9 +74,9 @@ export const Styled_Face_Actions_Carousel = styled.div<StyledFaceActionsCarousel
 `;
 
 export const Styled_AutoRotate_Switch = styled.div<StyledAutoRotate>`
-  position: absolute;
-  left: 67%;
-  top: 20%;
+  position: relative;
+  /* left: 67%; */
+  top: 50%;
   padding-left: 15px;
   width: 100%;
   overflow: hidden;
@@ -97,7 +97,7 @@ export const Styled_AutoRotate_Switch = styled.div<StyledAutoRotate>`
   }
 
   &::before {
-    position: absolute;
+    position: relative;
     top: 49%;
     height: 1.5px;
     background: white;
@@ -110,7 +110,7 @@ export const Styled_AutoRotate_Switch = styled.div<StyledAutoRotate>`
 `;
 
 export const Styled_Auto_Actions_Play_Switch = styled.div<StyledAutoRotate>`
-  position: absolute;
+  position: relative;
   left: 54.5%;
   top: 10%;
   padding-left: 15px;
@@ -133,7 +133,7 @@ export const Styled_Auto_Actions_Play_Switch = styled.div<StyledAutoRotate>`
   }
 
   &::before {
-    position: absolute;
+    position: relative;
     top: 49%;
     height: 1.5px;
     background: white;
