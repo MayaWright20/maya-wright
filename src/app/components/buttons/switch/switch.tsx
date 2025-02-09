@@ -14,6 +14,7 @@ export default function Switch({
   outterHeight = '20px',
   vertical = false,
   paddingBlock,
+  tabIndex,
 }: {
   innerColor?: string;
   middleColor?: string;
@@ -24,6 +25,7 @@ export default function Switch({
   items: Array<any>;
   vertical?: boolean;
   paddingBlock?: string;
+  tabIndex: number;
 }) {
   return (
     <Styled_Container $paddingBlock={paddingBlock} $vertical={vertical}>
@@ -33,7 +35,7 @@ export default function Switch({
             <Styled_CircleWrapper key={index}>
               <div
                 className="container-circle"
-                tabIndex={0}
+                tabIndex={tabIndex}
                 role="button"
                 onKeyDown={(event, ...args) => {
                   if ((event.key === 'Enter' || event.key === ' ') && onClick) {

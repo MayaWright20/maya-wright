@@ -15,6 +15,7 @@ export default function Carousel({
   vertical = false,
   paddingInline,
   paddingBlock,
+  tabIndex,
 }: {
   innerColor?: string;
   middleColor?: string;
@@ -26,6 +27,7 @@ export default function Carousel({
   vertical?: boolean;
   paddingInline?: string;
   paddingBlock?: string;
+  tabIndex: any;
 }) {
   return (
     <Styled_Container
@@ -38,7 +40,7 @@ export default function Carousel({
           return (
             <Styled_CircleWrapper key={index}>
               <div
-                tabIndex={0}
+                tabIndex={tabIndex}
                 role="button"
                 onKeyDown={(event, ...args) => {
                   if ((event.key === 'Enter' || event.key === ' ') && onClick) {

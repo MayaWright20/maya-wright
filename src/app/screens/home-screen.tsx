@@ -50,11 +50,13 @@ export default function HomeScreen() {
   const [cellIndex, setCellIndex] = useState<number>(0);
   const [playModelActions, setPlayModelActions] = useState<boolean>(true);
   const [autoRotate, setAutoRotate] = useState<boolean>(false); // change this to true
+  const [carouselTabIndex, setCarouselTabIndex] = useState(-1);
 
   useEffect(() => {
     setTimeout(() => {
       if (!hasScreenLoaded) {
         setHasScreenLoaded(true);
+        setCarouselTabIndex(0);
       }
     }, 4000);
   }, []);
@@ -96,12 +98,32 @@ export default function HomeScreen() {
   };
 
   const setPlayModelActionsSwitch = (index: number) => {
-    index === 0 ? setPlayModelActions(true) : setPlayModelActions(false);
+    if (index === 0) {
+      setPlayModelActions(true);
+      setTimeout(() => {
+        setCarouselTabIndex(0);
+      }, 4000);
+    } else {
+      setPlayModelActions(false);
+      setCarouselTabIndex(-1);
+    }
   };
 
   const setAutoPlaySwitch = (index: number) => {
     index === 0 ? setAutoRotate(true) : setAutoRotate(false);
   };
+
+  // const generateCarouselTabIndex = () => {
+  //   if (playModelActions) {
+  //     setTimeout(() => {
+  //       setCarouselTabIndex(0);
+  //     }, 5000);
+  //   } else {
+  //     setCarouselTabIndex(-1);
+  //   }
+
+  //   return carouselTabIndex;
+  // };
 
   return (
     <HasScreenLoaded.Provider value={hasScreenLoaded}>
@@ -109,9 +131,10 @@ export default function HomeScreen() {
         <ModelAutoRotateContext.Provider value={autoRotate}>
           <ModelActionsPlaySwitchContext.Provider value={playModelActions}>
             <Styled_Container>
-              <BurgerMenu />
+              <BurgerMenu tabIndex={hasScreenLoaded ? 0 : -1} />
               <Styled_Auto_Actions_Play_Switch $isPageLoaded={hasScreenLoaded}>
                 <Switch
+                  tabIndex={hasScreenLoaded ? 0 : -1}
                   innerColor={`${COLORS.bright_blue}`}
                   middleColor={`${COLORS.light_grey}`}
                   outterColor={`${COLORS.bright_red}`}
@@ -124,6 +147,7 @@ export default function HomeScreen() {
 
               <Styled_AutoRotate_Switch $isPageLoaded={hasScreenLoaded}>
                 <Switch
+                  tabIndex={hasScreenLoaded ? 0 : -1}
                   innerColor={`${COLORS.bright_green}`}
                   middleColor={`${COLORS.light_grey}`}
                   outterColor={`${COLORS.bright_purple}`}
@@ -140,6 +164,7 @@ export default function HomeScreen() {
               >
                 <div className="face-actions-carousel">
                   <Carousel
+                    tabIndex={carouselTabIndex}
                     innerColor={
                       playModelActions
                         ? `${COLORS.fuchia_pink}`

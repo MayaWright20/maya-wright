@@ -4,7 +4,7 @@ import { HasScreenLoaded } from '@/app/context/loading/has-screen-loaded';
 import { COLORS } from '@/app/constants/colors';
 import Circle from '../../circle/circle';
 
-export default function BurgerMenu() {
+export default function BurgerMenu({ tabIndex }: { tabIndex: number }) {
   const hasScreenLoaded = useContext(HasScreenLoaded);
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
 
@@ -21,7 +21,7 @@ export default function BurgerMenu() {
     >
       <nav>
         <div
-          tabIndex={0}
+          tabIndex={tabIndex}
           role="button"
           onKeyDown={(event) => {
             if (event.key === 'Enter' || event.key === ' ') {

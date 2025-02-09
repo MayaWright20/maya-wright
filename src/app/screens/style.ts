@@ -65,9 +65,11 @@ export const Styled_Face_Actions_Carousel = styled.div<StyledFaceActionsCarousel
     @keyframes slideRight {
       from {
         left: 50%;
+        pointer-events: none;
       }
       to {
         left: 165vw;
+        pointer-events: none;
         display: none;
       }
     }
