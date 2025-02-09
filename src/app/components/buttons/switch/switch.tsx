@@ -42,6 +42,7 @@ export default function Switch({
                     onClick(index, ...args);
                   }
                 }}
+                onClick={(...args) => onClick(index, ...args)}
               >
                 <Circle
                   innerColor={
