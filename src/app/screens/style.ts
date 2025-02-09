@@ -11,11 +11,12 @@ export const Styled_Container = styled.div`
 `;
 
 interface StyledFaceActionsCarousel {
-  $loaded: boolean;
+  $isPageLoaded: boolean;
+  $isShowCarousel: boolean;
 }
 
 interface StyledAutoRotate {
-  $loaded: boolean;
+  $isPageLoaded: boolean;
 }
 
 export const Styled_Face_Actions_Carousel = styled.div<StyledFaceActionsCarousel>`
@@ -25,9 +26,19 @@ export const Styled_Face_Actions_Carousel = styled.div<StyledFaceActionsCarousel
     top: 80vh;
     left: 50%;
     transform: translateX(-50%);
-    animation-name: ${({ $loaded }) => ($loaded ? null : 'slideLeft')};
+    animation-name: ${({ $isPageLoaded, $isShowCarousel }) =>
+      $isPageLoaded
+        ? $isShowCarousel
+          ? 'slideLeft'
+          : 'slideRight'
+        : 'slideLeft'};
     animation-duration: 4s;
-    animation-timing-function: cubic-bezier(0.9, 0.5, 0.4, 0.9);
+    animation-timing-function: ${({ $isPageLoaded, $isShowCarousel }) =>
+      $isPageLoaded
+        ? $isShowCarousel
+          ? 'cubic-bezier(0.9, 0.5, 0.4, 0.9)'
+          : 'cubic-bezier(0.9, 0.4, 0.5, 0.9)'
+        : 'cubic-bezier(0.9, 0.5, 0.4, 0.9)'};
     animation-fill-mode: forwards;
 
     &::before {
@@ -50,6 +61,15 @@ export const Styled_Face_Actions_Carousel = styled.div<StyledFaceActionsCarousel
         left: 50%;
       }
     }
+
+    @keyframes slideRight {
+      from {
+        left: 50%;
+      }
+      to {
+        left: 165vw;
+      }
+    }
   }
 `;
 
@@ -61,8 +81,8 @@ export const Styled_AutoRotate_Switch = styled.div<StyledAutoRotate>`
   width: 100%;
   overflow: hidden;
 
-  animation-name: ${({ $loaded }) =>
-    $loaded ? null : 'slideLeftAutoRotateSwitch'};
+  animation-name: ${({ $isPageLoaded }) =>
+    $isPageLoaded ? null : 'slideLeftAutoRotateSwitch'};
   animation-duration: 4s;
   animation-timing-function: cubic-bezier(0.9, 0.5, 0.4, 0.9);
   animation-fill-mode: forwards;
@@ -97,8 +117,8 @@ export const Styled_Auto_Actions_Play_Switch = styled.div<StyledAutoRotate>`
   width: 100%;
   overflow: hidden;
 
-  animation-name: ${({ $loaded }) =>
-    $loaded ? null : 'slideLeftAutoPlaySwitch'};
+  animation-name: ${({ $isPageLoaded }) =>
+    $isPageLoaded ? null : 'slideLeftAutoPlaySwitch'};
   animation-duration: 4s;
   animation-timing-function: cubic-bezier(0.9, 0.5, 0.4, 0.9);
   animation-fill-mode: forwards;
