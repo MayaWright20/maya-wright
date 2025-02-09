@@ -1,7 +1,5 @@
 'use client';
 
-import Scene from '../components/r3f/models/scene/scene';
-
 import { useContext, useEffect, useState } from 'react';
 import {
   Styled_AutoRotate_Switch,
@@ -18,6 +16,7 @@ import { HasScreenLoaded } from '@/app/context/loading/has-screen-loaded';
 import { COLORS } from '../constants/colors';
 import Carousel from '../components/carousel/carousel';
 import Switch from '../components/buttons/switch/switch';
+import Scene from '../components/r3f/models/scene/scene';
 
 // const MAX_MOBILE_WINDOW_WIDTH = 425;
 const AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS = [
