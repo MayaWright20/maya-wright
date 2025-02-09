@@ -31,12 +31,18 @@ export const Styled_Container = styled.div<StyledContainerProps>`
       margin-top: 40px;
       z-index: +1;
 
-      &:hover {
+      &:hover,
+      :focus {
         border: 2px solid white;
         padding: 9px;
       }
 
       &:hover .circle-container {
+        border-width: 10px;
+        transition: border-width 0.3s ease-in-out;
+      }
+
+      &:focus .circle-container {
         border-width: 10px;
         transition: border-width 0.3s ease-in-out;
       }

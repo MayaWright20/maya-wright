@@ -20,7 +20,17 @@ export default function BurgerMenu() {
       $isNavOpen={isNavOpen}
     >
       <nav>
-        <div onClick={onClick} className="container-circle">
+        <div
+          tabIndex={0}
+          role="button"
+          onKeyDown={(event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              onClick();
+            }
+          }}
+          onClick={onClick}
+          className="container-circle"
+        >
           <Circle
             innerColor={COLORS.bright_yellow}
             outterColor={COLORS.bright_orange}

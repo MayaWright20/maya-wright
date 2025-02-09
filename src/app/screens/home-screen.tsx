@@ -49,7 +49,7 @@ export default function HomeScreen() {
   const [hasScreenLoaded, setHasScreenLoaded] = useState(false);
   const [cellIndex, setCellIndex] = useState<number>(0);
   const [playModelActions, setPlayModelActions] = useState<boolean>(true);
-  const [autoRotate, setAutoRotate] = useState<boolean>(true);
+  const [autoRotate, setAutoRotate] = useState<boolean>(true); // change this to true
 
   useEffect(() => {
     setTimeout(() => {

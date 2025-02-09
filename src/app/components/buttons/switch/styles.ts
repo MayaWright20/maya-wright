@@ -50,7 +50,13 @@ export const Styled_Container = styled.div<StyledContainerProps>`
           $paddingBlock ? css`calc($paddingBlock - 1px)` : '9px'};
       }
 
-      &:hover .circle-container {
+      &:hover .circle-container,
+      &:focus .circle-container {
+        border-width: 10px;
+        transition: border-width 0.3s ease-in-out;
+      }
+
+      &:focus .circle-container {
         border-width: 10px;
         transition: border-width 0.3s ease-in-out;
       }

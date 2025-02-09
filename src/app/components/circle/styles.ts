@@ -32,7 +32,8 @@ export const Styled_Container = styled.div<StyledContainerProps>`
         ${({ $outter_color }) =>
           $outter_color ? $outter_color : 'transparent'};
 
-      &:hover {
+      &:hover,
+      &:focus {
         border-width: 10px;
         transition: border-width 0.3s ease-in-out;
       }
