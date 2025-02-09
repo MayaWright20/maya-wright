@@ -6,7 +6,7 @@ interface StyledContainerProps {
 }
 
 export const Styled_Container = styled.div<StyledContainerProps>`
-  & .container {
+  .container {
     position: relative;
     display: flex;
     flex-direction: ${({ $vertical }) => ($vertical ? 'column' : 'row')};
@@ -32,7 +32,7 @@ export const Styled_Container = styled.div<StyledContainerProps>`
       height: 1.5px;
       background: white;
       content: '';
-      width: ${({ $vertical }) => ($vertical ? '100vw' : '100vw')};
+      width: ${({ $vertical }) => ($vertical ? '100%' : '100%')};
       z-index: -1;
     }
 

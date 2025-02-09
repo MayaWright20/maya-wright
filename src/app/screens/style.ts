@@ -102,7 +102,7 @@ export const Styled_Auto_Actions_Play_Switch = styled.div<StyledAutoRotate>`
     height: 1.5px;
     background: white;
     content: '';
-    width: 100vw;
+    width: 100%;
     z-index: -1;
     overflow: visible;
     transform: translateX(-50%);
@@ -112,8 +112,8 @@ export const Styled_Auto_Actions_Play_Switch = styled.div<StyledAutoRotate>`
 export const Styled_AutoRotate_Switch = styled.div<StyledAutoRotate>`
   position: relative;
   right: 0;
-  top: 17.5%;
-  padding-right: 25%;
+  top: 15%;
+  width: 50%;
   overflow: hidden;
   height: fit-content;
 
@@ -138,7 +138,7 @@ export const Styled_AutoRotate_Switch = styled.div<StyledAutoRotate>`
     height: 1.5px;
     background: white;
     content: '';
-    width: 100vw;
+    width: 100%;
     z-index: -1;
     overflow: visible;
     transform: translateX(-50%);
