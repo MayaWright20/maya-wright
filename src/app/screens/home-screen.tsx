@@ -1,7 +1,5 @@
 'use client';
 
-import Scene from '../components/r3f/models/scene/scene';
-
 import { useContext, useEffect, useState } from 'react';
 import {
   Styled_AutoRotate_Switch,
@@ -18,9 +16,14 @@ import { HasScreenLoaded } from '@/app/context/loading/has-screen-loaded';
 import { COLORS } from '../constants/colors';
 import Carousel from '../components/carousel/carousel';
 import Switch from '../components/buttons/switch/switch';
+import Scene from '../components/r3F/models/scene/scene';
 
 // const MAX_MOBILE_WINDOW_WIDTH = 425;
-const AUTOPLAY_SWITCH_LABELS = ['rotate on', 'rotate off'];
+const AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS = [
+  'expression on',
+  'expression off',
+];
+const AUTOROTATE_LABELS = ['rotate on', 'rotate off'];
 
 export default function HomeScreen() {
   // scenes to create:
@@ -107,30 +110,35 @@ export default function HomeScreen() {
           <ModelActionsPlaySwitchContext.Provider value={playModelActions}>
             <Styled_Container>
               <BurgerMenu />
-              <Styled_Auto_Actions_Play_Switch $loaded={hasScreenLoaded}>
+              <Styled_Auto_Actions_Play_Switch $isPageLoaded={hasScreenLoaded}>
                 <Switch
+                  labels={AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS}
                   innerColor={`${COLORS.bright_blue}`}
                   middleColor={`${COLORS.light_grey}`}
                   outterColor={`${COLORS.bright_red}`}
                   outterHeight={'20px'}
-                  items={AUTOPLAY_SWITCH_LABELS}
+                  items={AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS}
                   isActive={playModelActions ? 0 : 1}
                   onClick={(index) => setPlayModelActionsSwitch(index)}
                 />
               </Styled_Auto_Actions_Play_Switch>
-              <Styled_AutoRotate_Switch $loaded={hasScreenLoaded}>
+              <Styled_AutoRotate_Switch $isPageLoaded={hasScreenLoaded}>
                 <Switch
+                  labels={AUTOROTATE_LABELS}
                   innerColor={`${COLORS.bright_green}`}
                   middleColor={`${COLORS.light_grey}`}
                   outterColor={`${COLORS.bright_purple}`}
                   outterHeight={'20px'}
-                  items={AUTOPLAY_SWITCH_LABELS}
+                  items={AUTOROTATE_LABELS}
                   isActive={autoRotate ? 0 : 1}
                   onClick={(index) => setAutoPlaySwitch(index)}
                 />
               </Styled_AutoRotate_Switch>
               <Scene />
-              <Styled_Face_Actions_Carousel $loaded={hasScreenLoaded}>
+              <Styled_Face_Actions_Carousel
+                $isShowCarousel={playModelActions}
+                $isPageLoaded={hasScreenLoaded}
+              >
                 <div className="face-actions-carousel">
                   <Carousel
                     innerColor={
