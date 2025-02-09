@@ -3,7 +3,6 @@
 import { useContext, useEffect, useState } from 'react';
 import {
   Styled_AutoRotate_Switch,
-  Styled_Auto_Action_Play_Switch_Label,
   Styled_Container,
   Styled_Face_Actions_Carousel,
   Styled_Auto_Actions_Play_Switch,
