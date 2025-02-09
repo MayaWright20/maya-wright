@@ -6,13 +6,15 @@ interface StyledContainerProps {
 }
 
 export const Styled_Container = styled.div<StyledContainerProps>`
-  & .container {
+  .container {
     position: relative;
     display: flex;
     flex-direction: ${({ $vertical }) => ($vertical ? 'column' : 'row')};
     align-items: center;
     border-radius: 100px;
-    gap: 20px;
+    gap: ${({ $paddingBlock }) => ($paddingBlock ? $paddingBlock : '20px')};
+    padding-left: ${({ $paddingBlock }) =>
+      $paddingBlock ? css`calc($paddingBlock * 2)` : '20px'};
 
     ${({ $vertical }) =>
       $vertical &&
@@ -30,7 +32,7 @@ export const Styled_Container = styled.div<StyledContainerProps>`
       height: 1.5px;
       background: white;
       content: '';
-      width: ${({ $vertical }) => ($vertical ? '100vw' : '100vw')};
+      width: ${({ $vertical }) => ($vertical ? '100%' : '100%')};
       z-index: -1;
     }
 

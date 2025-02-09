@@ -49,7 +49,7 @@ export default function HomeScreen() {
   const [hasScreenLoaded, setHasScreenLoaded] = useState(false);
   const [cellIndex, setCellIndex] = useState<number>(0);
   const [playModelActions, setPlayModelActions] = useState<boolean>(true);
-  const [autoRotate, setAutoRotate] = useState<boolean>(true); // change this to true
+  const [autoRotate, setAutoRotate] = useState<boolean>(false); // change this to true
 
   useEffect(() => {
     setTimeout(() => {
@@ -112,7 +112,6 @@ export default function HomeScreen() {
               <BurgerMenu />
               <Styled_Auto_Actions_Play_Switch $isPageLoaded={hasScreenLoaded}>
                 <Switch
-                  labels={AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS}
                   innerColor={`${COLORS.bright_blue}`}
                   middleColor={`${COLORS.light_grey}`}
                   outterColor={`${COLORS.bright_red}`}
@@ -122,9 +121,9 @@ export default function HomeScreen() {
                   onClick={(index) => setPlayModelActionsSwitch(index)}
                 />
               </Styled_Auto_Actions_Play_Switch>
+
               <Styled_AutoRotate_Switch $isPageLoaded={hasScreenLoaded}>
                 <Switch
-                  labels={AUTOROTATE_LABELS}
                   innerColor={`${COLORS.bright_green}`}
                   middleColor={`${COLORS.light_grey}`}
                   outterColor={`${COLORS.bright_purple}`}

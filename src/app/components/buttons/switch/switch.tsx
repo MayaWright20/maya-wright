@@ -14,7 +14,6 @@ export default function Switch({
   outterHeight = '20px',
   vertical = false,
   paddingBlock,
-  labels,
 }: {
   innerColor?: string;
   middleColor?: string;
@@ -25,7 +24,6 @@ export default function Switch({
   items: Array<any>;
   vertical?: boolean;
   paddingBlock?: string;
-  labels?: string[];
 }) {
   return (
     <Styled_Container $paddingBlock={paddingBlock} $vertical={vertical}>
@@ -58,7 +56,6 @@ export default function Switch({
             </Styled_CircleWrapper>
           );
         })}
-        {labels && <div>{labels[isActive]}</div>}
       </div>
     </Styled_Container>
   );

@@ -68,54 +68,19 @@ export const Styled_Face_Actions_Carousel = styled.div<StyledFaceActionsCarousel
       }
       to {
         left: 165vw;
+        display: none;
       }
     }
   }
 `;
 
-export const Styled_AutoRotate_Switch = styled.div<StyledAutoRotate>`
-  position: absolute;
-  left: 67%;
-  top: 20%;
-  padding-left: 15px;
-  width: 100%;
-  overflow: hidden;
-
-  animation-name: ${({ $isPageLoaded }) =>
-    $isPageLoaded ? null : 'slideLeftAutoRotateSwitch'};
-  animation-duration: 4s;
-  animation-timing-function: cubic-bezier(0.9, 0.5, 0.4, 0.9);
-  animation-fill-mode: forwards;
-
-  @keyframes slideLeftAutoRotateSwitch {
-    from {
-      left: 165vw;
-    }
-    to {
-      left: 67%;
-    }
-  }
-
-  &::before {
-    position: absolute;
-    top: 49%;
-    height: 1.5px;
-    background: white;
-    content: '';
-    width: 100vw;
-    z-index: -1;
-    overflow: visible;
-    transform: translateX(-50%);
-  }
-`;
-
 export const Styled_Auto_Actions_Play_Switch = styled.div<StyledAutoRotate>`
-  position: absolute;
+  position: relative;
   left: 54.5%;
-  top: 10%;
-  padding-left: 15px;
+  top: 7%;
   width: 100%;
   overflow: hidden;
+  height: fit-content;
 
   animation-name: ${({ $isPageLoaded }) =>
     $isPageLoaded ? null : 'slideLeftAutoPlaySwitch'};
@@ -133,12 +98,48 @@ export const Styled_Auto_Actions_Play_Switch = styled.div<StyledAutoRotate>`
   }
 
   &::before {
-    position: absolute;
+    position: relative;
     top: 49%;
     height: 1.5px;
     background: white;
     content: '';
-    width: 100vw;
+    width: 100%;
+    z-index: -1;
+    overflow: visible;
+    transform: translateX(-50%);
+  }
+`;
+
+export const Styled_AutoRotate_Switch = styled.div<StyledAutoRotate>`
+  position: relative;
+  right: 0;
+  top: 15%;
+  width: 50%;
+  overflow: hidden;
+  height: fit-content;
+
+  animation-name: ${({ $isPageLoaded }) =>
+    $isPageLoaded ? null : 'slideLeftAutoRotateSwitch'};
+  animation-duration: 4s;
+  animation-timing-function: cubic-bezier(0.9, 0.5, 0.4, 0.9);
+  animation-fill-mode: forwards;
+
+  @keyframes slideLeftAutoRotateSwitch {
+    from {
+      right: -165vw;
+    }
+    to {
+      right: 0;
+    }
+  }
+
+  &::before {
+    position: relative;
+    top: 49%;
+    height: 1.5px;
+    background: white;
+    content: '';
+    width: 100%;
     z-index: -1;
     overflow: visible;
     transform: translateX(-50%);
