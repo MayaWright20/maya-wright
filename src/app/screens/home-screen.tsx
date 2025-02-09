@@ -44,9 +44,9 @@ export default function HomeScreen() {
   const modelActionsLength = useContext(ModelActionsLengthContext);
 
   const [hasScreenLoaded, setHasScreenLoaded] = useState(false);
-  const [autoRotate, setAutoRotate] = useState<boolean>(false);
   const [cellIndex, setCellIndex] = useState<number>(0);
   const [playModelActions, setPlayModelActions] = useState<boolean>(true);
+  const [autoRotate, setAutoRotate] = useState<boolean>(true);
   // const [autoModelActionsPlay, setAutoModelActionsPlay] = useState(true);
 
   useEffect(() => {
@@ -84,19 +84,11 @@ export default function HomeScreen() {
   };
 
   const setPlayModelActionsSwitch = (index: number) => {
-    if (index === 0) {
-      setPlayModelActions(false);
-    } else {
-      setPlayModelActions(true);
-    }
+    index === 0 ? setPlayModelActions(true) : setPlayModelActions(false);
   };
 
   const setAutoPlaySwitch = (index: number) => {
-    if (index === 0) {
-      setAutoRotate(false);
-    } else {
-      setAutoRotate(true);
-    }
+    index === 0 ? setAutoRotate(true) : setAutoRotate(false);
   };
 
   useEffect(() => {
@@ -123,7 +115,7 @@ export default function HomeScreen() {
                   outterColor={`${COLORS.bright_red}`}
                   outterHeight={'20px'}
                   items={AUTOPLAY_SWITCH_LABELS}
-                  isActive={playModelActions ? 1 : 0}
+                  isActive={playModelActions ? 0 : 1}
                   onClick={(index) => setPlayModelActionsSwitch(index)}
                 />
               </Styled_Auto_Actions_Play_Switch>
@@ -134,7 +126,7 @@ export default function HomeScreen() {
                   outterColor={`${COLORS.bright_purple}`}
                   outterHeight={'20px'}
                   items={AUTOPLAY_SWITCH_LABELS}
-                  isActive={autoRotate ? 1 : 0}
+                  isActive={autoRotate ? 0 : 1}
                   onClick={(index) => setAutoPlaySwitch(index)}
                 />
               </Styled_AutoRotate_Switch>
