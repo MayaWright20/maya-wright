@@ -68,6 +68,7 @@ export const Styled_Face_Actions_Carousel = styled.div<StyledFaceActionsCarousel
       }
       to {
         left: 165vw;
+        display: none;
       }
     }
   }

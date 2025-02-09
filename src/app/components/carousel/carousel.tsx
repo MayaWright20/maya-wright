@@ -37,18 +37,28 @@ export default function Carousel({
         {items.map((_: any, index: number) => {
           return (
             <Styled_CircleWrapper key={index}>
-              <Circle
-                key={index}
-                onClick={(...args) => onClick(index, ...args)}
-                innerColor={
-                  index === isActive ? innerColor : `${COLORS.light_blue}`
-                }
-                middleColor={middleColor}
-                outterColor={
-                  index === isActive ? outterColor : `${COLORS.light_blue}`
-                }
-                outterHeight={outterHeight}
-              />
+              <div
+                tabIndex={0}
+                role="button"
+                onKeyDown={(event, ...args) => {
+                  if ((event.key === 'Enter' || event.key === ' ') && onClick) {
+                    onClick(index, ...args);
+                  }
+                }}
+              >
+                <Circle
+                  key={index}
+                  onClick={(...args) => onClick(index, ...args)}
+                  innerColor={
+                    index === isActive ? innerColor : `${COLORS.light_blue}`
+                  }
+                  middleColor={middleColor}
+                  outterColor={
+                    index === isActive ? outterColor : `${COLORS.light_blue}`
+                  }
+                  outterHeight={outterHeight}
+                />
+              </div>
             </Styled_CircleWrapper>
           );
         })}

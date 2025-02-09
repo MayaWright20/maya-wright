@@ -38,5 +38,22 @@ export const Styled_Container = styled.div<StyledContainerProps>`
 export const Styled_CircleWrapper = styled.div`
   div {
     position: relative;
+    width: fit-content;
+    aspect-ratio: 1;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    border-radius: 100%;
+
+    &:hover .circle-container,
+    &:focus .circle-container {
+      border-width: 10px;
+      transition: border-width 0.3s ease-in-out;
+    }
+
+    &:focus .circle-container {
+      border-width: 10px;
+      transition: border-width 0.3s ease-in-out;
+    }
   }
 `;
