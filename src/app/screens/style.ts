@@ -61,12 +61,13 @@ export const Styled_AutoRotate_Switch = styled.div<StyledAutoRotate>`
   width: 100%;
   overflow: hidden;
 
-  animation-name: ${({ $loaded }) => ($loaded ? null : 'slideLeftSwitch')};
+  animation-name: ${({ $loaded }) =>
+    $loaded ? null : 'slideLeftAutoRotateSwitch'};
   animation-duration: 4s;
   animation-timing-function: cubic-bezier(0.9, 0.5, 0.4, 0.9);
   animation-fill-mode: forwards;
 
-  @keyframes slideLeftSwitch {
+  @keyframes slideLeftAutoRotateSwitch {
     from {
       left: 165vw;
     }
@@ -96,17 +97,18 @@ export const Styled_Auto_Actions_Play_Switch = styled.div<StyledAutoRotate>`
   width: 100%;
   overflow: hidden;
 
-  animation-name: ${({ $loaded }) => ($loaded ? null : 'slideLeftSwitch')};
+  animation-name: ${({ $loaded }) =>
+    $loaded ? null : 'slideLeftAutoPlaySwitch'};
   animation-duration: 4s;
   animation-timing-function: cubic-bezier(0.9, 0.5, 0.4, 0.9);
   animation-fill-mode: forwards;
 
-  @keyframes slideLeftSwitch {
+  @keyframes slideLeftAutoPlaySwitch {
     from {
       left: 165vw;
     }
     to {
-      left: 67%;
+      left: 54.5%;
     }
   }
 
