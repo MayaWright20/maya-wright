@@ -73,26 +73,26 @@ export const Styled_Face_Actions_Carousel = styled.div<StyledFaceActionsCarousel
   }
 `;
 
-export const Styled_AutoRotate_Switch = styled.div<StyledAutoRotate>`
+export const Styled_Auto_Actions_Play_Switch = styled.div<StyledAutoRotate>`
   position: relative;
-  /* left: 67%; */
-  top: 50%;
-  padding-left: 15px;
+  left: 54.5%;
+  margin-top: 50px;
   width: 100%;
   overflow: hidden;
+  height: fit-content;
 
   animation-name: ${({ $isPageLoaded }) =>
-    $isPageLoaded ? null : 'slideLeftAutoRotateSwitch'};
+    $isPageLoaded ? null : 'slideLeftAutoPlaySwitch'};
   animation-duration: 4s;
   animation-timing-function: cubic-bezier(0.9, 0.5, 0.4, 0.9);
   animation-fill-mode: forwards;
 
-  @keyframes slideLeftAutoRotateSwitch {
+  @keyframes slideLeftAutoPlaySwitch {
     from {
       left: 165vw;
     }
     to {
-      left: 67%;
+      left: 54.5%;
     }
   }
 
@@ -109,13 +109,15 @@ export const Styled_AutoRotate_Switch = styled.div<StyledAutoRotate>`
   }
 `;
 
-export const Styled_Auto_Actions_Play_Switch = styled.div<StyledAutoRotate>`
+export const Styled_AutoRotate_Switch = styled.div<StyledAutoRotate>`
   position: relative;
-  left: 54.5%;
-  top: 10%;
-  padding-left: 15px;
-  width: 100%;
+  right: 0;
+  top: 15%;
+  margin-top: 10px;
+  padding-right: 25%;
+  /* width: 10%; */
   overflow: hidden;
+  height: fit-content;
 
   animation-name: ${({ $isPageLoaded }) =>
     $isPageLoaded ? null : 'slideLeftAutoPlaySwitch'};
@@ -123,12 +125,12 @@ export const Styled_Auto_Actions_Play_Switch = styled.div<StyledAutoRotate>`
   animation-timing-function: cubic-bezier(0.9, 0.5, 0.4, 0.9);
   animation-fill-mode: forwards;
 
-  @keyframes slideLeftAutoPlaySwitch {
+  @keyframes slideLeftAutoRotateSwitch {
     from {
-      left: 165vw;
+      right: -165vw;
     }
     to {
-      left: 54.5%;
+      right: 0;
     }
   }
 

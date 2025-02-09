@@ -13,6 +13,7 @@ export const Styled_Container = styled.div<StyledContainerProps>`
     align-items: center;
     border-radius: 100px;
     gap: 20px;
+    padding-left: 15px;
 
     ${({ $vertical }) =>
       $vertical &&
