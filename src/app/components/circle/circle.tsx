@@ -22,17 +22,7 @@ export default function Circle({
       $outter_color={outterColor}
       $outter_height={outterHeight}
     >
-      <div
-        tabIndex={onClick ? 0 : undefined}
-        role="button"
-        onKeyDown={(event) => {
-          if ((event.key === 'Enter' || event.key === ' ') && onClick) {
-            onClick();
-          }
-        }}
-        onClick={onClick}
-        className="circle-container"
-      >
+      <div onClick={onClick} className="circle-container">
         <div className="circle"></div>
       </div>
     </Styled_Container>

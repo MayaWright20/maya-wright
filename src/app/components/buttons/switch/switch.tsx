@@ -33,9 +33,17 @@ export default function Switch({
         {items.map((_: any, index: number) => {
           return (
             <Styled_CircleWrapper key={index}>
-              <div className="container-circle">
+              <div
+                className="container-circle"
+                tabIndex={0}
+                role="button"
+                onKeyDown={(event, ...args) => {
+                  if ((event.key === 'Enter' || event.key === ' ') && onClick) {
+                    onClick(index, ...args);
+                  }
+                }}
+              >
                 <Circle
-                  onClick={(...args) => onClick(index, ...args)}
                   innerColor={
                     index === isActive ? innerColor : `${COLORS.light_blue}`
                   }
