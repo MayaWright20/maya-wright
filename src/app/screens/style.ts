@@ -76,7 +76,7 @@ export const Styled_Face_Actions_Carousel = styled.div<StyledFaceActionsCarousel
 export const Styled_Auto_Actions_Play_Switch = styled.div<StyledAutoRotate>`
   position: relative;
   left: 54.5%;
-  margin-top: 50px;
+  top: 7%;
   width: 100%;
   overflow: hidden;
   height: fit-content;
@@ -112,15 +112,13 @@ export const Styled_Auto_Actions_Play_Switch = styled.div<StyledAutoRotate>`
 export const Styled_AutoRotate_Switch = styled.div<StyledAutoRotate>`
   position: relative;
   right: 0;
-  top: 15%;
-  margin-top: 10px;
+  top: 17.5%;
   padding-right: 25%;
-  /* width: 10%; */
   overflow: hidden;
   height: fit-content;
 
   animation-name: ${({ $isPageLoaded }) =>
-    $isPageLoaded ? null : 'slideLeftAutoPlaySwitch'};
+    $isPageLoaded ? null : 'slideLeftAutoRotateSwitch'};
   animation-duration: 4s;
   animation-timing-function: cubic-bezier(0.9, 0.5, 0.4, 0.9);
   animation-fill-mode: forwards;

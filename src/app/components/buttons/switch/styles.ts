@@ -12,8 +12,9 @@ export const Styled_Container = styled.div<StyledContainerProps>`
     flex-direction: ${({ $vertical }) => ($vertical ? 'column' : 'row')};
     align-items: center;
     border-radius: 100px;
-    gap: 20px;
-    padding-left: 15px;
+    gap: ${({ $paddingBlock }) => ($paddingBlock ? $paddingBlock : '20px')};
+    padding-left: ${({ $paddingBlock }) =>
+      $paddingBlock ? css`calc($paddingBlock * 2)` : '20px'};
 
     ${({ $vertical }) =>
       $vertical &&

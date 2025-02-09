@@ -59,7 +59,7 @@ export default function Switch({
           );
         })}
       </div>
-      {labels && <div>{labels[isActive]}</div>}
+      {/* {labels && <div>{labels[isActive]}</div>} */}
     </Styled_Container>
   );
 }
