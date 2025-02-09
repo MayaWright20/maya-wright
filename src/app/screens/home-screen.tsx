@@ -1,6 +1,6 @@
 'use client';
 
-import Scene from '../components/r3F/models/scene/scene';
+import Scene from '../components/r3f/models/scene/scene';
 
 import { useContext, useEffect, useState } from 'react';
 import {
@@ -47,7 +47,6 @@ export default function HomeScreen() {
   const [cellIndex, setCellIndex] = useState<number>(0);
   const [playModelActions, setPlayModelActions] = useState<boolean>(true);
   const [autoRotate, setAutoRotate] = useState<boolean>(true);
-  // const [autoModelActionsPlay, setAutoModelActionsPlay] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
@@ -56,6 +55,16 @@ export default function HomeScreen() {
       }
     }, 4000);
   }, []);
+
+  useEffect(() => {
+    if (playModelActions) {
+      const cellIndexRef = { current: cellIndex };
+      const interval = setInterval(() => {
+        actionIndex(cellIndexRef.current, false, true);
+      }, 8000);
+      return () => clearInterval(interval);
+    }
+  }, [playModelActions, cellIndex]);
 
   const actionIndex = (
     index: number | undefined,
@@ -90,16 +99,6 @@ export default function HomeScreen() {
   const setAutoPlaySwitch = (index: number) => {
     index === 0 ? setAutoRotate(true) : setAutoRotate(false);
   };
-
-  useEffect(() => {
-    if (playModelActions) {
-      const cellIndexRef = { current: cellIndex };
-      const interval = setInterval(() => {
-        actionIndex(cellIndexRef.current, false, true);
-      }, 8000);
-      return () => clearInterval(interval);
-    }
-  }, [playModelActions, cellIndex]);
 
   return (
     <HasScreenLoaded.Provider value={hasScreenLoaded}>
