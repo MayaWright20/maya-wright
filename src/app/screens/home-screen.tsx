@@ -17,7 +17,7 @@ import { COLORS } from '../constants/colors';
 import Carousel from '../components/carousel/carousel';
 import Switch from '../components/buttons/switch/switch';
 import Scene from '../components/r3F/models/scene/scene';
-// import PageLabel from '../components/page-label/page-label';
+import PageLabel from '../components/page-label/page-label';
 
 // const MAX_MOBILE_WINDOW_WIDTH = 425;
 const AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS = [
@@ -172,7 +172,7 @@ export default function HomeScreen() {
                   />
                 </div>
               </Styled_Face_Actions_Carousel>
-              {/* <PageLabel /> */}
+              <PageLabel />
             </Styled_Container>
           </ModelActionsPlaySwitchContext.Provider>
         </ModelAutoRotateContext.Provider>
