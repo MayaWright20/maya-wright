@@ -6,6 +6,7 @@ export const Styled_Container = styled.div`
     background-color: rgba(255, 255, 255, 0);
     border: 1.5px solid white;
     top: 50vh;
+    right: 0;
     writing-mode: vertical-rl;
     text-orientation: upright;
     display: flex;
