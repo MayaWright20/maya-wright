@@ -17,6 +17,7 @@ import { COLORS } from '../constants/colors';
 import Carousel from '../components/carousel/carousel';
 import Switch from '../components/buttons/switch/switch';
 import Scene from '../components/r3F/models/scene/scene';
+import PageLabel from '../components/page-label/page-label';
 
 // const MAX_MOBILE_WINDOW_WIDTH = 425;
 const AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS = [
@@ -113,18 +114,6 @@ export default function HomeScreen() {
     index === 0 ? setAutoRotate(true) : setAutoRotate(false);
   };
 
-  // const generateCarouselTabIndex = () => {
-  //   if (playModelActions) {
-  //     setTimeout(() => {
-  //       setCarouselTabIndex(0);
-  //     }, 5000);
-  //   } else {
-  //     setCarouselTabIndex(-1);
-  //   }
-
-  //   return carouselTabIndex;
-  // };
-
   return (
     <HasScreenLoaded.Provider value={hasScreenLoaded}>
       <ModelActionsContext.Provider value={cellIndex}>
@@ -183,6 +172,7 @@ export default function HomeScreen() {
                   />
                 </div>
               </Styled_Face_Actions_Carousel>
+              <PageLabel />
             </Styled_Container>
           </ModelActionsPlaySwitchContext.Provider>
         </ModelAutoRotateContext.Provider>
