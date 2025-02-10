@@ -4,7 +4,7 @@ export const Styled_Container = styled.div`
   div {
     position: absolute;
     background-color: rgba(255, 255, 255, 0);
-    border: 1px solid white;
+    border: 1.5px solid white;
     top: 50vh;
     writing-mode: vertical-rl;
     text-orientation: upright;
