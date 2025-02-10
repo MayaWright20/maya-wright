@@ -7,7 +7,7 @@ export const Styled_Container = styled.div`
     border: 1.5px solid white;
     top: 50vh;
     right: 0;
-    writing-mode: vertical-rl;
+    writing-mode: vertical-lr;
     text-orientation: upright;
     display: flex;
     align-items: center;
