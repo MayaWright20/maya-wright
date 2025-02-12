@@ -21,10 +21,12 @@ import PageLabel from '../components/page-label/page-label';
 
 // const MAX_MOBILE_WINDOW_WIDTH = 425;
 const AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS = [
-  'expression on',
-  'expression off',
+  'Expressions on',
+  'Expressions off',
 ];
-const AUTOROTATE_LABELS = ['rotate on', 'rotate off'];
+const AUTOROTATE_LABELS = ['Auto rotate on', 'Auto rotate off'];
+
+const FACIAL_EXPRESSIONS = ['Angry', 'Kiss', 'Awks', 'Sad', 'Shock', 'Shock2'];
 
 export default function HomeScreen() {
   // scenes to create:
@@ -120,9 +122,13 @@ export default function HomeScreen() {
         <ModelAutoRotateContext.Provider value={autoRotate}>
           <ModelActionsPlaySwitchContext.Provider value={playModelActions}>
             <Styled_Container>
-              <BurgerMenu tabIndex={hasScreenLoaded ? 0 : -1} />
+              <BurgerMenu
+                ariaLabel="Navigation bar"
+                tabIndex={hasScreenLoaded ? 0 : -1}
+              />
               <Styled_Auto_Actions_Play_Switch $isPageLoaded={hasScreenLoaded}>
                 <Switch
+                  ariaLabel={AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS}
                   tabIndex={hasScreenLoaded ? 0 : -1}
                   innerColor={`${COLORS.bright_blue}`}
                   middleColor={`${COLORS.light_grey}`}
@@ -136,6 +142,7 @@ export default function HomeScreen() {
 
               <Styled_AutoRotate_Switch $isPageLoaded={hasScreenLoaded}>
                 <Switch
+                  ariaLabel={AUTOROTATE_LABELS}
                   tabIndex={hasScreenLoaded ? 0 : -1}
                   innerColor={`${COLORS.bright_green}`}
                   middleColor={`${COLORS.light_grey}`}
@@ -153,6 +160,7 @@ export default function HomeScreen() {
               >
                 <div className="face-actions-carousel">
                   <Carousel
+                    ariaLabel={FACIAL_EXPRESSIONS}
                     tabIndex={carouselTabIndex}
                     innerColor={
                       playModelActions
@@ -166,7 +174,7 @@ export default function HomeScreen() {
                         : `${COLORS.light_blue}`
                     }
                     outterHeight={'20px'}
-                    items={modelActionsLength}
+                    items={FACIAL_EXPRESSIONS}
                     isActive={cellIndex}
                     onClick={(index) => actionIndex(index)}
                   />

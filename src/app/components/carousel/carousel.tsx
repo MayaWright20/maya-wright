@@ -16,6 +16,7 @@ export default function Carousel({
   paddingInline,
   paddingBlock,
   tabIndex,
+  ariaLabel,
 }: {
   innerColor?: string;
   middleColor?: string;
@@ -28,6 +29,7 @@ export default function Carousel({
   paddingInline?: string;
   paddingBlock?: string;
   tabIndex: any;
+  ariaLabel: string[];
 }) {
   return (
     <Styled_Container
@@ -41,6 +43,7 @@ export default function Carousel({
             <Styled_CircleWrapper key={index}>
               <div
                 tabIndex={tabIndex}
+                aria-label={ariaLabel[index]}
                 role="button"
                 onKeyDown={(event, ...args) => {
                   if ((event.key === 'Enter' || event.key === ' ') && onClick) {

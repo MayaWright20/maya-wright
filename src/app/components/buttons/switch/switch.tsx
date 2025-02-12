@@ -15,6 +15,7 @@ export default function Switch({
   vertical = false,
   paddingBlock,
   tabIndex,
+  ariaLabel,
 }: {
   innerColor?: string;
   middleColor?: string;
@@ -26,6 +27,7 @@ export default function Switch({
   vertical?: boolean;
   paddingBlock?: string;
   tabIndex: number;
+  ariaLabel: string[];
 }) {
   return (
     <Styled_Container $paddingBlock={paddingBlock} $vertical={vertical}>
@@ -36,6 +38,7 @@ export default function Switch({
               <div
                 className="container-circle"
                 tabIndex={tabIndex}
+                aria-label={ariaLabel[index]}
                 role="button"
                 onKeyDown={(event, ...args) => {
                   if ((event.key === 'Enter' || event.key === ' ') && onClick) {
