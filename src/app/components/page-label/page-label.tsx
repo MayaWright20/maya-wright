@@ -1,9 +1,13 @@
 import { Font_AtkinsonHyperlegible } from '@/app/utils/fonts/global-fonts';
 import { Styled_Container } from './style';
 
-export default function PageLabel() {
+interface Props {
+  isPageLoaded: boolean;
+}
+
+export default function PageLabel({ isPageLoaded }: Props) {
   return (
-    <Styled_Container>
+    <Styled_Container $isPageLoaded={isPageLoaded}>
       <div className={Font_AtkinsonHyperlegible.className}>Maya Wright</div>
     </Styled_Container>
   );

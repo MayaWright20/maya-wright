@@ -172,7 +172,7 @@ export default function HomeScreen() {
                   />
                 </div>
               </Styled_Face_Actions_Carousel>
-              <PageLabel />
+              <PageLabel isPageLoaded={hasScreenLoaded} />
             </Styled_Container>
           </ModelActionsPlaySwitchContext.Provider>
         </ModelAutoRotateContext.Provider>
