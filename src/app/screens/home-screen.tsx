@@ -18,6 +18,7 @@ import Carousel from '../components/carousel/carousel';
 import Switch from '../components/buttons/switch/switch';
 import Scene from '../components/r3F/models/scene/scene';
 import PageLabel from '../components/page-label/page-label';
+import { IsBurgerMenuOpenContext } from '../context/nav-bar/isBurgerMenuOpenContext';
 
 // const MAX_MOBILE_WINDOW_WIDTH = 425;
 const AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS = [
@@ -54,6 +55,7 @@ export default function HomeScreen() {
   const [playModelActions, setPlayModelActions] = useState<boolean>(true);
   const [autoRotate, setAutoRotate] = useState<boolean>(false); // change this to true
   const [carouselTabIndex, setCarouselTabIndex] = useState(-1);
+  const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -116,75 +118,85 @@ export default function HomeScreen() {
     index === 0 ? setAutoRotate(true) : setAutoRotate(false);
   };
 
+  const toggleIsNavOpen = () => {
+    setIsNavOpen((nav) => !nav);
+  };
+
   return (
     <HasScreenLoaded.Provider value={hasScreenLoaded}>
-      <ModelActionsContext.Provider value={cellIndex}>
-        <ModelAutoRotateContext.Provider value={autoRotate}>
-          <ModelActionsPlaySwitchContext.Provider value={playModelActions}>
-            <Styled_Container>
-              <BurgerMenu
-                ariaLabel="Navigation bar"
-                tabIndex={hasScreenLoaded ? 0 : -1}
-              />
-              <Styled_Auto_Actions_Play_Switch $isPageLoaded={hasScreenLoaded}>
-                <Switch
-                  ariaLabel={AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS}
+      <IsBurgerMenuOpenContext.Provider value={isNavOpen}>
+        <ModelActionsContext.Provider value={cellIndex}>
+          <ModelAutoRotateContext.Provider value={autoRotate}>
+            <ModelActionsPlaySwitchContext.Provider value={playModelActions}>
+              <Styled_Container>
+                <BurgerMenu
+                  isNavOpen={isNavOpen}
+                  onClick={() => toggleIsNavOpen()}
+                  ariaLabel="Navigation bar"
                   tabIndex={hasScreenLoaded ? 0 : -1}
-                  innerColor={`${COLORS.bright_blue}`}
-                  middleColor={`${COLORS.light_grey}`}
-                  outterColor={`${COLORS.bright_red}`}
-                  outterHeight={'20px'}
-                  items={AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS}
-                  isActive={playModelActions ? 0 : 1}
-                  onClick={(index) => setPlayModelActionsSwitch(index)}
                 />
-              </Styled_Auto_Actions_Play_Switch>
-
-              <Styled_AutoRotate_Switch $isPageLoaded={hasScreenLoaded}>
-                <Switch
-                  ariaLabel={AUTOROTATE_LABELS}
-                  tabIndex={hasScreenLoaded ? 0 : -1}
-                  innerColor={`${COLORS.bright_green}`}
-                  middleColor={`${COLORS.light_grey}`}
-                  outterColor={`${COLORS.bright_purple}`}
-                  outterHeight={'20px'}
-                  items={AUTOROTATE_LABELS}
-                  isActive={autoRotate ? 0 : 1}
-                  onClick={(index) => setAutoPlaySwitch(index)}
-                />
-              </Styled_AutoRotate_Switch>
-              <Scene />
-              <Styled_Face_Actions_Carousel
-                $isShowCarousel={playModelActions}
-                $isPageLoaded={hasScreenLoaded}
-              >
-                <div className="face-actions-carousel">
-                  <Carousel
-                    ariaLabel={FACIAL_EXPRESSIONS}
-                    tabIndex={carouselTabIndex}
-                    innerColor={
-                      playModelActions
-                        ? `${COLORS.fuchia_pink}`
-                        : `${COLORS.light_blue}`
-                    }
+                <Styled_Auto_Actions_Play_Switch
+                  $isPageLoaded={hasScreenLoaded}
+                >
+                  <Switch
+                    ariaLabel={AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS}
+                    tabIndex={hasScreenLoaded ? 0 : -1}
+                    innerColor={`${COLORS.bright_blue}`}
                     middleColor={`${COLORS.light_grey}`}
-                    outterColor={
-                      playModelActions
-                        ? `${COLORS.bright_blue}`
-                        : `${COLORS.light_blue}`
-                    }
+                    outterColor={`${COLORS.bright_red}`}
                     outterHeight={'20px'}
-                    items={FACIAL_EXPRESSIONS}
-                    isActive={cellIndex}
-                    onClick={(index) => actionIndex(index)}
+                    items={AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS}
+                    isActive={playModelActions ? 0 : 1}
+                    onClick={(index) => setPlayModelActionsSwitch(index)}
                   />
-                </div>
-              </Styled_Face_Actions_Carousel>
-              <PageLabel isPageLoaded={hasScreenLoaded} />
-            </Styled_Container>
-          </ModelActionsPlaySwitchContext.Provider>
-        </ModelAutoRotateContext.Provider>
-      </ModelActionsContext.Provider>
+                </Styled_Auto_Actions_Play_Switch>
+
+                <Styled_AutoRotate_Switch $isPageLoaded={hasScreenLoaded}>
+                  <Switch
+                    ariaLabel={AUTOROTATE_LABELS}
+                    tabIndex={hasScreenLoaded ? 0 : -1}
+                    innerColor={`${COLORS.bright_green}`}
+                    middleColor={`${COLORS.light_grey}`}
+                    outterColor={`${COLORS.bright_purple}`}
+                    outterHeight={'20px'}
+                    items={AUTOROTATE_LABELS}
+                    isActive={autoRotate ? 0 : 1}
+                    onClick={(index) => setAutoPlaySwitch(index)}
+                  />
+                </Styled_AutoRotate_Switch>
+                <Scene />
+                <Styled_Face_Actions_Carousel
+                  $isShowCarousel={playModelActions}
+                  $isPageLoaded={hasScreenLoaded}
+                >
+                  <div className="face-actions-carousel">
+                    <Carousel
+                      ariaLabel={FACIAL_EXPRESSIONS}
+                      tabIndex={carouselTabIndex}
+                      innerColor={
+                        playModelActions
+                          ? `${COLORS.fuchia_pink}`
+                          : `${COLORS.light_blue}`
+                      }
+                      middleColor={`${COLORS.light_grey}`}
+                      outterColor={
+                        playModelActions
+                          ? `${COLORS.bright_blue}`
+                          : `${COLORS.light_blue}`
+                      }
+                      outterHeight={'20px'}
+                      items={FACIAL_EXPRESSIONS}
+                      isActive={cellIndex}
+                      onClick={(index) => actionIndex(index)}
+                    />
+                  </div>
+                </Styled_Face_Actions_Carousel>
+                <PageLabel isPageLoaded={hasScreenLoaded} />
+              </Styled_Container>
+            </ModelActionsPlaySwitchContext.Provider>
+          </ModelAutoRotateContext.Provider>
+        </ModelActionsContext.Provider>
+      </IsBurgerMenuOpenContext.Provider>
     </HasScreenLoaded.Provider>
   );
 }
