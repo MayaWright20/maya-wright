@@ -11,6 +11,7 @@ import {
   OrbitControls,
   Sky,
   Stars,
+  useProgress,
 } from '@react-three/drei';
 import DirectionalLights from '../lights/directional-lights';
 import Face from '../face/face';
@@ -19,10 +20,9 @@ import * as THREE from 'three';
 import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
 
 function Loader() {
-  // const { progress } = useProgress();
+  const { progress } = useProgress();
 
-  return <Html>hello</Html>;
-  // return <Html center>{progress.toFixed(1)} % loaded</Html>
+  return <Html center>{progress.toFixed(1)} % loaded</Html>;
 }
 
 export default function Scene() {
