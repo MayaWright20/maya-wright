@@ -22,7 +22,7 @@ export const Styled_Container = styled.div<StyledContainerProps>`
     height: ${({ $isNavOpen }) => ($isNavOpen ? '100%' : 'auto')};
     top: 0;
     left: 0;
-    background-color: rgba(225, 4, 245, 0.36);
+    /* background-color: rgba(225, 4, 245, 0.36); */
 
     & .nav-open {
       position: absolute;

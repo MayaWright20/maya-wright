@@ -18,7 +18,7 @@ import Carousel from '../components/carousel/carousel';
 import Switch from '../components/buttons/switch/switch';
 import Scene from '../components/r3F/models/scene/scene';
 import PageLabel from '../components/page-label/page-label';
-import { IsBurgerMenuOpenContext } from '../context/nav-bar/isBurgerMenuOpenContext';
+import { IsNavOpenContext } from '../context/nav-bar/isNavOpenContext';
 import BurgerMenuOpen from '../components/navbar/burger-menu/burger-menu-open/buger-menu-open';
 
 // const MAX_MOBILE_WINDOW_WIDTH = 425;
@@ -141,7 +141,7 @@ export default function HomeScreen() {
 
   return (
     <HasScreenLoaded.Provider value={hasScreenLoaded}>
-      <IsBurgerMenuOpenContext.Provider value={isNavOpen}>
+      <IsNavOpenContext.Provider value={isNavOpen}>
         <ModelActionsContext.Provider value={cellIndex}>
           <ModelAutoRotateContext.Provider value={autoRotate}>
             <ModelActionsPlaySwitchContext.Provider value={playModelActions}>
@@ -152,7 +152,7 @@ export default function HomeScreen() {
                   ariaLabel="Navigation bar"
                   tabIndex={hasScreenLoaded ? 0 : -1}
                 />
-                <BurgerMenuOpen isNavOpen={isNavOpen} />
+                <BurgerMenuOpen onClick={() => toggleIsNavOpen()} />
                 <Styled_Auto_Actions_Play_Switch
                   $isPageLoaded={hasScreenLoaded}
                   $isNavOpen={isNavOpen}
@@ -218,7 +218,7 @@ export default function HomeScreen() {
             </ModelActionsPlaySwitchContext.Provider>
           </ModelAutoRotateContext.Provider>
         </ModelActionsContext.Provider>
-      </IsBurgerMenuOpenContext.Provider>
+      </IsNavOpenContext.Provider>
     </HasScreenLoaded.Provider>
   );
 }

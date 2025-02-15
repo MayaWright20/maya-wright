@@ -1,7 +1,11 @@
 import { motion } from 'framer-motion';
 import { Container } from './styles';
+import { useContext } from 'react';
+import { IsNavOpenContext } from '@/app/context/nav-bar/isNavOpenContext';
 
-export default function BurgerMenuOpen({ isNavOpen }: { isNavOpen: boolean }) {
+export default function BurgerMenuOpen({ onClick }: { onClick: () => void }) {
+  const isNavOpenContext = useContext(IsNavOpenContext);
+
   const image: React.CSSProperties = {
     backgroundColor: 'transparent',
     width: '100%',
@@ -10,7 +14,8 @@ export default function BurgerMenuOpen({ isNavOpen }: { isNavOpen: boolean }) {
   };
 
   return (
-    <Container $isNavOpen={isNavOpen}>
+    <Container $isNavOpen={isNavOpenContext}>
+      <div className="close-nav" onClick={onClick}></div>
       <motion.svg
         width="100%"
         height="100%"
@@ -18,16 +23,16 @@ export default function BurgerMenuOpen({ isNavOpen }: { isNavOpen: boolean }) {
         style={image}
       >
         <motion.circle
-          cx="68px" // Adjust to position at the white circle
+          cx="68px"
           cy="68px"
-          r={isNavOpen ? 1028 : 31}
-          stroke="white"
+          r={isNavOpenContext ? 1028 : 31}
+          stroke="rgb(216, 230, 240)"
           fill="transparent"
-          strokeWidth={isNavOpen ? '200' : '5'}
+          strokeWidth={isNavOpenContext ? '200' : '5'}
           strokeLinecap="round"
           vectorEffect="non-scaling-stroke"
           initial={{ strokeWidth: 5 }}
-          animate={{ strokeWidth: isNavOpen ? 2000 : 5 }}
+          animate={{ strokeWidth: isNavOpenContext ? 2000 : 5 }}
           transition={{
             duration: 2,
             ease: 'easeInOut',

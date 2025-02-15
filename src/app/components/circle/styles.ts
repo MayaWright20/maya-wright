@@ -9,7 +9,6 @@ interface StyledContainerProps {
 
 export const Styled_Container = styled.div<StyledContainerProps>`
   .circle {
-    background-color: pink;
     border-radius: 100%;
     position: absolute;
     content: '';
