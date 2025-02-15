@@ -120,6 +120,7 @@ export default function HomeScreen() {
 
   const toggleIsNavOpen = () => {
     setIsNavOpen((nav) => !nav);
+    setPlayModelActions((actions) => !actions);
   };
 
   return (
@@ -137,6 +138,7 @@ export default function HomeScreen() {
                 />
                 <Styled_Auto_Actions_Play_Switch
                   $isPageLoaded={hasScreenLoaded}
+                  $isNavOpen={isNavOpen}
                 >
                   <Switch
                     ariaLabel={AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS}
@@ -151,7 +153,10 @@ export default function HomeScreen() {
                   />
                 </Styled_Auto_Actions_Play_Switch>
 
-                <Styled_AutoRotate_Switch $isPageLoaded={hasScreenLoaded}>
+                <Styled_AutoRotate_Switch
+                  $isPageLoaded={hasScreenLoaded}
+                  $isNavOpen={isNavOpen}
+                >
                   <Switch
                     ariaLabel={AUTOROTATE_LABELS}
                     tabIndex={hasScreenLoaded ? 0 : -1}
@@ -168,6 +173,7 @@ export default function HomeScreen() {
                 <Styled_Face_Actions_Carousel
                   $isShowCarousel={playModelActions}
                   $isPageLoaded={hasScreenLoaded}
+                  // $isNavOpen={isNavOpen}
                 >
                   <div className="face-actions-carousel">
                     <Carousel
