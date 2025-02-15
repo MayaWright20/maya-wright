@@ -11,7 +11,7 @@ import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
 import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
 import { ModelActionsPlaySwitchContext } from '@/app/context/r3f/modelActionsPlaySwitchContext';
 import { ModelActionsLengthContext } from '@/app/context/r3f/modelActionsLengthContext';
-import BurgerMenu from '../components/navbar/burger-menu/burger-menu';
+import BurgerMenu from '../components/navbar/burger-menu/burger-menu-closed/burger-menu';
 import { HasScreenLoaded } from '@/app/context/loading/has-screen-loaded';
 import { COLORS } from '../constants/colors';
 import Carousel from '../components/carousel/carousel';
@@ -19,6 +19,7 @@ import Switch from '../components/buttons/switch/switch';
 import Scene from '../components/r3F/models/scene/scene';
 import PageLabel from '../components/page-label/page-label';
 import { IsBurgerMenuOpenContext } from '../context/nav-bar/isBurgerMenuOpenContext';
+import BurgerMenuOpen from '../components/navbar/burger-menu/burger-menu-open/buger-menu-open';
 
 // const MAX_MOBILE_WINDOW_WIDTH = 425;
 const AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS = [
@@ -151,6 +152,7 @@ export default function HomeScreen() {
                   ariaLabel="Navigation bar"
                   tabIndex={hasScreenLoaded ? 0 : -1}
                 />
+                <BurgerMenuOpen isNavOpen={isNavOpen} />
                 <Styled_Auto_Actions_Play_Switch
                   $isPageLoaded={hasScreenLoaded}
                   $isNavOpen={isNavOpen}
