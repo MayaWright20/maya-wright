@@ -13,6 +13,7 @@ export const Styled_Container = styled.div`
 interface StyledFaceActionsCarousel {
   $isPageLoaded: boolean;
   $isShowCarousel: boolean;
+  $isNavOpen: boolean;
 }
 
 interface StyledAutoRotate {
@@ -27,10 +28,12 @@ export const Styled_Face_Actions_Carousel = styled.div<StyledFaceActionsCarousel
     top: 80vh;
     left: 50%;
     transform: translateX(-50%);
-    animation-name: ${({ $isPageLoaded, $isShowCarousel }) =>
+    animation-name: ${({ $isPageLoaded, $isShowCarousel, $isNavOpen }) =>
       $isPageLoaded
         ? $isShowCarousel
-          ? 'slideLeft'
+          ? $isNavOpen
+            ? 'slideRight'
+            : 'slideLeft'
           : 'slideRight'
         : 'slideLeft'};
     animation-duration: 4s;

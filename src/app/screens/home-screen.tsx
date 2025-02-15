@@ -173,7 +173,7 @@ export default function HomeScreen() {
                 <Styled_Face_Actions_Carousel
                   $isShowCarousel={playModelActions}
                   $isPageLoaded={hasScreenLoaded}
-                  // $isNavOpen={isNavOpen}
+                  $isNavOpen={isNavOpen}
                 >
                   <div className="face-actions-carousel">
                     <Carousel
