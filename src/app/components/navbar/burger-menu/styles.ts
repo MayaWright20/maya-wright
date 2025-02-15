@@ -18,6 +18,25 @@ export const Styled_Container = styled.div<StyledContainerProps>`
     animation-duration: 4s;
     animation-timing-function: ease-in-out;
     animation-timing-function: cubic-bezier(0.9, 0.4, 0.5, 0.9);
+    width: ${({ $isNavOpen }) => ($isNavOpen ? '100%' : 'auto')};
+    height: ${({ $isNavOpen }) => ($isNavOpen ? '100%' : 'auto')};
+    top: 0;
+    left: 0;
+    background-color: rgba(225, 4, 245, 0.36);
+
+    & .nav-open {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      display: ${({ $isNavOpen }) => ($isNavOpen ? 'flex' : 'none')};
+      z-index: calc(${Z_INDEXES.level_10} +99999999999999999999);
+
+      & ul li {
+        list-style: none;
+      }
+    }
 
     & .container-circle {
       height: 56px;

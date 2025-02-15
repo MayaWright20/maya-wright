@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Styled_Container } from './styles';
 import { HasScreenLoaded } from '@/app/context/loading/has-screen-loaded';
 import { COLORS } from '@/app/constants/colors';
@@ -7,16 +7,15 @@ import Circle from '../../circle/circle';
 export default function BurgerMenu({
   tabIndex,
   ariaLabel,
+  isNavOpen,
+  onClick,
 }: {
   tabIndex: number;
   ariaLabel: string;
+  isNavOpen: boolean;
+  onClick: () => void;
 }) {
   const hasScreenLoaded = useContext(HasScreenLoaded);
-  const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
-
-  const onClick = () => {
-    setIsNavOpen((nav) => !nav);
-  };
 
   return (
     <Styled_Container
@@ -26,6 +25,7 @@ export default function BurgerMenu({
       $isNavOpen={isNavOpen}
     >
       <nav>
+        {/* {!isNavOpen && ( */}
         <div
           tabIndex={tabIndex}
           aria-label={ariaLabel}
@@ -44,6 +44,20 @@ export default function BurgerMenu({
             outterHeight={'25px'}
           />
         </div>
+        {/* )} */}
+        {/* {isNavOpen && (
+          <div className="nav-open">
+            <Circle
+              innerColor={COLORS.bright_red}
+              outterColor={COLORS.bright_purple}
+              outterHeight={'25px'}
+              onClick={onClick}
+            />
+            <ul>
+              <li>Projects</li>
+            </ul>
+          </div>
+        )} */}
       </nav>
     </Styled_Container>
   );
