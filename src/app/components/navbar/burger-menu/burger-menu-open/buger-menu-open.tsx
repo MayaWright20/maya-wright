@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion';
+import { animate, motion, useCycle } from 'framer-motion';
 import { Container } from './styles';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { IsNavOpenContext } from '@/app/context/nav-bar/isNavOpenContext';
 
 export default function BurgerMenuOpen({ onClick }: { onClick: () => void }) {
@@ -25,17 +25,21 @@ export default function BurgerMenuOpen({ onClick }: { onClick: () => void }) {
         <motion.circle
           cx="68px"
           cy="68px"
-          r={isNavOpenContext ? 1028 : 31}
+          r="27"
           stroke="rgb(216, 230, 240)"
           fill="transparent"
-          strokeWidth={isNavOpenContext ? '200' : '5'}
+          strokeWidth={5}
           strokeLinecap="round"
-          vectorEffect="non-scaling-stroke"
-          initial={{ strokeWidth: 5 }}
-          animate={{ strokeWidth: isNavOpenContext ? 2000 : 5 }}
+          style={{
+            filter: 'drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.217))',
+          }}
+          animate={{
+            r: isNavOpenContext ? 27 : 1028,
+            strokeWidth: isNavOpenContext ? 2000 : 5,
+          }}
           transition={{
-            duration: 2,
-            ease: 'easeInOut',
+            duration: 4,
+            ease: [0.9, 0.5, 0.4, 0.9],
           }}
         />
       </motion.svg>
