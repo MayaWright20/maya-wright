@@ -1,6 +1,6 @@
 'use client';
 
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import {
   Styled_AutoRotate_Switch,
   Styled_Container,
@@ -57,12 +57,14 @@ export default function HomeScreen() {
   const [carouselTabIndex, setCarouselTabIndex] = useState(-1);
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
   const [switchButtonTabIndex, setSwitchButtonTabIndex] = useState(-1);
+  const prevCarouselTabIndex = useRef<number>(carouselTabIndex);
 
   useEffect(() => {
     setTimeout(() => {
       if (!hasScreenLoaded) {
         setHasScreenLoaded(true);
         setCarouselTabIndex(0);
+        setSwitchButtonTabIndex(0);
       }
     }, 4000);
   }, []);
@@ -76,22 +78,6 @@ export default function HomeScreen() {
       return () => clearInterval(interval);
     }
   }, [playModelActions, cellIndex]);
-
-  useEffect(() => {
-    if (hasScreenLoaded) {
-      if (isNavOpen) {
-        setSwitchButtonTabIndex(-1);
-        setCarouselTabIndex(-1);
-      } else {
-        setTimeout(() => {
-          setSwitchButtonTabIndex(0);
-          setCarouselTabIndex(0);
-        }, 4000);
-      }
-    } else {
-      setSwitchButtonTabIndex(-1);
-    }
-  }, [switchButtonTabIndex, hasScreenLoaded, isNavOpen]);
 
   const actionIndex = (
     index: number | undefined,
@@ -137,8 +123,20 @@ export default function HomeScreen() {
 
   const toggleIsNavOpen = () => {
     setIsNavOpen((nav) => !nav);
-    setPlayModelActions((actions) => !actions);
   };
+
+  useEffect(() => {
+    prevCarouselTabIndex.current = playModelActions ? 0 : -1;
+    if (isNavOpen) {
+      setCarouselTabIndex(-1);
+      setSwitchButtonTabIndex(-1);
+    } else {
+      setTimeout(() => {
+        setSwitchButtonTabIndex(0);
+        setCarouselTabIndex(prevCarouselTabIndex.current);
+      }, 4000);
+    }
+  }, [isNavOpen, playModelActions, switchButtonTabIndex, carouselTabIndex]);
 
   return (
     <HasScreenLoaded.Provider value={hasScreenLoaded}>
@@ -153,11 +151,6 @@ export default function HomeScreen() {
                   ariaLabel="Navigation bar"
                   tabIndex={hasScreenLoaded ? 0 : -1}
                 />
-                {/* $isPageLoaded
-      ? $isNavOpen
-        ? 'slideRightAutoPlaySwitch'
-        : 'slideLeftAutoPlaySwitch'
-      : 'slideLeftAutoPlaySwitch'}; */}
                 <Styled_Auto_Actions_Play_Switch
                   $isPageLoaded={hasScreenLoaded}
                   $isNavOpen={isNavOpen}
@@ -174,7 +167,6 @@ export default function HomeScreen() {
                     onClick={(index) => setPlayModelActionsSwitch(index)}
                   />
                 </Styled_Auto_Actions_Play_Switch>
-
                 <Styled_AutoRotate_Switch
                   $isPageLoaded={hasScreenLoaded}
                   $isNavOpen={isNavOpen}
