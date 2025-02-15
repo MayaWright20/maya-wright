@@ -56,6 +56,7 @@ export default function HomeScreen() {
   const [autoRotate, setAutoRotate] = useState<boolean>(false); // change this to true
   const [carouselTabIndex, setCarouselTabIndex] = useState(-1);
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
+  const [switchButtonTabIndex, setSwitchButtonTabIndex] = useState(-1);
 
   useEffect(() => {
     setTimeout(() => {
@@ -75,6 +76,22 @@ export default function HomeScreen() {
       return () => clearInterval(interval);
     }
   }, [playModelActions, cellIndex]);
+
+  useEffect(() => {
+    if (hasScreenLoaded) {
+      if (isNavOpen) {
+        setSwitchButtonTabIndex(-1);
+        setCarouselTabIndex(-1);
+      } else {
+        setTimeout(() => {
+          setSwitchButtonTabIndex(0);
+          setCarouselTabIndex(0);
+        }, 4000);
+      }
+    } else {
+      setSwitchButtonTabIndex(-1);
+    }
+  }, [switchButtonTabIndex, hasScreenLoaded, isNavOpen]);
 
   const actionIndex = (
     index: number | undefined,
@@ -136,13 +153,18 @@ export default function HomeScreen() {
                   ariaLabel="Navigation bar"
                   tabIndex={hasScreenLoaded ? 0 : -1}
                 />
+                {/* $isPageLoaded
+      ? $isNavOpen
+        ? 'slideRightAutoPlaySwitch'
+        : 'slideLeftAutoPlaySwitch'
+      : 'slideLeftAutoPlaySwitch'}; */}
                 <Styled_Auto_Actions_Play_Switch
                   $isPageLoaded={hasScreenLoaded}
                   $isNavOpen={isNavOpen}
                 >
                   <Switch
                     ariaLabel={AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS}
-                    tabIndex={hasScreenLoaded ? 0 : -1}
+                    tabIndex={switchButtonTabIndex}
                     innerColor={`${COLORS.bright_blue}`}
                     middleColor={`${COLORS.light_grey}`}
                     outterColor={`${COLORS.bright_red}`}
@@ -159,7 +181,7 @@ export default function HomeScreen() {
                 >
                   <Switch
                     ariaLabel={AUTOROTATE_LABELS}
-                    tabIndex={hasScreenLoaded ? 0 : -1}
+                    tabIndex={switchButtonTabIndex}
                     innerColor={`${COLORS.bright_green}`}
                     middleColor={`${COLORS.light_grey}`}
                     outterColor={`${COLORS.bright_purple}`}
