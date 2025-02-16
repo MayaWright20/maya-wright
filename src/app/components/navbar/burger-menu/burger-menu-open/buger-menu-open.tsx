@@ -1,6 +1,6 @@
-import { animate, motion, useCycle } from 'framer-motion';
-import { Container } from './styles';
-import { useContext, useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { Styled_Container } from './styles';
+import { useContext } from 'react';
 import { IsNavOpenContext } from '@/app/context/nav-bar/isNavOpenContext';
 
 export default function BurgerMenuOpen({ onClick }: { onClick: () => void }) {
@@ -14,7 +14,7 @@ export default function BurgerMenuOpen({ onClick }: { onClick: () => void }) {
   };
 
   return (
-    <Container $isNavOpen={isNavOpenContext}>
+    <Styled_Container $isNavOpen={isNavOpenContext}>
       <div className="close-nav" onClick={onClick}></div>
       <motion.svg
         width="100%"
@@ -43,6 +43,6 @@ export default function BurgerMenuOpen({ onClick }: { onClick: () => void }) {
           }}
         />
       </motion.svg>
-    </Container>
+    </Styled_Container>
   );
 }

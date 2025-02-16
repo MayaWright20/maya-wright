@@ -4,11 +4,10 @@ interface ContainerProps {
   $isNavOpen: boolean;
 }
 
-export const Container = styled.div<ContainerProps>`
+export const Styled_Container = styled.div<ContainerProps>`
   width: ${({ $isNavOpen }) => ($isNavOpen ? '100%' : 0)};
   height: ${({ $isNavOpen }) => ($isNavOpen ? '100%' : 0)};
   position: absolute;
-  /* z-index: ${({ $isNavOpen }) => ($isNavOpen ? 999999999999999 : -9)}; */
 
   & .inner-circle {
     background-color: transparent;
