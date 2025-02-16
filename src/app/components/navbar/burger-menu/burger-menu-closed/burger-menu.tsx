@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import { Styled_Container } from './styles';
-import { HasScreenLoaded } from '@/app/context/loading/has-screen-loaded';
+import { HasScreenLoadedContext } from '@/app/context/loading/has-screen-loaded';
 import { COLORS } from '@/app/constants/colors';
 import Circle from '../../../circle/circle';
 
@@ -16,7 +16,7 @@ export default function BurgerMenu({
   isNavOpen: boolean;
   onClick: () => void;
 }) {
-  const hasScreenLoaded = useContext(HasScreenLoaded);
+  const hasScreenLoaded = useContext(HasScreenLoadedContext);
 
   return (
     <Styled_Container

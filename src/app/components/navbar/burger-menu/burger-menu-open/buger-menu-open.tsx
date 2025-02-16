@@ -1,10 +1,14 @@
 import { motion } from 'framer-motion';
 import { Styled_Container } from './styles';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { IsNavOpenContext } from '@/app/context/nav-bar/isNavOpenContext';
+import BurgerMenuText from '../burger-menu-text/burger-menu-text';
+import { HasScreenLoadedContext } from '@/app/context/loading/has-screen-loaded';
 
 export default function BurgerMenuOpen({ onClick }: { onClick: () => void }) {
   const isNavOpenContext = useContext(IsNavOpenContext);
+  const hasScreenLoaded = useContext(HasScreenLoadedContext);
+  const [isNavOpenTimer, setIsNavOpenTimer] = useState(false);
 
   const image: React.CSSProperties = {
     backgroundColor: 'transparent',
@@ -13,9 +17,21 @@ export default function BurgerMenuOpen({ onClick }: { onClick: () => void }) {
     position: 'absolute',
   };
 
+  const onAnimationComplete = () => {
+    if (hasScreenLoaded) {
+      setIsNavOpenTimer(false);
+      setInterval(() => {
+        setIsNavOpenTimer(true);
+      }, 3000);
+    }
+  };
+
+  console.log(isNavOpenTimer);
+
   return (
     <Styled_Container $isNavOpen={isNavOpenContext}>
       <div className="close-nav" onClick={onClick}></div>
+      {isNavOpenContext && <BurgerMenuText isNavOpenTimer={isNavOpenTimer} />}
       <motion.svg
         width="100%"
         height="100%"
@@ -41,6 +57,7 @@ export default function BurgerMenuOpen({ onClick }: { onClick: () => void }) {
             duration: 4,
             ease: [0.9, 0.5, 0.4, 0.9],
           }}
+          onAnimationComplete={() => onAnimationComplete()}
         />
       </motion.svg>
     </Styled_Container>

@@ -1,3 +1,3 @@
 import { createContext } from 'react';
 
-export const HasScreenLoaded = createContext<boolean>(false);
+export const HasScreenLoadedContext = createContext<boolean>(false);

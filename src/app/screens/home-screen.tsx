@@ -12,7 +12,7 @@ import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext
 import { ModelActionsPlaySwitchContext } from '@/app/context/r3f/modelActionsPlaySwitchContext';
 import { ModelActionsLengthContext } from '@/app/context/r3f/modelActionsLengthContext';
 import BurgerMenu from '../components/navbar/burger-menu/burger-menu-closed/burger-menu';
-import { HasScreenLoaded } from '@/app/context/loading/has-screen-loaded';
+import { HasScreenLoadedContext } from '@/app/context/loading/has-screen-loaded';
 import { COLORS } from '../constants/colors';
 import Carousel from '../components/carousel/carousel';
 import Switch from '../components/buttons/switch/switch';
@@ -140,7 +140,7 @@ export default function HomeScreen() {
   }, [isNavOpen, playModelActions, switchButtonTabIndex, carouselTabIndex]);
 
   return (
-    <HasScreenLoaded.Provider value={hasScreenLoaded}>
+    <HasScreenLoadedContext.Provider value={hasScreenLoaded}>
       <IsNavOpenContext.Provider value={isNavOpen}>
         <ModelActionsContext.Provider value={cellIndex}>
           <ModelAutoRotateContext.Provider value={autoRotate}>
@@ -219,6 +219,6 @@ export default function HomeScreen() {
           </ModelAutoRotateContext.Provider>
         </ModelActionsContext.Provider>
       </IsNavOpenContext.Provider>
-    </HasScreenLoaded.Provider>
+    </HasScreenLoadedContext.Provider>
   );
 }

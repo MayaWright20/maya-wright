@@ -4,7 +4,7 @@ import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
 import ModelActions from '../../../../utils/model/modelActions';
 import ModelConstructor from '../../../../utils/model/modelConstructor';
 import { ModelActionsPlaySwitchContext } from '@/app/context/r3f/modelActionsPlaySwitchContext';
-import { HasScreenLoaded } from '@/app/context/loading/has-screen-loaded';
+import { HasScreenLoadedContext } from '@/app/context/loading/has-screen-loaded';
 
 const STOP_ANIMATION = 7;
 
@@ -34,7 +34,7 @@ export function Model1() {
     }
   }, [actionPlaying, playModelActionsContext]);
 
-  const hasScreenLoaded = useContext(HasScreenLoaded);
+  const hasScreenLoaded = useContext(HasScreenLoadedContext);
 
   useEffect(() => {
     if (!hasScreenLoaded) return;

@@ -5,6 +5,7 @@ interface StyledContainerProps {
   $middle_color?: string;
   $outter_color?: string;
   $outter_height: string;
+  $hover_outter_border_width?: string;
 }
 
 export const Styled_Container = styled.div<StyledContainerProps>`
@@ -33,7 +34,8 @@ export const Styled_Container = styled.div<StyledContainerProps>`
 
       &:hover,
       &:focus {
-        border-width: 10px;
+        border-width: ${({ $hover_outter_border_width }) =>
+          $hover_outter_border_width ? $hover_outter_border_width : '10px'};
         transition: border-width 0.3s ease-in-out;
       }
     }
