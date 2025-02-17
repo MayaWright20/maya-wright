@@ -19,7 +19,7 @@ export default function BurgerMenuOpen({ onClick }: { onClick: () => void }) {
 
   const onAnimationComplete = () => {
     if (hasScreenLoaded) {
-      setIsNavOpenTimer(false);
+      // setIsNavOpenTimer(false);
       setInterval(() => {
         setIsNavOpenTimer(true);
       }, 3000);

@@ -54,7 +54,7 @@ export default function HomeScreen() {
   const [hasScreenLoaded, setHasScreenLoaded] = useState(false);
   const [cellIndex, setCellIndex] = useState<number>(0);
   const [playModelActions, setPlayModelActions] = useState<boolean>(true);
-  const [autoRotate, setAutoRotate] = useState<boolean>(false); // change this to true
+  const [autoRotate, setAutoRotate] = useState<boolean>(true); // change this to true
   const [carouselTabIndex, setCarouselTabIndex] = useState(-1);
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
   const [switchButtonTabIndex, setSwitchButtonTabIndex] = useState(-1);
