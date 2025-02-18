@@ -19,7 +19,6 @@ import Switch from '../components/buttons/switch/switch';
 import Scene from '../components/r3F/models/scene/scene';
 import PageLabel from '../components/page-label/page-label';
 import { IsNavOpenContext } from '../context/nav-bar/isNavOpenContext';
-import BurgerMenuOpen from '../components/navbar/burger-menu/burger-menu-open/buger-menu-open';
 
 // const MAX_MOBILE_WINDOW_WIDTH = 425;
 const AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS = [
@@ -152,7 +151,6 @@ export default function HomeScreen() {
                   ariaLabel="Navigation bar"
                   tabIndex={hasScreenLoaded ? 0 : -1}
                 />
-                <BurgerMenuOpen onClick={() => toggleIsNavOpen()} />
                 <Styled_Auto_Actions_Play_Switch
                   $isPageLoaded={hasScreenLoaded}
                   $isNavOpen={isNavOpen}

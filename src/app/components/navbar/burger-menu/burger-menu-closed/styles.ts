@@ -22,19 +22,77 @@ export const Styled_Container = styled.div<StyledContainerProps>`
     height: ${({ $isNavOpen }) => ($isNavOpen ? '100%' : 'auto')};
     top: 0;
     left: 0;
-    /* background-color: rgba(225, 4, 245, 0.36); */
 
-    & .nav-open {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      display: ${({ $isNavOpen }) => ($isNavOpen ? 'flex' : 'none')};
-      z-index: calc(${Z_INDEXES.level_10} +99999999999999999999);
+    & .nav {
+      &-open {
+        content: '';
+        background-color: rgba(0, 0, 0, 0.403);
+        position: absolute;
+        z-index: -1;
+        width: 100vw;
+        height: 100%;
+        align-self: center;
+        justify-self: center;
 
-      & ul li {
+        display: ${({ $loaded }) => ($loaded ? 'block' : 'none')};
+        margin-bottom: ${({ $isNavOpen }) => ($isNavOpen ? 0 : '-200vh')};
+
+        //WORK ON THIS TOMORROW
+        animation-name: ${({ $isNavOpen }) =>
+          $isNavOpen ? 'slideNavItemsUp' : 'slideNavItemsDown'};
+        animation-duration: ${({ $isNavOpen }) => ($isNavOpen ? '5s' : '2s')};
+        animation-timing-function: ease-in-out;
+        animation-timing-function: cubic-bezier(0.9, 0.4, 0.5, 0.9);
+      }
+
+      &-wrapper {
+        margin-top: 150px;
+      }
+
+      li {
         list-style: none;
+      }
+
+      &-item {
+        position: relative;
+        margin-bottom: 10px;
+        margin-left: 30px;
+        margin-right: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &:hover .circle-container {
+          border-width: 20px;
+          transition: border-width 0.3s ease-in-out;
+        }
+
+        &:focus .circle-container {
+          border-width: 20px;
+          transition: border-width 0.3s ease-in-out;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          height: 2px;
+          background-color: white;
+          width: 98%;
+        }
+
+        & p {
+          z-index: +1;
+          font-size: 3rem;
+          text-transform: uppercase;
+          font-weight: 600;
+          color: white;
+        }
+
+        & .circle-container {
+          margin-left: 18px;
+          margin-right: 30px;
+          z-index: +9999999999999999999999999999;
+        }
       }
     }
 
@@ -83,6 +141,24 @@ export const Styled_Container = styled.div<StyledContainerProps>`
     }
     to {
       margin-top: 0vh;
+    }
+  }
+
+  @keyframes slideNavItemsUp {
+    from {
+      margin-bottom: -200vh;
+    }
+    to {
+      margin-bottom: 0vh;
+    }
+  }
+
+  @keyframes slideNavItemsDown {
+    from {
+      margin-bottom: 0vh;
+    }
+    to {
+      margin-bottom: -200vh;
     }
   }
 `;
