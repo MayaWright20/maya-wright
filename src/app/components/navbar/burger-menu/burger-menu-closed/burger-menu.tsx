@@ -94,6 +94,7 @@ export default function BurgerMenu({
                 key={index}
                 onMouseEnter={() => setIsHovered(index)}
                 onMouseLeave={() => setIsHovered(undefined)}
+                aria-label={item.title}
               >
                 <Link
                   href={item.href}

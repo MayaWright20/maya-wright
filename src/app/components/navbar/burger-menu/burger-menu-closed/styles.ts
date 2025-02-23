@@ -201,6 +201,7 @@ export const Styled_Nav_Open = styled.div<StyledContainerProps>`
       display: flex;
       align-items: center;
       justify-content: space-between;
+      z-index: +10;
 
       &:hover .circle-container {
         border-width: 20px;
