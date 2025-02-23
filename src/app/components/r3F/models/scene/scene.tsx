@@ -14,7 +14,7 @@ import {
   useProgress,
 } from '@react-three/drei';
 import DirectionalLights from '../lights/directional-lights';
-import Face from '../face/face';
+import Face from '../face/Head23febgreen';
 import * as THREE from 'three';
 // import RedHeart from '../heart/pixelated-heart';
 import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';

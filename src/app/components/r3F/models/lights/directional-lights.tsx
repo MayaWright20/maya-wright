@@ -1,4 +1,4 @@
-const LIGHT_COLOR = 'rgb(183, 255, 0)';
+const LIGHT_COLOR = 'rgb(255, 255, 255)';
 
 export default function DirectionalLights() {
   return (

@@ -7,11 +7,9 @@ Files: model1.glb [29.26MB] > /Users/maya/Desktop/MyProjects/maya-wright/public/
 import React from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
 
-// const STOP_ANIMATION = 7;
-
 export default function ModelConstructor() {
   const group = React.useRef();
-  const { nodes, materials, animations } = useGLTF('/model1-transformed.glb');
+  const { nodes, materials, animations } = useGLTF('/head23febgreen-transformed.glb');
   const { actions } = useAnimations(animations, group);
 
   return {
