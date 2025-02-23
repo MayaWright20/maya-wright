@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import { Styled_Container } from './styles';
+import { Styled_Container, Styled_Nav_Open } from './styles';
 import { HasScreenLoadedContext } from '@/app/context/loading/has-screen-loaded';
 import { COLORS } from '@/app/constants/colors';
 import Circle from '../../../circle/circle';
@@ -69,6 +69,13 @@ export default function BurgerMenu({
             outterHeight={'25px'}
           />
         </div>
+      </nav>
+      <Styled_Nav_Open
+        $bright_yellow={COLORS.bright_yellow}
+        $bright_orange={COLORS.bright_orange}
+        $loaded={hasScreenLoaded}
+        $isNavOpen={isNavOpen}
+      >
         <div className="nav-open">
           <ul className="nav-wrapper">
             {navItems.map((item, index) => (
@@ -103,7 +110,7 @@ export default function BurgerMenu({
             ))}
           </ul>
         </div>
-      </nav>
+      </Styled_Nav_Open>
     </Styled_Container>
   );
 }
