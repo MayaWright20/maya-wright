@@ -5,6 +5,7 @@ import { HasScreenLoadedContext } from '@/app/context/loading/has-screen-loaded'
 import { COLORS } from '@/app/constants/colors';
 import Circle from '../../../circle/circle';
 import Link from 'next/link';
+import { IsNavOpenContext } from '@/app/context/nav-bar/isNavOpenContext';
 
 export default function BurgerMenu({
   tabIndex,
@@ -18,7 +19,15 @@ export default function BurgerMenu({
   onClick: () => void;
 }) {
   const hasScreenLoaded = useContext(HasScreenLoadedContext);
+  const isBurgerMenuOpen = useContext(IsNavOpenContext);
   const [isHovered, setIsHovered] = useState<undefined | number>(undefined);
+  const [navIsLoaded, setNavIsLoaded] = useState<boolean>(isBurgerMenuOpen);
+
+  useEffect(() => {
+    if (isBurgerMenuOpen) {
+      setNavIsLoaded(true);
+    }
+  }, [isBurgerMenuOpen]);
 
   const navItems = [
     {
@@ -49,6 +58,7 @@ export default function BurgerMenu({
       $bright_orange={COLORS.bright_orange}
       $loaded={hasScreenLoaded}
       $isNavOpen={isNavOpen}
+      $navIsLoaded={navIsLoaded}
     >
       <nav>
         <div
@@ -75,6 +85,7 @@ export default function BurgerMenu({
         $bright_orange={COLORS.bright_orange}
         $loaded={hasScreenLoaded}
         $isNavOpen={isNavOpen}
+        $navIsLoaded={navIsLoaded}
       >
         <div className="nav-open">
           <ul className="nav-wrapper">

@@ -6,6 +6,7 @@ interface StyledContainerProps {
   $isNavOpen: boolean;
   $bright_orange: string;
   $bright_yellow: string;
+  $navIsLoaded: boolean;
 }
 
 export const Styled_Container = styled.div<StyledContainerProps>`
@@ -33,16 +34,6 @@ export const Styled_Container = styled.div<StyledContainerProps>`
         height: 100%;
         align-self: center;
         justify-self: center;
-
-        /* display: ${({ $loaded }) => ($loaded ? 'block' : 'none')}; */
-        /* margin-bottom: ${({ $isNavOpen }) => ($isNavOpen ? 0 : '-200vh')}; */
-
-        //WORK ON THIS TOMORROW
-        /* animation-name: ${({ $isNavOpen }) =>
-          $isNavOpen ? 'slideNavItemsUp' : 'slideNavItemsDown'};
-        animation-duration: ${({ $isNavOpen }) => ($isNavOpen ? '5s' : '2s')};
-        animation-timing-function: ease-in-out;
-        animation-timing-function: cubic-bezier(0.9, 0.4, 0.5, 0.9); */
       }
 
       &-wrapper {
@@ -164,19 +155,23 @@ export const Styled_Container = styled.div<StyledContainerProps>`
 `;
 
 export const Styled_Nav_Open = styled.div<StyledContainerProps>`
-  /* background-color: rgba(189, 63, 63, 0); */
   position: absolute;
   height: 100%;
   width: 100%;
-  margin-top: ${({ $isNavOpen }) => ($isNavOpen ? 0 : '168vh')};
-  /* margin-bottom: ${({ $isNavOpen }) => ($isNavOpen ? 0 : '-200vh')}; */
-
-  //WORK ON THIS TOMORROW
-  animation-name: ${({ $isNavOpen, $loaded }) =>
-    $loaded ? ($isNavOpen ? 'slideNavItemsUp' : 'slideNavItemsDown') : null};
+  top: ${({ $isNavOpen }) => ($isNavOpen ? 0 : '168vh')};
+  animation-name: ${({ $isNavOpen, $navIsLoaded }) =>
+    $isNavOpen
+      ? 'slideNavUp'
+      : $navIsLoaded && $navIsLoaded
+      ? 'slideNavDown'
+      : null};
   animation-duration: ${({ $isNavOpen }) => ($isNavOpen ? '5s' : '2s')};
   animation-timing-function: ease-in-out;
   animation-timing-function: cubic-bezier(0.9, 0.4, 0.5, 0.9);
+
+  ul {
+    list-style: none;
+  }
 
   & .nav {
     &-open {
@@ -187,8 +182,6 @@ export const Styled_Nav_Open = styled.div<StyledContainerProps>`
       height: 100%;
       align-self: center;
       justify-self: center;
-
-      /* display: ${({ $loaded }) => ($loaded ? 'block' : 'none')}; */
     }
 
     &-wrapper {
@@ -197,6 +190,7 @@ export const Styled_Nav_Open = styled.div<StyledContainerProps>`
 
     li {
       list-style: none;
+      background-color: pink;
     }
 
     &-item {
@@ -250,21 +244,21 @@ export const Styled_Nav_Open = styled.div<StyledContainerProps>`
       }
     }
 
-    @keyframes slideNavItemsUp {
+    @keyframes slideNavUp {
       from {
-        margin-top: 168vh;
+        top: 168vh;
       }
       to {
-        margin-top: 0vh;
+        top: 0vh;
       }
     }
 
-    @keyframes slideNavItemsDown {
+    @keyframes slideNavDown {
       from {
-        margin-top: 0vh;
+        top: 0vh;
       }
       to {
-        margin-top: 168vh;
+        top: 168vh;
       }
     }
   }
