@@ -7,7 +7,7 @@ Files: red_heart3.glb [126.12KB] > /Users/maya/Desktop/MyProjects/maya-wright/pu
 import React from 'react';
 import { useGLTF } from '@react-three/drei';
 
-export function RedHeart(props) {
+export function PixelatedHeart(props) {
   const { nodes, materials } = useGLTF('/red_heart-transformed.glb');
   return (
     <group {...props} dispose={null}>
@@ -36,4 +36,4 @@ export function RedHeart(props) {
 
 useGLTF.preload('/red_heart-transformed.glb');
 
-export default RedHeart;
+export default PixelatedHeart;
