@@ -17,13 +17,17 @@ import * as THREE from 'three';
 import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
 import PixelatedHeartsInstances from '../heart/pixelated-hearts-instances';
 
+interface Props {
+  hearts: boolean;
+}
+
 function Loader() {
   const { progress } = useProgress();
 
   return <Html center>{progress.toFixed(1)} % loaded</Html>;
 }
 
-export default function Scene() {
+export default function Scene({ hearts }: Props) {
   // scenes to create:
   // ____________________
   // emotions
@@ -111,7 +115,7 @@ export default function Scene() {
           fade
           speed={3}
         />
-        <PixelatedHeartsInstances boundary={50} count={100} />
+        {hearts && <PixelatedHeartsInstances boundary={50} count={100} />}
       </Suspense>
     </Canvas>
   );

@@ -183,7 +183,7 @@ export default function HomeScreen() {
                     onClick={(index) => setAutoPlaySwitch(index)}
                   />
                 </Styled_AutoRotate_Switch>
-                <Scene />
+                <Scene hearts={cellIndex === 1} />
                 <Styled_Face_Actions_Carousel
                   $isShowCarousel={playModelActions}
                   $isPageLoaded={hasScreenLoaded}
