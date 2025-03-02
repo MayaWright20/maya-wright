@@ -3,10 +3,8 @@
 import { Canvas } from '@react-three/fiber';
 import { Suspense, useContext } from 'react';
 import {
-  CameraControls,
   Cloud,
   Clouds,
-  FaceControls,
   Html,
   OrbitControls,
   Sky,
@@ -16,8 +14,12 @@ import {
 import DirectionalLights from '../lights/directional-lights';
 import Face from '../face/face';
 import * as THREE from 'three';
-// import RedHeart from '../heart/pixelated-heart';
 import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
+import PixelatedHeartsInstances from '../heart/pixelated-hearts-instances';
+
+interface Props {
+  hearts: boolean;
+}
 
 function Loader() {
   const { progress } = useProgress();
@@ -25,10 +27,10 @@ function Loader() {
   return <Html center>{progress.toFixed(1)} % loaded</Html>;
 }
 
-export default function Scene() {
+export default function Scene({ hearts }: Props) {
   // scenes to create:
   // ____________________
-  // emtions
+  // emotions
   // pully face
   // shock with milk pouring down
   // angry
@@ -113,7 +115,7 @@ export default function Scene() {
           fade
           speed={3}
         />
-        {/* <RedHeart /> */}
+        {hearts && <PixelatedHeartsInstances boundary={50} count={100} />}
       </Suspense>
     </Canvas>
   );
