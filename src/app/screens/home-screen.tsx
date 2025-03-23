@@ -6,6 +6,7 @@ import {
   Styled_Container,
   Styled_Face_Actions_Carousel,
   Styled_Auto_Actions_Play_Switch,
+  Styled_Daylight_Theme_Switch,
 } from './style';
 import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
 import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
@@ -141,6 +142,10 @@ export default function HomeScreen() {
     setIsNavOpen((nav) => !nav);
   };
 
+  const daylightSwitchHandler = (index: number) => {
+    index === 1 ? setIsDaylight(true) : setIsDaylight(false);
+  };
+
   useEffect(() => {
     prevCarouselTabIndex.current = playModelActions ? 0 : -1;
     if (isNavOpen) {
@@ -186,6 +191,25 @@ export default function HomeScreen() {
                       onClick={(index) => setPlayModelActionsSwitch(index)}
                     />
                   </Styled_Auto_Actions_Play_Switch>
+                  <Styled_Daylight_Theme_Switch
+                    $isPageLoaded={hasScreenLoaded}
+                    $isNavOpen={isNavOpen}
+                  >
+                    <Switch
+                      vertical
+                      ariaLabel={AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS}
+                      tabIndex={switchButtonTabIndex}
+                      innerColor={`${COLORS.bright_orange}`}
+                      middleColor={
+                        isDaylight ? `${COLORS.light_grey}` : 'black'
+                      }
+                      outterColor={`${COLORS.bright_green}`}
+                      outterHeight={'20px'}
+                      items={AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS}
+                      isActive={!isDaylight ? 0 : 1}
+                      onClick={(index) => daylightSwitchHandler(index)}
+                    />
+                  </Styled_Daylight_Theme_Switch>
                   <Styled_AutoRotate_Switch
                     $isPageLoaded={hasScreenLoaded}
                     $isNavOpen={isNavOpen}
