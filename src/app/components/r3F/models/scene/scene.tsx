@@ -16,7 +16,7 @@ import Face from '../face/face';
 import * as THREE from 'three';
 import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
 import PixelatedHeartsInstances from '../heart/pixelated-hearts-instances';
-import { IsDaylightThemeContext } from '@/app/context/themes/IsDaylightThemeContext';
+import { IsDaylightThemeContext } from '@/app/context/themes/isDaylightThemeContext';
 
 interface Props {
   hearts: boolean;

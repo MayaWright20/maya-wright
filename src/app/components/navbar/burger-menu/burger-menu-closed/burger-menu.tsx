@@ -6,7 +6,7 @@ import { COLORS } from '@/app/constants/colors';
 import Circle from '../../../circle/circle';
 import Link from 'next/link';
 import { IsNavOpenContext } from '@/app/context/nav-bar/isNavOpenContext';
-import { IsDaylightThemeContext } from '@/app/context/themes/IsDaylightThemeContext';
+import { IsDaylightThemeContext } from '@/app/context/themes/isDaylightThemeContext';
 
 export default function BurgerMenu({
   tabIndex,

@@ -5,7 +5,7 @@ import ModelActions from '../../../../utils/r3f/model/modelActions';
 import ModelConstructor from '../../../../utils/r3f/model/modelConstructor';
 import { ModelActionsPlaySwitchContext } from '@/app/context/r3f/modelActionsPlaySwitchContext';
 import { HasScreenLoadedContext } from '@/app/context/loading/has-screen-loaded';
-import { IsDaylightThemeContext } from '@/app/context/themes/IsDaylightThemeContext';
+import { IsDaylightThemeContext } from '@/app/context/themes/isDaylightThemeContext';
 
 const STOP_ANIMATION = 7;
 

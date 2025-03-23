@@ -19,7 +19,7 @@ import Switch from '../components/buttons/switch/switch';
 import Scene from '../components/r3F/models/scene/scene';
 import PageLabel from '../components/page-label/page-label';
 import { IsNavOpenContext } from '../context/nav-bar/isNavOpenContext';
-import { IsDaylightThemeContext } from '../context/themes/IsDaylightThemeContext';
+import { IsDaylightThemeContext } from '../context/themes/isDaylightThemeContext';
 
 const AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS = [
   'Expressions on',
