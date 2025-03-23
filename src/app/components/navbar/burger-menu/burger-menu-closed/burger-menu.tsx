@@ -6,6 +6,7 @@ import { COLORS } from '@/app/constants/colors';
 import Circle from '../../../circle/circle';
 import Link from 'next/link';
 import { IsNavOpenContext } from '@/app/context/nav-bar/isNavOpenContext';
+import { IsDaylightThemeContext } from '@/app/context/themes/IsDaylightThemeContext';
 
 export default function BurgerMenu({
   tabIndex,
@@ -19,6 +20,7 @@ export default function BurgerMenu({
   onClick: () => void;
 }) {
   const hasScreenLoaded = useContext(HasScreenLoadedContext);
+  const isDaylightTheme = useContext(IsDaylightThemeContext);
   const isBurgerMenuOpen = useContext(IsNavOpenContext);
   const [isHovered, setIsHovered] = useState<undefined | number>(undefined);
   const [navIsLoaded, setNavIsLoaded] = useState<boolean>(isBurgerMenuOpen);
@@ -35,7 +37,7 @@ export default function BurgerMenu({
       href: 'https://github.com/MayaWright20',
       target: '_blank',
       innerColor: ' rgb(246, 119, 255)',
-      middleColor: 'transparent',
+      middleColor: 'rgb(123,132,140)',
       outterColor: 'rgb(13, 255, 0)',
       outerHeight: '80px',
       hoverOutterBorderWidth: '40px',
@@ -45,7 +47,7 @@ export default function BurgerMenu({
       href: 'https://www.linkedin.com/in/maya-wright-2b7922168/',
       target: '_blank',
       innerColor: 'rgb(0, 255, 251)',
-      middleColor: 'transparent',
+      middleColor: 'rgb(127,135,141)',
       outterColor: 'rgb(215, 255, 84)',
       outerHeight: '80px',
       hoverOutterBorderWidth: '40px',
@@ -76,6 +78,13 @@ export default function BurgerMenu({
           <Circle
             innerColor={COLORS.bright_yellow}
             outterColor={COLORS.bright_orange}
+            middleColor={
+              isDaylightTheme && isNavOpen
+                ? `rgb(119,129,138)`
+                : isDaylightTheme
+                ? `${COLORS.light_blue}`
+                : 'black'
+            }
             outterHeight={'25px'}
           />
         </div>
@@ -105,6 +114,7 @@ export default function BurgerMenu({
                   <Circle
                     innerColor={item.innerColor}
                     outterColor={item.outterColor}
+                    middleColor={isDaylightTheme ? item.middleColor : 'black'}
                     outterHeight={'40px'}
                   />
                   <p
