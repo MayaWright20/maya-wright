@@ -16,6 +16,7 @@ import Face from '../face/face';
 import * as THREE from 'three';
 import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
 import PixelatedHeartsInstances from '../heart/pixelated-hearts-instances';
+import { IsDaylightThemeContext } from '@/app/context/themes/isDaylightThemeContext';
 
 interface Props {
   hearts: boolean;
@@ -48,6 +49,7 @@ export default function Scene({ hearts }: Props) {
   // colorful mixblendmode difference
 
   const autoRotateContext = useContext(ModelAutoRotateContext);
+  const isDaylightTheme = useContext(IsDaylightThemeContext);
 
   return (
     <Canvas
@@ -62,7 +64,7 @@ export default function Scene({ hearts }: Props) {
         zIndex: -9999,
       }}
     >
-      <DirectionalLights />
+      <DirectionalLights isDaylightTheme={isDaylightTheme} />
       <Suspense fallback={<Loader />}>
         <OrbitControls
           enableZoom={false}
@@ -72,7 +74,7 @@ export default function Scene({ hearts }: Props) {
         <Face />
         <Sky
           distance={450000}
-          sunPosition={[0, 1, 0]}
+          sunPosition={[0, isDaylightTheme ? 1 : 0, 0]}
           inclination={0}
           azimuth={0.25}
         />
@@ -94,7 +96,6 @@ export default function Scene({ hearts }: Props) {
             fade={100}
             position={[60, 60, 20]}
           />
-
           <Cloud
             segments={10}
             bounds={[-50, -10, -10]}
@@ -106,15 +107,17 @@ export default function Scene({ hearts }: Props) {
             position={[60, 60, 20]}
           />
         </Clouds>
-        <Stars
-          radius={50}
-          depth={50}
-          count={5000}
-          factor={4}
-          saturation={0}
-          fade
-          speed={3}
-        />
+        {!isDaylightTheme && (
+          <Stars
+            radius={50}
+            depth={50}
+            count={5000}
+            factor={4}
+            saturation={5}
+            fade
+            speed={3}
+          />
+        )}
         {hearts && <PixelatedHeartsInstances boundary={50} count={100} />}
       </Suspense>
     </Canvas>

@@ -21,6 +21,11 @@ interface StyledAutoRotate {
   $isNavOpen: boolean;
 }
 
+interface StyledDaylightThemeSwitch {
+  $isPageLoaded: boolean;
+  $isNavOpen: boolean;
+}
+
 export const Styled_Face_Actions_Carousel = styled.div<StyledFaceActionsCarousel>`
   & .face-actions-carousel {
     position: absolute;
@@ -173,6 +178,57 @@ export const Styled_AutoRotate_Switch = styled.div<StyledAutoRotate>`
     width: 100%;
     z-index: -1;
     overflow: visible;
+    transform: translateX(-50%);
+  }
+`;
+
+export const Styled_Daylight_Theme_Switch = styled.div<StyledDaylightThemeSwitch>`
+  position: absolute;
+  bottom: 22%;
+  width: 240px;
+  height: fit-content;
+  rotate: 180deg;
+  overflow: hidden;
+  padding-block: 25px;
+  animation-name: ${({ $isPageLoaded, $isNavOpen }) =>
+    $isPageLoaded
+      ? $isNavOpen
+        ? 'slideDownDaylightThemeSwitch'
+        : 'slideUpDaylightThemeSwitch'
+      : 'slideUpDaylightThemeSwitch'};
+  animation-duration: 4s;
+  animation-timing-function: cubic-bezier(0.9, 0.5, 0.4, 0.9);
+  animation-fill-mode: forwards;
+
+  @keyframes slideUpDaylightThemeSwitch {
+    from {
+      bottom: -165vw;
+    }
+    to {
+      bottom: 22%;
+    }
+  }
+
+  @keyframes slideDownDaylightThemeSwitch {
+    from {
+      bottom: 22%;
+    }
+    to {
+      bottom: -165vw;
+    }
+  }
+
+  &::before {
+    position: absolute;
+    bottom: -25px;
+    height: 1.5px;
+    background: white;
+    content: '';
+    width: 100%;
+    z-index: -1;
+    overflow: visible;
+    rotate: 90deg;
+    left: 10px;
     transform: translateX(-50%);
   }
 `;

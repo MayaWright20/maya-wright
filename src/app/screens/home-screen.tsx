@@ -6,6 +6,7 @@ import {
   Styled_Container,
   Styled_Face_Actions_Carousel,
   Styled_Auto_Actions_Play_Switch,
+  Styled_Daylight_Theme_Switch,
 } from './style';
 import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
 import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
@@ -19,8 +20,8 @@ import Switch from '../components/buttons/switch/switch';
 import Scene from '../components/r3F/models/scene/scene';
 import PageLabel from '../components/page-label/page-label';
 import { IsNavOpenContext } from '../context/nav-bar/isNavOpenContext';
+import { IsDaylightThemeContext } from '../context/themes/isDaylightThemeContext';
 
-// const MAX_MOBILE_WINDOW_WIDTH = 425;
 const AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS = [
   'Expressions on',
   'Expressions off',
@@ -28,6 +29,10 @@ const AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS = [
 const AUTOROTATE_LABELS = ['Auto rotate on', 'Auto rotate off'];
 
 const FACIAL_EXPRESSIONS = ['Angry', 'Kiss', 'Awks', 'Sad', 'Shock', 'Shock2'];
+const FACIAL_EXPRESSIONS_COUNT = FACIAL_EXPRESSIONS.length;
+const FACIAL_EXPRESSION_TIMER = 8000;
+const SCREEN_LOADED_TIMER = 4000;
+const CAROUSEL_INDEX_TIMER = 4000;
 
 export default function HomeScreen() {
   // scenes to create:
@@ -48,15 +53,18 @@ export default function HomeScreen() {
   // playdoe
   // love - red floating foil balloons / fluffy red baloons/ text
   // colorful mixblendmode difference
+
   const modelActionsLength = useContext(ModelActionsLengthContext);
 
   const [hasScreenLoaded, setHasScreenLoaded] = useState(false);
   const [cellIndex, setCellIndex] = useState<number>(0);
   const [playModelActions, setPlayModelActions] = useState<boolean>(true);
+  const [isDaylight, setIsDaylight] = useState(true);
   const [autoRotate, setAutoRotate] = useState<boolean>(false); // change this to true
   const [carouselTabIndex, setCarouselTabIndex] = useState(-1);
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
   const [switchButtonTabIndex, setSwitchButtonTabIndex] = useState(-1);
+
   const prevCarouselTabIndex = useRef<number>(carouselTabIndex);
 
   useEffect(() => {
@@ -66,15 +74,24 @@ export default function HomeScreen() {
         setCarouselTabIndex(0);
         setSwitchButtonTabIndex(0);
       }
-    }, 4000);
+    }, SCREEN_LOADED_TIMER);
   }, []);
+
+  useEffect(() => {
+    if (cellIndex === FACIAL_EXPRESSIONS_COUNT - 1) {
+      // TODO: if on the last expression and person clicks another expression changing to night theme should be cancelled
+      setTimeout(() => {
+        setIsDaylight((daylight) => !daylight);
+      }, FACIAL_EXPRESSION_TIMER);
+    }
+  });
 
   useEffect(() => {
     if (playModelActions) {
       const cellIndexRef = { current: cellIndex };
       const interval = setInterval(() => {
         actionIndex(cellIndexRef.current, false, true);
-      }, 8000);
+      }, FACIAL_EXPRESSION_TIMER);
       return () => clearInterval(interval);
     }
   }, [playModelActions, cellIndex]);
@@ -110,7 +127,7 @@ export default function HomeScreen() {
       setPlayModelActions(true);
       setTimeout(() => {
         setCarouselTabIndex(0);
-      }, 4000);
+      }, CAROUSEL_INDEX_TIMER);
     } else {
       setPlayModelActions(false);
       setCarouselTabIndex(-1);
@@ -125,6 +142,10 @@ export default function HomeScreen() {
     setIsNavOpen((nav) => !nav);
   };
 
+  const daylightSwitchHandler = (index: number) => {
+    index === 1 ? setIsDaylight(true) : setIsDaylight(false);
+  };
+
   useEffect(() => {
     prevCarouselTabIndex.current = playModelActions ? 0 : -1;
     if (isNavOpen) {
@@ -134,89 +155,116 @@ export default function HomeScreen() {
       setTimeout(() => {
         setSwitchButtonTabIndex(0);
         setCarouselTabIndex(prevCarouselTabIndex.current);
-      }, 4000);
+      }, CAROUSEL_INDEX_TIMER);
     }
   }, [isNavOpen, playModelActions, switchButtonTabIndex, carouselTabIndex]);
 
   return (
     <HasScreenLoadedContext.Provider value={hasScreenLoaded}>
-      <IsNavOpenContext.Provider value={isNavOpen}>
-        <ModelActionsContext.Provider value={cellIndex}>
-          <ModelAutoRotateContext.Provider value={autoRotate}>
-            <ModelActionsPlaySwitchContext.Provider value={playModelActions}>
-              <Styled_Container>
-                <BurgerMenu
-                  isNavOpen={isNavOpen}
-                  onClick={() => toggleIsNavOpen()}
-                  ariaLabel="Navigation bar"
-                  tabIndex={hasScreenLoaded ? 0 : -1}
-                />
-                <Styled_Auto_Actions_Play_Switch
-                  $isPageLoaded={hasScreenLoaded}
-                  $isNavOpen={isNavOpen}
-                >
-                  <Switch
-                    ariaLabel={AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS}
-                    tabIndex={switchButtonTabIndex}
-                    innerColor={`${COLORS.bright_blue}`}
-                    middleColor={`${COLORS.light_grey}`}
-                    outterColor={`${COLORS.bright_red}`}
-                    outterHeight={'20px'}
-                    items={AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS}
-                    isActive={playModelActions ? 0 : 1}
-                    onClick={(index) => setPlayModelActionsSwitch(index)}
+      <IsDaylightThemeContext.Provider value={isDaylight}>
+        <IsNavOpenContext.Provider value={isNavOpen}>
+          <ModelActionsContext.Provider value={cellIndex}>
+            <ModelAutoRotateContext.Provider value={autoRotate}>
+              <ModelActionsPlaySwitchContext.Provider value={playModelActions}>
+                <Styled_Container>
+                  <BurgerMenu
+                    isNavOpen={isNavOpen}
+                    onClick={() => toggleIsNavOpen()}
+                    ariaLabel="Navigation bar"
+                    tabIndex={hasScreenLoaded ? 0 : -1}
                   />
-                </Styled_Auto_Actions_Play_Switch>
-                <Styled_AutoRotate_Switch
-                  $isPageLoaded={hasScreenLoaded}
-                  $isNavOpen={isNavOpen}
-                >
-                  <Switch
-                    ariaLabel={AUTOROTATE_LABELS}
-                    tabIndex={switchButtonTabIndex}
-                    innerColor={`${COLORS.bright_green}`}
-                    middleColor={`${COLORS.light_grey}`}
-                    outterColor={`${COLORS.bright_purple}`}
-                    outterHeight={'20px'}
-                    items={AUTOROTATE_LABELS}
-                    isActive={autoRotate ? 0 : 1}
-                    onClick={(index) => setAutoPlaySwitch(index)}
-                  />
-                </Styled_AutoRotate_Switch>
-                <Scene hearts={cellIndex === 1} />
-                <Styled_Face_Actions_Carousel
-                  $isShowCarousel={playModelActions}
-                  $isPageLoaded={hasScreenLoaded}
-                  $isNavOpen={isNavOpen}
-                >
-                  <div className="face-actions-carousel">
-                    <Carousel
-                      ariaLabel={FACIAL_EXPRESSIONS}
-                      tabIndex={carouselTabIndex}
-                      innerColor={
-                        playModelActions
-                          ? `${COLORS.fuchia_pink}`
-                          : `${COLORS.light_blue}`
+                  <Styled_Auto_Actions_Play_Switch
+                    $isPageLoaded={hasScreenLoaded}
+                    $isNavOpen={isNavOpen}
+                  >
+                    <Switch
+                      ariaLabel={AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS}
+                      tabIndex={switchButtonTabIndex}
+                      innerColor={`${COLORS.bright_blue}`}
+                      middleColor={
+                        isDaylight ? `${COLORS.light_grey}` : 'black'
                       }
-                      middleColor={`${COLORS.light_grey}`}
-                      outterColor={
-                        playModelActions
-                          ? `${COLORS.bright_blue}`
-                          : `${COLORS.light_blue}`
-                      }
+                      outterColor={`${COLORS.bright_red}`}
                       outterHeight={'20px'}
-                      items={FACIAL_EXPRESSIONS}
-                      isActive={cellIndex}
-                      onClick={(index) => actionIndex(index)}
+                      items={AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS}
+                      isActive={playModelActions ? 0 : 1}
+                      onClick={(index) => setPlayModelActionsSwitch(index)}
                     />
-                  </div>
-                </Styled_Face_Actions_Carousel>
-                <PageLabel isPageLoaded={hasScreenLoaded} />
-              </Styled_Container>
-            </ModelActionsPlaySwitchContext.Provider>
-          </ModelAutoRotateContext.Provider>
-        </ModelActionsContext.Provider>
-      </IsNavOpenContext.Provider>
+                  </Styled_Auto_Actions_Play_Switch>
+                  <Styled_Daylight_Theme_Switch
+                    $isPageLoaded={hasScreenLoaded}
+                    $isNavOpen={isNavOpen}
+                  >
+                    <Switch
+                      vertical
+                      ariaLabel={AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS}
+                      tabIndex={switchButtonTabIndex}
+                      innerColor={`${COLORS.bright_orange}`}
+                      middleColor={
+                        isDaylight ? `${COLORS.light_grey}` : 'black'
+                      }
+                      outterColor={`${COLORS.bright_green}`}
+                      outterHeight={'20px'}
+                      items={AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS}
+                      isActive={!isDaylight ? 0 : 1}
+                      onClick={(index) => daylightSwitchHandler(index)}
+                    />
+                  </Styled_Daylight_Theme_Switch>
+                  <Styled_AutoRotate_Switch
+                    $isPageLoaded={hasScreenLoaded}
+                    $isNavOpen={isNavOpen}
+                  >
+                    <Switch
+                      ariaLabel={AUTOROTATE_LABELS}
+                      tabIndex={switchButtonTabIndex}
+                      innerColor={`${COLORS.bright_green}`}
+                      middleColor={
+                        isDaylight ? `${COLORS.light_grey}` : 'black'
+                      }
+                      outterColor={`${COLORS.bright_purple}`}
+                      outterHeight={'20px'}
+                      items={AUTOROTATE_LABELS}
+                      isActive={autoRotate ? 0 : 1}
+                      onClick={(index) => setAutoPlaySwitch(index)}
+                    />
+                  </Styled_AutoRotate_Switch>
+                  <Scene hearts={cellIndex === 1} />
+                  <Styled_Face_Actions_Carousel
+                    $isShowCarousel={playModelActions}
+                    $isPageLoaded={hasScreenLoaded}
+                    $isNavOpen={isNavOpen}
+                  >
+                    <div className="face-actions-carousel">
+                      <Carousel
+                        ariaLabel={FACIAL_EXPRESSIONS}
+                        tabIndex={carouselTabIndex}
+                        innerColor={
+                          playModelActions
+                            ? `${COLORS.fuchia_pink}`
+                            : `${COLORS.light_blue}`
+                        }
+                        middleColor={
+                          isDaylight ? `${COLORS.light_grey}` : 'black'
+                        }
+                        outterColor={
+                          playModelActions
+                            ? `${COLORS.bright_blue}`
+                            : `${COLORS.light_blue}`
+                        }
+                        outterHeight={'20px'}
+                        items={FACIAL_EXPRESSIONS}
+                        isActive={cellIndex}
+                        onClick={(index) => actionIndex(index)}
+                      />
+                    </div>
+                  </Styled_Face_Actions_Carousel>
+                  <PageLabel isPageLoaded={hasScreenLoaded} />
+                </Styled_Container>
+              </ModelActionsPlaySwitchContext.Provider>
+            </ModelAutoRotateContext.Provider>
+          </ModelActionsContext.Provider>
+        </IsNavOpenContext.Provider>
+      </IsDaylightThemeContext.Provider>
     </HasScreenLoadedContext.Provider>
   );
 }

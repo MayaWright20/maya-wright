@@ -24,15 +24,16 @@ export const Styled_Container = styled.div<StyledContainerProps>`
       `}
 
     &::before {
+      display: ${({ $vertical }) => ($vertical ? 'none' : 'block')};
       position: absolute;
       top: 50%;
-      left: ${({ $vertical }) => ($vertical ? '50%' : '0')};
-      transform: ${({ $vertical }) =>
-        $vertical ? 'translate(-50%, -50%) rotate(90deg)' : 'translateY(-50%)'};
+      left: 0;
+      transform: translateY(-50%);
       height: 1.5px;
+      rotate: translateY(-50%);
       background: white;
       content: '';
-      width: ${({ $vertical }) => ($vertical ? '100%' : '100%')};
+      width: 100%;
       z-index: -1;
     }
 

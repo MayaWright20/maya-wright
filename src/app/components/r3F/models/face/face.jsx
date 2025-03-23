@@ -5,16 +5,32 @@ import ModelActions from '../../../../utils/r3f/model/modelActions';
 import ModelConstructor from '../../../../utils/r3f/model/modelConstructor';
 import { ModelActionsPlaySwitchContext } from '@/app/context/r3f/modelActionsPlaySwitchContext';
 import { HasScreenLoadedContext } from '@/app/context/loading/has-screen-loaded';
+import { IsDaylightThemeContext } from '@/app/context/themes/isDaylightThemeContext';
 
 const STOP_ANIMATION = 7;
 
 export function Face() {
   const { group, nodes, materials, actions } = ModelConstructor();
   const actionsArr = ModelActions();
+
   const actionIndex = useContext(ModelActionsContext);
   const playModelActionsContext = useContext(ModelActionsPlaySwitchContext);
+  const isDaylightTheme = useContext(IsDaylightThemeContext);
+
   const [actionPlaying, setActionPlaying] = useState(undefined);
   const [scale, setScale] = useState(0);
+
+  useEffect(() => {
+    if (isDaylightTheme) {
+      materials.Material.color.r = 0.30929309129714966;
+      materials.Material.color.g = 1;
+      materials.Material.color.b = 0;
+    } else {
+      materials.Material.color.b = 1;
+      materials.Material.color.g = 1;
+      materials.Material.color.r = 1;
+    }
+  }, [isDaylightTheme]);
 
   useLayoutEffect(() => {
     if (actionPlaying) {
