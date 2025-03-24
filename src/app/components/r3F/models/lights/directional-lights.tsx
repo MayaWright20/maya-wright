@@ -16,7 +16,7 @@ const LIGHTS_ATTRIBUTES: {
   },
   {
     position: [-20, -50, -25],
-    intensity: 1,
+    intensity: 2,
     color: 'rgb(0, 255, 123)',
   },
   {
@@ -43,6 +43,11 @@ const LIGHTS_ATTRIBUTES: {
     position: [0, 0, 1000],
     intensity: 1,
     color: 'rgb(14, 238, 167)',
+  },
+  {
+    position: [10, -10, 0],
+    intensity: 1,
+    color: 'rgb(8, 245, 83)',
   },
 ];
 
