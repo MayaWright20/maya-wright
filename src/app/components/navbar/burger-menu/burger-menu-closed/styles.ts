@@ -224,6 +224,7 @@ export const Styled_Nav_Open = styled.div<StyledContainerProps>`
         height: 2px;
         background-color: white;
         width: 98%;
+        z-index: -1;
       }
 
       & p {
