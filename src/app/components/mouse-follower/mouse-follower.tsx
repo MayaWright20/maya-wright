@@ -13,24 +13,31 @@ export default function MouseFollower() {
   const isDaylightTheme = useContext(IsDaylightThemeContext);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      positions.current[0] = { x: e.clientX, y: e.clientY };
+    const handleMove = (e: MouseEvent | TouchEvent) => {
+      let x, y;
+      if (e instanceof MouseEvent) {
+        x = e.clientX;
+        y = e.clientY;
+      } else if (e.touches.length > 0) {
+        x = e.touches[0].clientX;
+        y = e.touches[0].clientY;
+      }
+      positions.current[0] = { x, y };
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMove);
+    window.addEventListener('touchmove', handleMove, { passive: true });
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mousemove', handleMove);
+      window.removeEventListener('touchmove', handleMove);
     };
   }, []);
 
   useEffect(() => {
     const animateCircles = () => {
       for (let i = CIRCLE_COUNT - 1; i > 0; i--) {
-        positions.current[i] = {
-          x: positions.current[i - 1].x,
-          y: positions.current[i - 1].y,
-        };
+        positions.current[i] = { ...positions.current[i - 1] };
       }
 
       circleRefs.current.forEach((circle, index) => {
