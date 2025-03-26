@@ -21,6 +21,7 @@ import Scene from '../components/r3F/models/scene/scene';
 import PageLabel from '../components/page-label/page-label';
 import { IsNavOpenContext } from '../context/nav-bar/isNavOpenContext';
 import { IsDaylightThemeContext } from '../context/themes/isDaylightThemeContext';
+import MouseFollower from '../components/mouse-follower/mouse-follower';
 
 const AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS = [
   'Expressions on',
@@ -166,6 +167,7 @@ export default function HomeScreen() {
           <ModelActionsContext.Provider value={cellIndex}>
             <ModelAutoRotateContext.Provider value={autoRotate}>
               <ModelActionsPlaySwitchContext.Provider value={playModelActions}>
+                <MouseFollower />
                 <Styled_Container>
                   <BurgerMenu
                     isNavOpen={isNavOpen}

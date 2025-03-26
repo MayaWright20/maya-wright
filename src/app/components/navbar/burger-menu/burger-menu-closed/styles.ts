@@ -270,7 +270,7 @@ export const Styled_Nav_Open = styled.div<StyledContainerProps>`
   }
 `;
 
-export const Styled_Nav_Item_title = styled.p<StyledNavItemTitle>`
+export const Styled_Nav_Item_title = styled.div<StyledNavItemTitle>`
   :hover::-moz-selection {
     background: ${({ $innerColor }) => ($innerColor ? $innerColor : 'pink')};
   }
