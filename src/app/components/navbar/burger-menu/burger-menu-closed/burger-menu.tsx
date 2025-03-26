@@ -1,6 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import { Styled_Container, Styled_Nav_Open } from './styles';
+import {
+  Styled_Container,
+  Styled_Nav_Item_title,
+  Styled_Nav_Open,
+} from './styles';
 import { HasScreenLoadedContext } from '@/app/context/loading/has-screen-loaded';
 import { COLORS } from '@/app/constants/colors';
 import Circle from '../../../circle/circle';
@@ -117,16 +121,21 @@ export default function BurgerMenu({
                     middleColor={isDaylightTheme ? item.middleColor : 'black'}
                     outterHeight={'40px'}
                   />
-                  <p
-                    style={{
-                      color:
-                        isHovered === index
-                          ? item.outterColor
-                          : item.innerColor,
-                    }}
+                  <Styled_Nav_Item_title
+                    $innerColor={item.innerColor}
+                    $outterColor={item.outterColor}
                   >
-                    {item.title}
-                  </p>
+                    <p
+                      style={{
+                        color:
+                          isHovered === index
+                            ? item.outterColor
+                            : item.innerColor,
+                      }}
+                    >
+                      {item.title}
+                    </p>
+                  </Styled_Nav_Item_title>
                 </Link>
               </li>
             ))}

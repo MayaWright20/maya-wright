@@ -9,6 +9,11 @@ interface StyledContainerProps {
   $navIsLoaded: boolean;
 }
 
+interface StyledNavItemTitle {
+  $innerColor: string;
+  $outterColor: string;
+}
+
 export const Styled_Container = styled.div<StyledContainerProps>`
   nav {
     position: absolute;
@@ -262,5 +267,23 @@ export const Styled_Nav_Open = styled.div<StyledContainerProps>`
         top: 168vh;
       }
     }
+  }
+`;
+
+export const Styled_Nav_Item_title = styled.p<StyledNavItemTitle>`
+  :hover::-moz-selection {
+    background: ${({ $innerColor }) => ($innerColor ? $innerColor : 'pink')};
+  }
+
+  :hover::selection {
+    background: ${({ $innerColor }) => ($innerColor ? $innerColor : 'pink')};
+  }
+
+  ::-moz-selection {
+    background: ${({ $outterColor }) => ($outterColor ? $outterColor : 'pink')};
+  }
+
+  ::selection {
+    background: ${({ $outterColor }) => ($outterColor ? $outterColor : 'pink')};
   }
 `;
