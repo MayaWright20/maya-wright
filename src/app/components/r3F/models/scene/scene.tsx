@@ -1,7 +1,7 @@
 'use client';
 
 import { Canvas } from '@react-three/fiber';
-import { Suspense } from 'react';
+import { Suspense, useContext } from 'react';
 import {
   Cloud,
   Clouds,
@@ -17,6 +17,7 @@ import * as THREE from 'three';
 import PixelatedHeartsInstances from '../heart/pixelated-hearts-instances';
 import { usePersistStore } from '@/app/store/store';
 import { CameraPath } from '../camera-path/camera-path';
+import { IsCameraMotionPathsControlContext } from '@/app/context/r3f/isCameraMotionPathsControlContext';
 
 interface Props {
   hearts: boolean;
@@ -49,6 +50,7 @@ export default function Scene({ hearts }: Props) {
   // colorful mixblendmode difference
 
   const { isDaylightTheme, autoRotateModel } = usePersistStore();
+  const isCameraMotionPath = useContext(IsCameraMotionPathsControlContext);
 
   return (
     <Canvas
@@ -65,14 +67,14 @@ export default function Scene({ hearts }: Props) {
     >
       <DirectionalLights isDaylightTheme={isDaylightTheme} />
       <Suspense fallback={<Loader />}>
-        {autoRotateModel && (
+        {autoRotateModel && !isCameraMotionPath && (
           <OrbitControls
             enableZoom={false}
             enablePan={false}
             autoRotate={autoRotateModel}
           />
         )}
-        {!autoRotateModel && <CameraPath />}
+        {isCameraMotionPath && <CameraPath />}
         <Face />
         <Sky
           distance={450000}

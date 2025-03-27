@@ -17,11 +17,13 @@ export default function BurgerMenu({
   ariaLabel,
   isNavOpen,
   onClick,
+  onClickNavItem,
 }: {
   tabIndex: number;
   ariaLabel: string;
   isNavOpen: boolean;
   onClick: () => void;
+  onClickNavItem: () => void;
 }) {
   const { isDaylightTheme } = usePersistStore();
   const hasScreenLoaded = useContext(HasScreenLoadedContext);
@@ -34,10 +36,6 @@ export default function BurgerMenu({
       setNavIsLoaded(true);
     }
   }, [isBurgerMenuOpen]);
-
-  const onClickNavItem = () => {
-    console.log('clicked');
-  };
 
   const navItems = [
     {

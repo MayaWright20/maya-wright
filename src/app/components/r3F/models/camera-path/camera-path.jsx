@@ -2,7 +2,7 @@ import { useFrame } from '@react-three/fiber';
 import { MotionPathControls, useMotion } from '@react-three/drei';
 import * as THREE from 'three';
 
-const HalfCircle = () => {
+const Path = () => {
   return [
     [
       new THREE.Vector3(0, 0, 5),
@@ -15,13 +15,13 @@ const HalfCircle = () => {
   ));
 };
 
-function Loop({ factor = 0.1 }) {
+function Loop({ factor = 0.3 }) {
   const motion = useMotion();
   useFrame((_, delta) => (motion.current += Math.min(0.1, delta) * factor));
 }
 
 export function CameraPath() {
-  const Curve = HalfCircle;
+  const Curve = Path;
   return (
     <MotionPathControls
       focus={[0, 0, 0]}
