@@ -1,16 +1,16 @@
-import { useContext, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Styled_Circle_Wrapper, Styled_Container } from './style';
-import { IsDaylightThemeContext } from '@/app/context/themes/isDaylightThemeContext';
 import { COLORS } from '@/app/constants/colors';
+import { useStore } from '@/app/store/store';
 
 const CIRCLE_COUNT = 30;
 const circlesArray = Array.from({ length: CIRCLE_COUNT });
 
 export default function MouseFollower() {
+  const { isDaylightTheme } = useStore();
+
   const circleRefs = useRef<(HTMLDivElement | null)[]>([]);
   const positions = useRef(Array(CIRCLE_COUNT).fill({ x: 0, y: 0 }));
-
-  const isDaylightTheme = useContext(IsDaylightThemeContext);
 
   useEffect(() => {
     const handleMove = (e: MouseEvent | TouchEvent) => {

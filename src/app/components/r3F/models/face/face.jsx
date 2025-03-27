@@ -4,7 +4,6 @@ import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
 import ModelActions from '../../../../utils/r3f/model/modelActions';
 import ModelConstructor from '../../../../utils/r3f/model/modelConstructor';
 import { HasScreenLoadedContext } from '@/app/context/loading/has-screen-loaded';
-import { IsDaylightThemeContext } from '@/app/context/themes/isDaylightThemeContext';
 import { useStore } from '@/app/store/store';
 
 const STOP_ANIMATION = 7;
@@ -14,8 +13,7 @@ export function Face() {
   const actionsArr = ModelActions();
 
   const actionIndex = useContext(ModelActionsContext);
-  const { playModelActions } = useStore();
-  const isDaylightTheme = useContext(IsDaylightThemeContext);
+  const { playModelActions, isDaylightTheme } = useStore();
 
   const [actionPlaying, setActionPlaying] = useState(undefined);
   const [scale, setScale] = useState(0);
