@@ -3,9 +3,9 @@ import { useGLTF } from '@react-three/drei';
 import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
 import ModelActions from '../../../../utils/r3f/model/modelActions';
 import ModelConstructor from '../../../../utils/r3f/model/modelConstructor';
-import { ModelActionsPlaySwitchContext } from '@/app/context/r3f/modelActionsPlaySwitchContext';
 import { HasScreenLoadedContext } from '@/app/context/loading/has-screen-loaded';
 import { IsDaylightThemeContext } from '@/app/context/themes/isDaylightThemeContext';
+import { useStore } from '@/app/store/store';
 
 const STOP_ANIMATION = 7;
 
@@ -14,7 +14,7 @@ export function Face() {
   const actionsArr = ModelActions();
 
   const actionIndex = useContext(ModelActionsContext);
-  const playModelActionsContext = useContext(ModelActionsPlaySwitchContext);
+  const { playModelActions } = useStore();
   const isDaylightTheme = useContext(IsDaylightThemeContext);
 
   const [actionPlaying, setActionPlaying] = useState(undefined);
@@ -38,17 +38,13 @@ export function Face() {
       actions[actionPlaying].reset();
     }
     setActionPlaying(actionsArr[actionIndex]);
-  }, [actionIndex, actionPlaying, playModelActionsContext]);
+  }, [actionIndex, actionPlaying, playModelActions]);
 
   useEffect(() => {
-    if (
-      actionPlaying &&
-      actionIndex !== STOP_ANIMATION &&
-      playModelActionsContext
-    ) {
+    if (actionPlaying && actionIndex !== STOP_ANIMATION && playModelActions) {
       actions[actionPlaying].play();
     }
-  }, [actionPlaying, playModelActionsContext]);
+  }, [actionPlaying, playModelActions]);
 
   const hasScreenLoaded = useContext(HasScreenLoadedContext);
 
