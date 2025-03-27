@@ -26,7 +26,6 @@ const AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS = [
   'Expressions off',
 ];
 const AUTOROTATE_LABELS = ['Auto rotate on', 'Auto rotate off'];
-
 const FACIAL_EXPRESSIONS = ['Angry', 'Kiss', 'Awks', 'Sad', 'Shock', 'Shock2'];
 const FACIAL_EXPRESSIONS_COUNT = FACIAL_EXPRESSIONS.length;
 const FACIAL_EXPRESSION_TIMER = 8000;
