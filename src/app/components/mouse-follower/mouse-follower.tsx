@@ -15,12 +15,12 @@ export default function MouseFollower() {
   useEffect(() => {
     const handleMove = (e: MouseEvent | TouchEvent) => {
       let x, y;
-      if (e instanceof MouseEvent) {
-        x = e.clientX;
-        y = e.clientY;
-      } else if (e.touches.length > 0) {
+      if (e instanceof TouchEvent && e.touches.length > 0) {
         x = e.touches[0].clientX;
         y = e.touches[0].clientY;
+      } else if (e instanceof MouseEvent) {
+        x = e.clientX;
+        y = e.clientY;
       }
       positions.current[0] = { x, y };
     };
