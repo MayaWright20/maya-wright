@@ -65,18 +65,17 @@ export default function Scene({ hearts }: Props) {
     >
       <DirectionalLights isDaylightTheme={isDaylightTheme} />
       <Suspense fallback={<Loader />}>
-        {/* {autoRotateModel && (
+        {autoRotateModel && (
           <>
             <OrbitControls
               enableZoom={false}
               enablePan={false}
               autoRotate={autoRotateModel}
             />
-            <Face />
           </>
-        )} */}
-        {/* {!autoRotateModel && <CameraPath />} */}
-        <CameraPath />
+        )}
+        {!autoRotateModel && <CameraPath />}
+        <Face />
         <Sky
           distance={450000}
           sunPosition={[0, isDaylightTheme ? 1 : 0, 0]}
