@@ -1,7 +1,7 @@
 'use client';
 
 import { Canvas } from '@react-three/fiber';
-import { Suspense, useContext } from 'react';
+import { Suspense } from 'react';
 import {
   Cloud,
   Clouds,
@@ -14,9 +14,8 @@ import {
 import DirectionalLights from '../lights/directional-lights';
 import Face from '../face/face';
 import * as THREE from 'three';
-import { ModelAutoRotateContext } from '@/app/context/r3f/modelAutoRotateContext';
 import PixelatedHeartsInstances from '../heart/pixelated-hearts-instances';
-import { IsDaylightThemeContext } from '@/app/context/themes/isDaylightThemeContext';
+import { useStore } from '@/app/store/store';
 
 interface Props {
   hearts: boolean;
@@ -48,8 +47,7 @@ export default function Scene({ hearts }: Props) {
   // love - red floating foil balloons / fluffy red baloons/ text
   // colorful mixblendmode difference
 
-  const autoRotateContext = useContext(ModelAutoRotateContext);
-  const isDaylightTheme = useContext(IsDaylightThemeContext);
+  const { isDaylightTheme, autoRotateModel } = useStore();
 
   return (
     <Canvas
@@ -69,7 +67,7 @@ export default function Scene({ hearts }: Props) {
         <OrbitControls
           enableZoom={false}
           enablePan={false}
-          autoRotate={autoRotateContext}
+          autoRotate={autoRotateModel}
         />
         <Face />
         <Sky
