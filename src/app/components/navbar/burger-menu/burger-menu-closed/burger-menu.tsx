@@ -17,11 +17,13 @@ export default function BurgerMenu({
   ariaLabel,
   isNavOpen,
   onClick,
+  onClickNavItem,
 }: {
   tabIndex: number;
   ariaLabel: string;
   isNavOpen: boolean;
   onClick: () => void;
+  onClickNavItem: () => void;
 }) {
   const { isDaylightTheme } = usePersistStore();
   const hasScreenLoaded = useContext(HasScreenLoadedContext);
@@ -55,6 +57,17 @@ export default function BurgerMenu({
       outterColor: 'rgb(215, 255, 84)',
       outerHeight: '80px',
       hoverOutterBorderWidth: '40px',
+    },
+    {
+      title: 'Projects ',
+      href: '/',
+      target: '',
+      innerColor: 'rgb(251, 255, 0)',
+      middleColor: 'rgb(138, 127, 141)',
+      outterColor: 'rgb(255, 51, 0)',
+      outerHeight: '80px',
+      hoverOutterBorderWidth: '40px',
+      onClickNavItem: () => onClickNavItem(),
     },
   ];
 
@@ -114,6 +127,7 @@ export default function BurgerMenu({
                   className="nav-item"
                   target={item.target}
                   tabIndex={isNavOpen ? 0 : -1}
+                  onClick={onClickNavItem}
                 >
                   <Circle
                     innerColor={item.innerColor}
