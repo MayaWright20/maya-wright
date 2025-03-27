@@ -174,7 +174,7 @@ export default function HomeScreen() {
     setTimeout(() => {
       router.push('/projects');
       setIsCameraMotion(false);
-    }, 3500);
+    }, 3800);
   };
 
   const onClickNavItem = () => {
