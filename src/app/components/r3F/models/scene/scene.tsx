@@ -16,6 +16,7 @@ import Face from '../face/face';
 import * as THREE from 'three';
 import PixelatedHeartsInstances from '../heart/pixelated-hearts-instances';
 import { usePersistStore } from '@/app/store/store';
+import { CameraPath } from '../camera-path/camera-path';
 
 interface Props {
   hearts: boolean;
@@ -61,15 +62,17 @@ export default function Scene({ hearts }: Props) {
         backgroundColor: 'transparent',
         zIndex: -9999,
       }}
+      // camera={{ position: [10, 15, -10], fov: 45 }}
     >
       <DirectionalLights isDaylightTheme={isDaylightTheme} />
       <Suspense fallback={<Loader />}>
-        <OrbitControls
+        {/* <OrbitControls
           enableZoom={false}
           enablePan={false}
           autoRotate={autoRotateModel}
-        />
-        <Face />
+        /> */}
+        <CameraPath />
+        {/* <Face /> */}
         <Sky
           distance={450000}
           sunPosition={[0, isDaylightTheme ? 1 : 0, 0]}
