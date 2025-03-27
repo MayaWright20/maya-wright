@@ -6,6 +6,8 @@ interface State {
   setPlayModelActions: (state: boolean) => void;
   isDaylightTheme: boolean;
   setIsDayLightTheme: (state: boolean) => void;
+  autoRotateModel: boolean;
+  setAutoRotateModel: (state: boolean) => void;
 }
 
 export const useStore = create<State>()(
@@ -17,6 +19,9 @@ export const useStore = create<State>()(
       isDaylightTheme: true,
       setIsDayLightTheme: (state: boolean) =>
         set(() => ({ isDaylightTheme: state })),
+      autoRotateModel: true,
+      setAutoRotateModel: (state: boolean) =>
+        set(() => ({ autoRotateModel: state })),
     }),
     {
       name: 'storage',
