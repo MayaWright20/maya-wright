@@ -1,5 +1,4 @@
 import { Center, Text3D } from '@react-three/drei';
-import fontUrl from '../../../../fonts/Permanent_Marker_Regular.json';
 import { COLORS } from '@/app/constants/colors';
 import { usePersistStore } from '@/app/store/store';
 
@@ -18,10 +17,7 @@ export default function Projects3DText() {
   const { isDaylightTheme } = usePersistStore();
   return (
     <Center top>
-      <Text3D
-        font="../../../../fonts/Permanent_Marker_Regular.json"
-        {...textOptions}
-      >
+      <Text3D font="/Inter_Bold.json" {...textOptions}>
         Projects
         {isDaylightTheme && <meshPhongMaterial color={COLORS.dark_green} />}
         {!isDaylightTheme && <meshNormalMaterial />}
