@@ -15,7 +15,7 @@ export const HalfCircle = ({ centerX = 0, centerY = 0, radius = 10 }) => {
     [
       // new THREE.Vector3(0, 0, 5),
       // new THREE.Vector3(0, 0, 1),
-      new THREE.Vector3(0, -1, 5),
+      new THREE.Vector3(0, -1.5, 5),
       new THREE.Vector3(0, 0, 0),
 
       // new THREE.Vector3(centerX - radius, centerY, +radius),
