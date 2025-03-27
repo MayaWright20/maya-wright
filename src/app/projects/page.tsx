@@ -12,7 +12,7 @@ export default function Projects() {
   return (
     <Styled_Container $isDaylightTheme={isDaylightTheme}>
       <p onClick={backToHomeHandler}>home</p>
-      <div>projects</div>
+      <div>{`Best of luck in Australia Nat!!!!!!!`}</div>
     </Styled_Container>
   );
 }
