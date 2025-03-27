@@ -10,7 +10,7 @@ interface State {
   setAutoRotateModel: (state: boolean) => void;
 }
 
-export const useStore = create<State>()(
+export const usePersistStore = create<State>()(
   persist(
     (set) => ({
       playModelActions: true,

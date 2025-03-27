@@ -1,13 +1,13 @@
 import { useEffect, useRef } from 'react';
 import { Styled_Circle_Wrapper, Styled_Container } from './style';
 import { COLORS } from '@/app/constants/colors';
-import { useStore } from '@/app/store/store';
+import { usePersistStore } from '@/app/store/store';
 
 const CIRCLE_COUNT = 30;
 const circlesArray = Array.from({ length: CIRCLE_COUNT });
 
 export default function MouseFollower() {
-  const { isDaylightTheme } = useStore();
+  const { isDaylightTheme } = usePersistStore();
 
   const circleRefs = useRef<(HTMLDivElement | null)[]>([]);
   const positions = useRef(Array(CIRCLE_COUNT).fill({ x: 0, y: 0 }));

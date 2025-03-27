@@ -19,7 +19,7 @@ import Scene from '../components/r3F/models/scene/scene';
 import PageLabel from '../components/page-label/page-label';
 import { IsNavOpenContext } from '../context/nav-bar/isNavOpenContext';
 import MouseFollower from '../components/mouse-follower/mouse-follower';
-import { useStore } from '../store/store';
+import { usePersistStore } from '../store/store';
 
 const AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS = [
   'Expressions on',
@@ -59,7 +59,7 @@ export default function HomeScreen() {
     setIsDayLightTheme,
     autoRotateModel,
     setAutoRotateModel,
-  } = useStore();
+  } = usePersistStore();
 
   const modelActionsLength = useContext(ModelActionsLengthContext);
 

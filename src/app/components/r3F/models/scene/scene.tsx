@@ -15,7 +15,7 @@ import DirectionalLights from '../lights/directional-lights';
 import Face from '../face/face';
 import * as THREE from 'three';
 import PixelatedHeartsInstances from '../heart/pixelated-hearts-instances';
-import { useStore } from '@/app/store/store';
+import { usePersistStore } from '@/app/store/store';
 
 interface Props {
   hearts: boolean;
@@ -47,7 +47,7 @@ export default function Scene({ hearts }: Props) {
   // love - red floating foil balloons / fluffy red baloons/ text
   // colorful mixblendmode difference
 
-  const { isDaylightTheme, autoRotateModel } = useStore();
+  const { isDaylightTheme, autoRotateModel } = usePersistStore();
 
   return (
     <Canvas

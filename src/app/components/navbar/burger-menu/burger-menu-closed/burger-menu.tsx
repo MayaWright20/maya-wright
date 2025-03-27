@@ -10,7 +10,7 @@ import { COLORS } from '@/app/constants/colors';
 import Circle from '../../../circle/circle';
 import Link from 'next/link';
 import { IsNavOpenContext } from '@/app/context/nav-bar/isNavOpenContext';
-import { useStore } from '@/app/store/store';
+import { usePersistStore } from '@/app/store/store';
 
 export default function BurgerMenu({
   tabIndex,
@@ -23,7 +23,7 @@ export default function BurgerMenu({
   isNavOpen: boolean;
   onClick: () => void;
 }) {
-  const { isDaylightTheme } = useStore();
+  const { isDaylightTheme } = usePersistStore();
   const hasScreenLoaded = useContext(HasScreenLoadedContext);
   const isBurgerMenuOpen = useContext(IsNavOpenContext);
   const [isHovered, setIsHovered] = useState<undefined | number>(undefined);
