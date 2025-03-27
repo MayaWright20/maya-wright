@@ -66,7 +66,7 @@ export default function BurgerMenu({
       target: '',
       innerColor: 'rgb(251, 255, 0)',
       middleColor: 'rgb(138, 127, 141)',
-      outterColor: 'rgb(26, 255, 0)',
+      outterColor: 'rgb(255, 51, 0)',
       outerHeight: '80px',
       hoverOutterBorderWidth: '40px',
       onClickNavItem: () => onClickNavItem(),
