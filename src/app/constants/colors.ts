@@ -15,4 +15,5 @@ export const COLORS = {
   bright_red: 'rgb(255, 32, 32)',
   daylight_theme_green: 'rgb(202, 244, 94)',
   night_time_theme_pink: 'rgb(230, 138, 243)',
+  dark_green: 'rgb(75, 186, 10)',
 };

@@ -18,6 +18,7 @@ import PixelatedHeartsInstances from '../heart/pixelated-hearts-instances';
 import { usePersistStore } from '@/app/store/store';
 import { CameraPath } from '../camera-path/camera-path';
 import { IsCameraMotionPathsControlContext } from '@/app/context/r3f/isCameraMotionPathsControlContext';
+import Projects3DText from '../3D-text/projects-3D-text';
 
 interface Props {
   hearts: boolean;
@@ -75,6 +76,7 @@ export default function Scene({ hearts }: Props) {
           />
         )}
         {isCameraMotionPath && <CameraPath />}
+        {isCameraMotionPath && <Projects3DText />}
         <Face />
         <Sky
           distance={450000}
