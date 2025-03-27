@@ -35,6 +35,10 @@ export default function BurgerMenu({
     }
   }, [isBurgerMenuOpen]);
 
+  const onClickNavItem = () => {
+    console.log('clicked');
+  };
+
   const navItems = [
     {
       title: 'Github',
@@ -55,6 +59,17 @@ export default function BurgerMenu({
       outterColor: 'rgb(215, 255, 84)',
       outerHeight: '80px',
       hoverOutterBorderWidth: '40px',
+    },
+    {
+      title: 'Projects ',
+      href: '/',
+      target: '',
+      innerColor: 'rgb(251, 255, 0)',
+      middleColor: 'rgb(138, 127, 141)',
+      outterColor: 'rgb(26, 255, 0)',
+      outerHeight: '80px',
+      hoverOutterBorderWidth: '40px',
+      onClickNavItem: () => onClickNavItem(),
     },
   ];
 
@@ -114,6 +129,7 @@ export default function BurgerMenu({
                   className="nav-item"
                   target={item.target}
                   tabIndex={isNavOpen ? 0 : -1}
+                  onClick={onClickNavItem}
                 >
                   <Circle
                     innerColor={item.innerColor}
