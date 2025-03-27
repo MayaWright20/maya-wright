@@ -1,21 +1,13 @@
-import { useRef, forwardRef } from 'react';
+import { useRef, forwardRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { MotionPathControls, useMotion } from '@react-three/drei';
-import { useControls } from 'leva';
 import * as CURVES from './curves';
 import Face from '../face/face.jsx';
 
 export function CameraPath() {
   const poi = useRef();
   const motionRef = useRef();
-  const { path } = useControls({
-    debug: false,
-    float: true,
-    path: {
-      value: 'Circle',
-      options: ['Circle'],
-    },
-  });
+  const [path] = useState('Circle');
   const Curve = CURVES[path];
   return (
     <>
@@ -34,7 +26,7 @@ export function CameraPath() {
   );
 }
 
-function Loop({ factor = 0.2 }) {
+function Loop({ factor = 0.05 }) {
   const motion = useMotion();
   useFrame((state, delta) => (motion.current += Math.min(0.1, delta) * factor));
 }
