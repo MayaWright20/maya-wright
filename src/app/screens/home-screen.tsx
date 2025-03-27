@@ -62,12 +62,13 @@ export default function HomeScreen() {
   } = useStore();
 
   const modelActionsLength = useContext(ModelActionsLengthContext);
+
   const [hasScreenLoaded, setHasScreenLoaded] = useState(false);
   const [cellIndex, setCellIndex] = useState<number>(0);
-
   const [carouselTabIndex, setCarouselTabIndex] = useState(-1);
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
   const [switchButtonTabIndex, setSwitchButtonTabIndex] = useState(-1);
+  const [dayLightThemeTimer, setDayLightThemeTimer] = useState(true);
 
   const prevCarouselTabIndex = useRef<number>(carouselTabIndex);
 
@@ -82,13 +83,14 @@ export default function HomeScreen() {
   }, []);
 
   useEffect(() => {
-    if (cellIndex === FACIAL_EXPRESSIONS_COUNT - 1) {
-      // TODO: if on the last expression and person clicks another expression changing to night theme should be cancelled
-      setTimeout(() => {
+    if (cellIndex === FACIAL_EXPRESSIONS_COUNT - 1 && dayLightThemeTimer) {
+      const timeoutId = setTimeout(() => {
         setIsDayLightTheme(!isDaylightTheme);
       }, FACIAL_EXPRESSION_TIMER);
+
+      return () => clearTimeout(timeoutId);
     }
-  });
+  }, [cellIndex]);
 
   useEffect(() => {
     if (playModelActions) {
@@ -148,6 +150,7 @@ export default function HomeScreen() {
 
   const daylightSwitchHandler = (index: number) => {
     index === 1 ? setIsDayLightTheme(true) : setIsDayLightTheme(false);
+    setDayLightThemeTimer((timer) => !timer);
   };
 
   useEffect(() => {
