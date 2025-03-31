@@ -12,7 +12,7 @@ export default function Projects() {
   return (
     <Styled_Container $isDaylightTheme={isDaylightTheme}>
       <p onClick={backToHomeHandler}>home</p>
-      <div>{`Adding project that will be shown nicely soon... Promise!!!!!!!`}</div>
+      <div>{`Adding projects that will be shown nicely soon... Promise!!!!!!!`}</div>
     </Styled_Container>
   );
 }
