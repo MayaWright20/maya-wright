@@ -1,6 +1,6 @@
 'use client';
 import { useRouter } from 'next/navigation';
-import { usePersistStore } from '../store/store';
+import { usePersistStore } from '../../store/store';
 import { Styled_Container } from './style';
 
 export default function Projects() {

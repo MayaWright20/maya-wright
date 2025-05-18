@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { COLORS } from '@/app/constants/colors';
+import { COLORS } from '@/constants/colors';
 import Circle from '../../circle/circle';
 import { Styled_CircleWrapper, Styled_Container } from './styles';
 

@@ -1,6 +1,6 @@
 import { Center, Text3D } from '@react-three/drei';
-import { COLORS } from '@/app/constants/colors';
-import { usePersistStore } from '@/app/store/store';
+import { COLORS } from '@/constants/colors';
+import { usePersistStore } from '@/store/store';
 
 const textOptions = {
   size: 0.15,

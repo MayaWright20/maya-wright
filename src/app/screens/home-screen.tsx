@@ -8,19 +8,19 @@ import {
   Styled_Auto_Actions_Play_Switch,
   Styled_Daylight_Theme_Switch,
 } from './style';
-import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
-import { ModelActionsLengthContext } from '@/app/context/r3f/modelActionsLengthContext';
-import BurgerMenu from '../components/navbar/burger-menu/burger-menu-closed/burger-menu';
-import { HasScreenLoadedContext } from '@/app/context/loading/has-screen-loaded';
-import { COLORS } from '../constants/colors';
-import Carousel from '../components/carousel/carousel';
-import Switch from '../components/buttons/switch/switch';
-import Scene from '../components/r3F/models/scene/scene';
-import PageLabel from '../components/page-label/page-label';
-import { IsNavOpenContext } from '../context/nav-bar/isNavOpenContext';
-import MouseFollower from '../components/mouse-follower/mouse-follower';
-import { usePersistStore } from '../store/store';
-import { IsCameraMotionPathsControlContext } from '../context/r3f/isCameraMotionPathsControlContext';
+import { ModelActionsContext } from '@/context/r3f/modelActionsContext';
+import { ModelActionsLengthContext } from '@/context/r3f/modelActionsLengthContext';
+import BurgerMenu from '@/components/navbar/burger-menu/burger-menu-closed/burger-menu';
+import { HasScreenLoadedContext } from '@/context/loading/has-screen-loaded';
+import { COLORS } from '../../constants/colors';
+import Carousel from '@/components/carousel/carousel';
+import Switch from '@/components/buttons/switch/switch';
+import Scene from '@/r3F/models/scene/scene';
+import PageLabel from '@/components/page-label/page-label';
+import { IsNavOpenContext } from '../../context/nav-bar/isNavOpenContext';
+import MouseFollower from '@/components/mouse-follower/mouse-follower';
+import { usePersistStore } from '../../store/store';
+import { IsCameraMotionPathsControlContext } from '../../context/r3f/isCameraMotionPathsControlContext';
 import { useRouter } from 'next/navigation';
 
 const AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS = [

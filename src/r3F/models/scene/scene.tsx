@@ -15,9 +15,9 @@ import DirectionalLights from '../lights/directional-lights';
 import Face from '../face/face';
 import * as THREE from 'three';
 import PixelatedHeartsInstances from '../heart/pixelated-hearts-instances';
-import { usePersistStore } from '@/app/store/store';
+import { usePersistStore } from '@/store/store';
 import { CameraPath } from '../camera-path/camera-path';
-import { IsCameraMotionPathsControlContext } from '@/app/context/r3f/isCameraMotionPathsControlContext';
+import { IsCameraMotionPathsControlContext } from '@/context/r3f/isCameraMotionPathsControlContext';
 import Projects3DText from '../3D-text/projects-3D-text';
 
 interface Props {

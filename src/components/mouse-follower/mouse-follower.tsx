@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { Styled_Circle_Wrapper, Styled_Container } from './style';
-import { COLORS } from '@/app/constants/colors';
-import { usePersistStore } from '@/app/store/store';
+import { COLORS } from '@/constants/colors';
+import { usePersistStore } from '@/store/store';
 
 const CIRCLE_COUNT = 30;
 const circlesArray = Array.from({ length: CIRCLE_COUNT });

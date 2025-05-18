@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { ModelActionsContext } from '@/app/context/r3f/modelActionsContext';
-import ModelActions from '../../../../utils/r3f/model/modelActions';
-import ModelConstructor from '../../../../utils/r3f/model/modelConstructor';
+import ModelActions from '../../../utils/r3f/model/modelActions';
+import ModelConstructor from '../../../utils/r3f/model/modelConstructor';
 import { HasScreenLoadedContext } from '@/app/context/loading/has-screen-loaded';
 import { usePersistStore } from '@/app/store/store';
 

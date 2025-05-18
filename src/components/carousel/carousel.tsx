@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Styled_Container, Styled_CircleWrapper } from './styles';
-import { COLORS } from '@/app/constants/colors';
+import { COLORS } from '@/constants/colors';
 import Circle from '../circle/circle';
 
 export default function Carousel({

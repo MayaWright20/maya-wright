@@ -5,12 +5,12 @@ import {
   Styled_Nav_Item_title,
   Styled_Nav_Open,
 } from './styles';
-import { HasScreenLoadedContext } from '@/app/context/loading/has-screen-loaded';
-import { COLORS } from '@/app/constants/colors';
+import { HasScreenLoadedContext } from '@/context/loading/has-screen-loaded';
+import { COLORS } from '@/constants/colors';
 import Circle from '../../../circle/circle';
 import Link from 'next/link';
-import { IsNavOpenContext } from '@/app/context/nav-bar/isNavOpenContext';
-import { usePersistStore } from '@/app/store/store';
+import { IsNavOpenContext } from '@/context/nav-bar/isNavOpenContext';
+import { usePersistStore } from '@/store/store';
 
 export default function BurgerMenu({
   tabIndex,

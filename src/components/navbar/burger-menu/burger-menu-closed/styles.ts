@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Z_INDEXES } from '@/app/constants/z-indexes';
+import { Z_INDEXES } from '@/constants/z-indexes';
 
 interface StyledContainerProps {
   $loaded: boolean;

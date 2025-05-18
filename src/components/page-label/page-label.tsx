@@ -1,4 +1,4 @@
-import { Font_AtkinsonHyperlegible } from '@/app/utils/fonts/global-fonts';
+import { Font_AtkinsonHyperlegible } from '@/utils/fonts/global-fonts';
 import { Styled_Container } from './style';
 
 interface Props {

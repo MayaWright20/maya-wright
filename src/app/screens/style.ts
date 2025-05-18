@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Z_INDEXES } from '../constants/z-indexes';
+import { Z_INDEXES } from '../../constants/z-indexes';
 
 export const Styled_Container = styled.div`
   position: absolute;
