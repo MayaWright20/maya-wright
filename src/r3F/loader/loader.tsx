@@ -1,14 +1,16 @@
+import { COLORS } from '@/constants/colors';
+import { usePersistStore } from '@/store/store';
 import { Html, useProgress } from '@react-three/drei';
 
 export default function Loader() {
   const { progress } = useProgress();
-  // {progress.toFixed(1)} % loaded
+  const { isDaylightTheme } = usePersistStore();
 
   return (
     <Html center>
       <div
         style={{
-          backgroundColor: 'black',
+          backgroundColor: isDaylightTheme ? '#c8dae8' : 'black',
           height: '100vh',
           width: '100vw',
           display: 'flex',
@@ -16,7 +18,13 @@ export default function Loader() {
           justifyContent: 'center',
         }}
       >
-        <h1 style={{ color: 'whitesmoke' }}>{progress.toFixed(1)} % loaded</h1>
+        <h1
+          style={{
+            color: isDaylightTheme ? COLORS.daylight_theme_green : 'whitesmoke',
+          }}
+        >
+          {progress.toFixed(1)} % loaded
+        </h1>
       </div>
     </Html>
   );
