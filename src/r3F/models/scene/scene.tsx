@@ -19,15 +19,10 @@ import { usePersistStore } from '@/store/store';
 import { CameraPath } from '../camera-path/camera-path';
 import { IsCameraMotionPathsControlContext } from '@/context/r3f/isCameraMotionPathsControlContext';
 import Projects3DText from '../3D-text/projects-3D-text';
+import Loader from '@/r3F/loader/loader';
 
 interface Props {
   hearts: boolean;
-}
-
-function Loader() {
-  const { progress } = useProgress();
-
-  return <Html center>{progress.toFixed(1)} % loaded</Html>;
 }
 
 export default function Scene({ hearts }: Props) {
