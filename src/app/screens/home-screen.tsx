@@ -177,12 +177,15 @@ export default function HomeScreen() {
     }, 3600);
   };
 
-  const onClickNavItem = () => {
-    setIsNavOpen(false);
-    setTimeout(() => {
-      setIsCameraMotion(true);
-      goToProjectsHandler();
-    }, 1000);
+  const onClickNavItem = (isNavClosed: boolean) => {
+    if (isNavClosed) {
+      setIsNavOpen(false);
+
+      setTimeout(() => {
+        setIsCameraMotion(true);
+        goToProjectsHandler();
+      }, 1000);
+    }
   };
 
   return (
@@ -197,7 +200,9 @@ export default function HomeScreen() {
                 onClick={() => toggleIsNavOpen()}
                 ariaLabel="Navigation bar"
                 tabIndex={hasScreenLoaded ? 0 : -1}
-                onClickNavItem={() => onClickNavItem()}
+                onClickNavItem={(isNavClosed: boolean) =>
+                  onClickNavItem(isNavClosed)
+                }
               />
               <Styled_Auto_Actions_Play_Switch
                 $isPageLoaded={hasScreenLoaded}

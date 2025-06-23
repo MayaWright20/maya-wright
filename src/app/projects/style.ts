@@ -7,11 +7,10 @@ interface StyledContainer {
 
 export const Styled_Container = styled.div<StyledContainer>`
   background-color: ${({ $isDaylightTheme }) =>
-    $isDaylightTheme ? COLORS.daylight_theme_green : COLORS.fuchia_pink};
+    $isDaylightTheme ? COLORS.daylight_theme_green : 'black'};
   width: 100%;
   min-height: 100vh;
-  color: ${({ $isDaylightTheme }) =>
-    !$isDaylightTheme ? COLORS.daylight_theme_green : COLORS.fuchia_pink};
+  color: ${({ $isDaylightTheme }) => ($isDaylightTheme ? 'white' : 'white')};
   text-align: center;
   display: flex;
   font-size: 50px;
@@ -25,5 +24,6 @@ export const Styled_Container = styled.div<StyledContainer>`
     top: 20px;
     left: 20px;
     font-size: 20px;
+    color: white;
   }
 `;

@@ -23,7 +23,7 @@ export default function BurgerMenu({
   ariaLabel: string;
   isNavOpen: boolean;
   onClick: () => void;
-  onClickNavItem: () => void;
+  onClickNavItem: (isNavClosed: boolean) => void;
 }) {
   const { isDaylightTheme } = usePersistStore();
   const hasScreenLoaded = useContext(HasScreenLoadedContext);
@@ -47,6 +47,7 @@ export default function BurgerMenu({
       outterColor: 'rgb(13, 255, 0)',
       outerHeight: '80px',
       hoverOutterBorderWidth: '40px',
+      onClickNavItem: () => onClickNavItem(false),
     },
     {
       title: 'LinkedIn',
@@ -57,6 +58,7 @@ export default function BurgerMenu({
       outterColor: 'rgb(215, 255, 84)',
       outerHeight: '80px',
       hoverOutterBorderWidth: '40px',
+      onClickNavItem: () => onClickNavItem(false),
     },
     {
       title: 'Projects ',
@@ -67,7 +69,7 @@ export default function BurgerMenu({
       outterColor: 'rgb(255, 51, 0)',
       outerHeight: '80px',
       hoverOutterBorderWidth: '40px',
-      onClickNavItem: () => onClickNavItem(),
+      onClickNavItem: () => onClickNavItem(true),
     },
   ];
 
@@ -127,7 +129,7 @@ export default function BurgerMenu({
                   className="nav-item"
                   target={item.target}
                   tabIndex={isNavOpen ? 0 : -1}
-                  onClick={onClickNavItem}
+                  onClick={item.onClickNavItem}
                 >
                   <Circle
                     innerColor={item.innerColor}
