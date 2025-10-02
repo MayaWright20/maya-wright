@@ -16,7 +16,7 @@ interface StyledNavItemTitle {
 
 export const Styled_Container = styled.div<StyledContainerProps>`
   nav {
-    position: absolute;
+    position: relative;
     z-index: ${Z_INDEXES.level_10};
     display: flex;
     aspect-ratio: 1;
@@ -178,7 +178,7 @@ export const Styled_Nav_Open = styled.div<StyledContainerProps>`
     list-style: none;
   }
 
-  & .nav {
+  .nav {
     &-open {
       content: '';
       background-color: rgba(0, 0, 0, 0.403);
@@ -187,6 +187,7 @@ export const Styled_Nav_Open = styled.div<StyledContainerProps>`
       height: 100%;
       align-self: center;
       justify-self: center;
+      top: 0;
     }
 
     &-wrapper {
@@ -195,7 +196,6 @@ export const Styled_Nav_Open = styled.div<StyledContainerProps>`
 
     li {
       list-style: none;
-      background-color: pink;
     }
 
     &-item {
