@@ -188,6 +188,10 @@ export default function HomeScreen() {
     }
   };
 
+  const onClickPageTag = () => {
+    setIsNavOpen(false);
+  };
+
   return (
     <HasScreenLoadedContext.Provider value={hasScreenLoaded}>
       <IsNavOpenContext.Provider value={isNavOpen}>
@@ -289,8 +293,11 @@ export default function HomeScreen() {
                   />
                 </div>
               </Styled_Face_Actions_Carousel>
-              <PageLabel isPageLoaded={hasScreenLoaded} />
             </Styled_Container>
+            <PageLabel
+              onClick={() => onClickPageTag()}
+              isPageLoaded={hasScreenLoaded}
+            />
           </ModelActionsContext.Provider>
         </IsCameraMotionPathsControlContext.Provider>
       </IsNavOpenContext.Provider>
