@@ -1,5 +1,8 @@
 export const COLORS = {
   grey: 'grey',
+  blender_grey: '#2c2828',
+  blender_light_grey: '#8F9092',
+  blender_green: '#759f3d',
   transparent_grey: 'rgba(103, 103, 103, 0.789)',
   transparent_light_grey: 'rgba(188, 188, 188, 0.789)',
   transparent_dark_black: 'rgba(0, 0, 0, 0.905)',

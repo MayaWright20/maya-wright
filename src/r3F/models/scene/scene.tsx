@@ -5,6 +5,7 @@ import { Suspense, useContext } from 'react';
 import {
   Cloud,
   Clouds,
+  Grid,
   Html,
   OrbitControls,
   Sky,
@@ -20,6 +21,9 @@ import { CameraPath } from '../camera-path/camera-path';
 import { IsCameraMotionPathsControlContext } from '@/context/r3f/isCameraMotionPathsControlContext';
 import Projects3DText from '../3D-text/projects-3D-text';
 import Loader from '@/r3F/loader/loader';
+import { useDragControls } from 'framer-motion';
+import { useControls } from 'leva';
+import { COLORS } from '@/constants/colors';
 
 interface Props {
   hearts: boolean;
@@ -48,6 +52,18 @@ export default function Scene({ hearts }: Props) {
   const { isDaylightTheme, autoRotateModel } = usePersistStore();
   const isCameraMotionPath = useContext(IsCameraMotionPathsControlContext);
 
+  // const { ...gridConfig } = useControls({
+  //   gridSize: [30.5, 10.5],
+  //   cellSize: { value: 0.6, min: 0, max: 10, step: 0.1 },
+  //   cellThickness: { value: 1, min: 0, max: 5, step: 0.1 },
+  //   cellColor: COLORS.blender_light_grey,
+  //   sectionSize: { value: 3.3, min: 0, max: 10, step: 0.1 },
+  //   sectionThickness: { value: 1.5, min: 0, max: 5, step: 0.1 },
+  //   sectionColor: COLORS.blender_green,
+  //   fadeDistance: { value: 25, min: 0, max: 100, step: 1 },
+  //   fadeStrength: { value: 1, min: 0, max: 1, step: 0.1 },
+  // });
+
   return (
     <Canvas
       gl={{ antialias: true, alpha: true }}
@@ -57,7 +73,7 @@ export default function Scene({ hearts }: Props) {
         position: 'absolute',
         height: '100%',
         width: '100%',
-        backgroundColor: 'transparent',
+        backgroundColor: COLORS.blender_grey,
         zIndex: -9999,
       }}
     >
@@ -67,7 +83,7 @@ export default function Scene({ hearts }: Props) {
           <OrbitControls
             enableZoom={false}
             enablePan={false}
-            autoRotate={autoRotateModel}
+            // autoRotate={autoRotateModel}
           />
         )}
         {isCameraMotionPath && <CameraPath />}
@@ -78,6 +94,12 @@ export default function Scene({ hearts }: Props) {
           sunPosition={[0, isDaylightTheme ? 1 : 0, 0]}
           inclination={0}
           azimuth={0.25}
+        />
+        <Grid
+          position={[0, -0.9, 0]}
+          args={[30.5, 10.5]}
+          cellSize={30.5}
+          infiniteGrid
         />
         <Clouds material={THREE.MeshBasicMaterial}>
           <Cloud
@@ -108,18 +130,15 @@ export default function Scene({ hearts }: Props) {
             position={[60, 60, 20]}
           />
         </Clouds>
-        {!isDaylightTheme && (
-          <Stars
-            radius={50}
-            depth={50}
-            count={5000}
-            factor={4}
-            saturation={5}
-            fade
-            speed={3}
-          />
-        )}
-        {hearts && <PixelatedHeartsInstances boundary={50} count={100} />}
+        <Stars
+          radius={50}
+          depth={50}
+          count={5000}
+          factor={4}
+          saturation={5}
+          fade
+          speed={3}
+        />
       </Suspense>
     </Canvas>
   );

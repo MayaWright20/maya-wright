@@ -22,6 +22,7 @@ import MouseFollower from '@/components/mouse-follower/mouse-follower';
 import { usePersistStore } from '../../store/store';
 import { IsCameraMotionPathsControlContext } from '../../context/r3f/isCameraMotionPathsControlContext';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 const AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS = [
   'Expressions on',
