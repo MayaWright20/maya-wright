@@ -16,7 +16,7 @@ export const usePersistStore = create<State>()(
       playModelActions: true,
       setPlayModelActions: (state: boolean) =>
         set(() => ({ playModelActions: state })),
-      isDaylightTheme: true,
+      isDaylightTheme: false,
       setIsDayLightTheme: (state: boolean) =>
         set(() => ({ isDaylightTheme: state })),
       autoRotateModel: true,

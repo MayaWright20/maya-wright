@@ -3,12 +3,18 @@ import { Styled_Container } from './style';
 
 interface Props {
   isPageLoaded: boolean;
+  onClick: () => void;
 }
 
-export default function PageLabel({ isPageLoaded }: Props) {
+export default function PageLabel({ isPageLoaded, onClick }: Props) {
   return (
     <Styled_Container $isPageLoaded={isPageLoaded}>
-      <div className={Font_AtkinsonHyperlegible.className}>Maya Wright</div>
+      <div
+        onClick={() => onClick()}
+        className={Font_AtkinsonHyperlegible.className}
+      >
+        Maya Wright
+      </div>
     </Styled_Container>
   );
 }

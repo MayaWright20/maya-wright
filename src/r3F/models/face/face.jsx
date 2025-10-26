@@ -67,7 +67,7 @@ export function Face() {
 
   return (
     <group ref={group} dispose={null}>
-      <group name="Scene" scale={scale}>
+      <group name="Scene" scale={1}>
         <mesh
           name="Sphere"
           geometry={nodes.Sphere.geometry}

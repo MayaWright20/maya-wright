@@ -24,6 +24,7 @@ export const Styled_Container = styled.div<PageLabel>`
     color: white;
     font-weight: 900;
     text-align: center;
+    cursor: pointer;
 
     animation-name: ${({ $isPageLoaded }) =>
       $isPageLoaded ? null : 'slideLeftAutoRotateSwitch'};

@@ -22,6 +22,7 @@ import MouseFollower from '@/components/mouse-follower/mouse-follower';
 import { usePersistStore } from '../../store/store';
 import { IsCameraMotionPathsControlContext } from '../../context/r3f/isCameraMotionPathsControlContext';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 const AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS = [
   'Expressions on',
@@ -188,6 +189,10 @@ export default function HomeScreen() {
     }
   };
 
+  const onClickPageTag = () => {
+    setIsNavOpen(false);
+  };
+
   return (
     <HasScreenLoadedContext.Provider value={hasScreenLoaded}>
       <IsNavOpenContext.Provider value={isNavOpen}>
@@ -289,8 +294,11 @@ export default function HomeScreen() {
                   />
                 </div>
               </Styled_Face_Actions_Carousel>
-              <PageLabel isPageLoaded={hasScreenLoaded} />
             </Styled_Container>
+            <PageLabel
+              onClick={() => onClickPageTag()}
+              isPageLoaded={hasScreenLoaded}
+            />
           </ModelActionsContext.Provider>
         </IsCameraMotionPathsControlContext.Provider>
       </IsNavOpenContext.Provider>
