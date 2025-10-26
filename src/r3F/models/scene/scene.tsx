@@ -21,8 +21,6 @@ import { CameraPath } from '../camera-path/camera-path';
 import { IsCameraMotionPathsControlContext } from '@/context/r3f/isCameraMotionPathsControlContext';
 import Projects3DText from '../3D-text/projects-3D-text';
 import Loader from '@/r3F/loader/loader';
-import { useDragControls } from 'framer-motion';
-import { useControls } from 'leva';
 import { COLORS } from '@/constants/colors';
 
 interface Props {
@@ -51,18 +49,6 @@ export default function Scene({ hearts }: Props) {
 
   const { isDaylightTheme, autoRotateModel } = usePersistStore();
   const isCameraMotionPath = useContext(IsCameraMotionPathsControlContext);
-
-  // const { ...gridConfig } = useControls({
-  //   gridSize: [30.5, 10.5],
-  //   cellSize: { value: 0.6, min: 0, max: 10, step: 0.1 },
-  //   cellThickness: { value: 1, min: 0, max: 5, step: 0.1 },
-  //   cellColor: COLORS.blender_light_grey,
-  //   sectionSize: { value: 3.3, min: 0, max: 10, step: 0.1 },
-  //   sectionThickness: { value: 1.5, min: 0, max: 5, step: 0.1 },
-  //   sectionColor: COLORS.blender_green,
-  //   fadeDistance: { value: 25, min: 0, max: 100, step: 1 },
-  //   fadeStrength: { value: 1, min: 0, max: 1, step: 0.1 },
-  // });
 
   return (
     <Canvas
@@ -95,12 +81,15 @@ export default function Scene({ hearts }: Props) {
           inclination={0}
           azimuth={0.25}
         />
-        <Grid
-          position={[0, -0.9, 0]}
-          args={[30.5, 10.5]}
-          cellSize={30.5}
-          infiniteGrid
-        />
+        {!isDaylightTheme && (
+          <Grid
+            position={[0, -0.9, 0]}
+            args={[30.5, 10.5]}
+            cellSize={30.5}
+            infiniteGrid
+          />
+        )}
+
         <Clouds material={THREE.MeshBasicMaterial}>
           <Cloud
             segments={40}
@@ -137,7 +126,7 @@ export default function Scene({ hearts }: Props) {
           factor={4}
           saturation={5}
           fade
-          speed={3}
+          speed={1}
         />
       </Suspense>
     </Canvas>
