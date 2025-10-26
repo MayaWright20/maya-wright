@@ -69,7 +69,7 @@ export default function Scene({ hearts }: Props) {
           <OrbitControls
             enableZoom={false}
             enablePan={false}
-            // autoRotate={autoRotateModel}
+            autoRotate={autoRotateModel && isDaylightTheme}
           />
         )}
         {isCameraMotionPath && <CameraPath />}
