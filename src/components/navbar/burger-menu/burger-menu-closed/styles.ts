@@ -96,7 +96,7 @@ export const Styled_Container = styled.div<StyledContainerProps>`
       height: 56px;
       aspect-ratio: 1;
       border-radius: 100px;
-      border: 2px solid #00d0ff;
+      border: 2px solid white;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -106,7 +106,7 @@ export const Styled_Container = styled.div<StyledContainerProps>`
 
       &:hover,
       :focus {
-        border: 2px solid #00f7ff;
+        border: 2px solid white;
         padding: 9px;
       }
 
