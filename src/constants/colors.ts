@@ -17,6 +17,7 @@ export const COLORS = {
   bright_purple: 'rgb(157, 77, 255)',
   bright_red: 'rgb(255, 32, 32)',
   daylight_theme_green: 'rgb(202, 244, 94)',
-  night_time_theme_pink: '#3184d7',
+  white: 'rgb(255, 255, 255)',
   dark_green: 'rgb(75, 186, 10)',
+  night_blue_white: '#d6f4f9',
 };

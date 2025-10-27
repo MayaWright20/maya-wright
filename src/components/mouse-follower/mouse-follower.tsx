@@ -61,12 +61,10 @@ export default function MouseFollower() {
           ref={(el) => {
             circleRefs.current[index] = el;
           }}
+          $width={isDaylightTheme ? 15 : 7}
           $index={index}
-          $circleColor={
-            isDaylightTheme
-              ? `${COLORS.daylight_theme_green}`
-              : `${COLORS.night_time_theme_pink}`
-          }
+          $showBlur={isDaylightTheme}
+          $circleColor={`${COLORS.daylight_theme_green}`}
         />
       ))}
     </Styled_Container>

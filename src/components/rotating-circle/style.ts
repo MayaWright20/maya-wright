@@ -2,9 +2,12 @@ import styled from 'styled-components';
 
 interface PageLabel {
   $isPageLoaded: boolean;
+  $night_blue_white: string;
+  $is_daylight_theme: boolean;
+  $bright_green: string;
 }
 
-export const Styled_Container = styled.div<PageLabel>`
+export const Styled_Container_Rotating = styled.div<PageLabel>`
   div {
     position: absolute;
     background-color: rgba(255, 255, 255, 0);
@@ -12,21 +15,21 @@ export const Styled_Container = styled.div<PageLabel>`
     font-weight: 900;
     text-align: center;
     cursor: pointer;
-    bottom: 15vh;
-    right: 5vw;
+    bottom: 14vh;
+    right: 6vw;
 
     animation-name: ${({ $isPageLoaded }) =>
-      $isPageLoaded ? null : 'slideLeftAutoRotateSwitch'};
+      $isPageLoaded ? null : 'slideLeftAutoRotateSwitchRotating'};
     animation-duration: 4s;
     animation-timing-function: cubic-bezier(0.9, 0.5, 0.4, 0.9);
     animation-fill-mode: forwards;
 
-    @keyframes slideLeftAutoRotateSwitch {
+    @keyframes slideLeftAutoRotateSwitchRotating {
       from {
         right: -165vw;
       }
       to {
-        right: 0;
+        right: 6vw;
       }
     }
 
@@ -85,14 +88,13 @@ export const Styled_Container = styled.div<PageLabel>`
     .text span {
       font-size: 12px;
       font-weight: 700;
-      color: white;
+      color: ${({ $night_blue_white, $is_daylight_theme, $bright_green }) =>
+        $is_daylight_theme ? $bright_green : $night_blue_white};
       letter-spacing: 1px;
       user-select: none;
       transition: all 0.2s ease;
 
       &:hover {
-        color: #ffeb3b;
-        font-size: 13px;
       }
     }
   }

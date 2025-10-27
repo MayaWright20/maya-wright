@@ -1,5 +1,7 @@
-import { Styled_Container } from './style';
+import { COLORS } from '@/constants/colors';
+import { Styled_Container_Rotating } from './style';
 import { useEffect, useRef } from 'react';
+import { usePersistStore } from '@/store/store';
 
 interface Props {
   isPageLoaded?: boolean;
@@ -8,6 +10,7 @@ interface Props {
 }
 
 export default function RotatingCircle({ isPageLoaded, onClick, text }: Props) {
+  const isDaylightTheme = usePersistStore((state) => state.isDaylightTheme);
   const textRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -46,10 +49,16 @@ export default function RotatingCircle({ isPageLoaded, onClick, text }: Props) {
   }, []);
 
   return (
-    <Styled_Container $isPageLoaded={isPageLoaded} onClick={onClick}>
+    <Styled_Container_Rotating
+      $is_daylight_theme={isDaylightTheme}
+      $night_blue_white={COLORS.night_blue_white}
+      $isPageLoaded={isPageLoaded ?? false}
+      $bright_green={COLORS.bright_green}
+      onClick={onClick}
+    >
       <div className="circle">
         <div ref={textRef} className="text" />
       </div>
-    </Styled_Container>
+    </Styled_Container_Rotating>
   );
 }
