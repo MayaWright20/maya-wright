@@ -25,8 +25,8 @@ export function Face() {
       materials.Material.color.b = 0;
     } else {
       materials.Material.color.b = 1;
-      materials.Material.color.g = 1;
-      materials.Material.color.r = 1;
+      materials.Material.color.g = 0.7;
+      materials.Material.color.r = 0.7;
     }
   }, [isDaylightTheme]);
 
