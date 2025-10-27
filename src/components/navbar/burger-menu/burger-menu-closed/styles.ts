@@ -81,7 +81,7 @@ export const Styled_Container = styled.div<StyledContainerProps>`
           font-size: 3rem;
           text-transform: uppercase;
           font-weight: 600;
-          color: white;
+          color: #ffffff;
         }
 
         & .circle-container {
@@ -96,7 +96,7 @@ export const Styled_Container = styled.div<StyledContainerProps>`
       height: 56px;
       aspect-ratio: 1;
       border-radius: 100px;
-      border: 2px solid white;
+      border: 2px solid #00d0ff;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -106,7 +106,7 @@ export const Styled_Container = styled.div<StyledContainerProps>`
 
       &:hover,
       :focus {
-        border: 2px solid white;
+        border: 2px solid #00f7ff;
         padding: 9px;
       }
 
