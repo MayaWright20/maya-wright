@@ -22,7 +22,8 @@ export const Styled_Circle_Wrapper = styled.div<StyledCircleWrapperProps>`
   margin-left: 25px;
   width: ${({ $index, $width }) => $width - $index * 0.5}px;
   aspect-ratio: 1;
-  background-color: ${({ $circleColor }) => $circleColor};
+  background-color: ${({ $showBlur, $circleColor }) =>
+    $showBlur ? '#ff3ab7' : '#f39f03'};
   border-radius: 50%;
   pointer-events: none;
   z-index: ${({ $index }) => -$index};
