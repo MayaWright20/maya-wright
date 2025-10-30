@@ -53,7 +53,7 @@ export default function FloralBackground() {
 
           // radial falloff around the cursor
           float dist = distance(uv, uHover);
-          float radius = 0.25;
+          float radius = 0.2;
           float edge = 0.2;
           float cursorMask = smoothstep(radius, radius - edge, dist);
 
