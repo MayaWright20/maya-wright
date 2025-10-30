@@ -89,13 +89,13 @@ export default function Scene({ hearts }: Props) {
     >
       <DirectionalLights isDaylightTheme={isDaylightTheme} />
       <Suspense fallback={<Loader />}>
-        {autoRotateModel && !isCameraMotionPath && (
+        {/* {autoRotateModel && !isCameraMotionPath && (
           <OrbitControls
             enableZoom={false}
             enablePan={false}
             autoRotate={autoRotateModel && isDaylightTheme}
           />
-        )}
+        )} */}
         {isCameraMotionPath && <CameraPath />}
         {isCameraMotionPath && <Projects3DText />}
         <Face />
