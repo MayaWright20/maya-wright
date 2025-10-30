@@ -20,6 +20,7 @@ import { IsCameraMotionPathsControlContext } from "@/context/r3f/isCameraMotionP
 import Projects3DText from "../3D-text/projects-3D-text";
 import Loader from "@/r3F/loader/loader";
 import { COLORS } from "@/constants/colors";
+import FloralBackground from "../background/floral-background";
 
 interface Props {
   hearts: boolean;
@@ -105,6 +106,7 @@ export default function Scene({ hearts }: Props) {
           inclination={0}
           azimuth={0.25}
         />
+        <FloralBackground />
         {!isDaylightTheme && (
           <Grid
             position={[0, -0.9, 0]}
