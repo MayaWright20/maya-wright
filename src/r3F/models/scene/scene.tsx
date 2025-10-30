@@ -57,7 +57,7 @@ function Model(props) {
         penumbra={0.9}
         ref={light}
         castShadow
-        intensity={70}
+        intensity={30}
         shadow-mapSize={1024}
         shadow-bias={-0.001}
       >
