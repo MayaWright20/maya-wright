@@ -17,7 +17,7 @@ export default function FloralBackground() {
   });
 
   // we'll sample this react-spring value manually in r3f loop
-  const strengthRef = useRef(0);
+  const strengthRef = useRef<any>(0);
 
   useFrame(() => {
     // react-spring objects expose .get() in Three mode
