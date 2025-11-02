@@ -3,8 +3,8 @@ import { Z_INDEXES } from '../../constants/z-indexes';
 
 export const Styled_Container = styled.div`
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   overflow: hidden;
   z-index: ${Z_INDEXES.level_minus_9999};

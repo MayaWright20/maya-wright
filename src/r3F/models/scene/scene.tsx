@@ -104,8 +104,6 @@ function Sphere({
         <BallCollider args={[0.5]} />
         <mesh ref={ref} castShadow receiveShadow>
           <Face {...props} />
-          {/* <sphereGeometry args={[0.5, 32, 32]} />
-        <meshStandardMaterial color={color} {...props} /> */}
         </mesh>
       </RigidBody>
       <RigidBody
