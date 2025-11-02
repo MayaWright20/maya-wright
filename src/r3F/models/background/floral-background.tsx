@@ -31,7 +31,17 @@ export default function FloralBackground() {
   const planeSize = useMemo(() => {
     const aspect = size.width / size.height;
     const distance = Math.abs(camera.position.z - -2); // camera.z - mesh.z
-    const height = 2 * Math.tan((camera.fov * Math.PI) / 360) * distance;
+
+    let height: number;
+    if (camera instanceof THREE.PerspectiveCamera) {
+      height = 2 * Math.tan((camera.fov * Math.PI) / 360) * distance;
+    } else if (camera instanceof THREE.OrthographicCamera) {
+      height = camera.top - camera.bottom;
+    } else {
+      // fallback for other camera types
+      height = 10;
+    }
+
     const width = height * aspect;
     return [width, height];
   }, [size, camera]);
@@ -64,7 +74,7 @@ export default function FloralBackground() {
   }, []);
 
   // map UV [0..1] → world space coords on the full-screen plane
-  function uvToWorld([u, v]) {
+  function uvToWorld([u, v]: [number, number]): [number, number] {
     const [w, h] = planeSize;
     // plane is centered at (0,0), so shift by -0.5 to +0.5
     const x = (u - 0.5) * w;
@@ -100,7 +110,7 @@ export default function FloralBackground() {
   }, [flowerTex]);
 
   // ref to instanced mesh so we can update matrices in useFrame
-  const instancedRef = useRef();
+  const instancedRef = useRef<any>(0);
 
   // temp objects for matrix math (so we don't allocate per frame)
   const tempObj = useMemo(() => new THREE.Object3D(), []);
@@ -159,7 +169,7 @@ export default function FloralBackground() {
   });
 
   // helper smoothstep in JS
-  function smoothstep(edge0, edge1, x) {
+  function smoothstep(edge0: any, edge1: any, x: any) {
     const t = THREE.MathUtils.clamp((x - edge0) / (edge1 - edge0), 0, 1);
     return t * t * (3 - 2 * t);
   }
@@ -175,7 +185,7 @@ export default function FloralBackground() {
           if (e.uv) setHoverUV([e.uv.x, e.uv.y]);
         }}
       >
-        <planeGeometry args={[...planeSize, 1, 1]} />
+        <planeGeometry args={[planeSize[0], planeSize[1], 1, 1]} />
         <meshBasicMaterial
           opacity={0}
           transparent

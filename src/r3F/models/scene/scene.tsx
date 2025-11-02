@@ -26,9 +26,9 @@ interface Props {
   hearts: boolean;
 }
 
-function Model(props) {
-  const group = useRef<any>();
-  const light = useRef<any>();
+function Model(props: any) {
+  const group = useRef<any>(0);
+  const light = useRef<any>(0);
 
   useFrame((state, delta) => {
     easing.dampE(
