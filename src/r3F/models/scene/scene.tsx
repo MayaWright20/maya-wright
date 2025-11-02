@@ -2,7 +2,7 @@
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { easing } from "maath";
-import { Suspense, useContext, useRef } from "react";
+import { Suspense, useContext, useRef, useReducer, useMemo } from "react";
 import { Cloud, Grid, OrbitControls, Sky, Stars } from "@react-three/drei";
 import DirectionalLights from "../lights/directional-lights";
 import Face from "../face/face";
@@ -14,9 +14,195 @@ import Projects3DText from "../3D-text/projects-3D-text";
 import Loader from "@/r3F/loader/loader";
 import { COLORS } from "@/constants/colors";
 import FloralBackground from "../background/floral-background";
+import { Environment, Lightformer } from "@react-three/drei";
+import { BallCollider, Physics, RigidBody } from "@react-three/rapier";
 
 interface Props {
   hearts: boolean;
+}
+
+function Sphere({
+  position,
+  children,
+  vec = new THREE.Vector3(),
+  scale,
+  r = THREE.MathUtils.randFloatSpread,
+  accent,
+  color = "white",
+  orbitalRadius = 5,
+  orbitalSpeed = 0.5,
+  index = 0,
+  ...props
+}: any) {
+  const api = useRef<any>(null);
+  const ref = useRef<any>(null);
+  const time = useRef(0);
+
+  // Position spheres in a roughly spherical distribution around the Face
+  const pos = useMemo(() => {
+    if (position) return position;
+
+    // Create positions around the Face (which is roughly at origin)
+    const theta = (index / 20) * Math.PI * 2; // Distribute evenly around
+    const phi = Math.acos(1 - 2 * Math.random()); // Random vertical distribution
+    const radius = orbitalRadius + r(2); // Add some randomness to orbital radius
+
+    return [
+      radius * Math.sin(phi) * Math.cos(theta),
+      radius * Math.sin(phi) * Math.sin(theta),
+      radius * Math.cos(phi),
+    ];
+  }, [index, orbitalRadius, r]);
+
+  useFrame((state, delta) => {
+    delta = Math.min(0.1, delta);
+    time.current += delta * orbitalSpeed;
+
+    if (api.current) {
+      // Get current position
+      const currentPos = api.current.translation();
+
+      // Calculate orbital motion around Face position (roughly at origin)
+      const faceCenter = new THREE.Vector3(0.05, -0.014, 0); // Face's approximate center
+      const orbitCenter = vec.copy(faceCenter);
+
+      // Create gentle orbital motion
+      const offsetX = Math.sin(time.current + index * 0.5) * 0.5;
+      const offsetY = Math.cos(time.current * 0.7 + index * 0.3) * 0.3;
+      const offsetZ = Math.sin(time.current * 0.8 + index * 0.8) * 0.5;
+
+      // Apply gentle force toward orbital position
+      const targetPos = orbitCenter
+        .clone()
+        .add(
+          new THREE.Vector3(
+            pos[0] + offsetX,
+            pos[1] + offsetY,
+            pos[2] + offsetZ
+          )
+        );
+
+      const force = targetPos.sub(currentPos).multiplyScalar(0.1);
+      api.current.applyImpulse(force);
+    }
+
+    if (ref.current) {
+      easing.dampC(ref.current.material.color, color, 0.2, delta);
+    }
+  });
+
+  return (
+    <>
+      <RigidBody
+        linearDamping={2}
+        angularDamping={1}
+        friction={0.1}
+        position={pos}
+        ref={api}
+        colliders={false}
+      >
+        <BallCollider args={[0.5]} />
+        <mesh ref={ref} castShadow receiveShadow>
+          <Face {...props} />
+          {/* <sphereGeometry args={[0.5, 32, 32]} />
+        <meshStandardMaterial color={color} {...props} /> */}
+        </mesh>
+      </RigidBody>
+      <RigidBody
+        linearDamping={2}
+        angularDamping={1}
+        friction={0.1}
+        position={pos}
+        ref={api}
+        colliders={false}
+      >
+        <BallCollider args={[0.5]} />
+        <mesh castShadow receiveShadow>
+          {/* <Face /> */}
+          <sphereGeometry args={[0.5, 32, 32]} />
+          <meshStandardMaterial color={color} {...props} />
+        </mesh>
+      </RigidBody>
+    </>
+  );
+}
+
+function Pointer({ vec = new THREE.Vector3() }) {
+  const ref = useRef<any>(null);
+  useFrame(({ mouse, viewport }) =>
+    ref.current?.setNextKinematicTranslation(
+      vec.set(
+        (mouse.x * viewport.width) / 2,
+        (mouse.y * viewport.height) / 2,
+        0
+      )
+    )
+  );
+  return (
+    <RigidBody
+      position={[0, 0, 0]}
+      type="kinematicPosition"
+      colliders={false}
+      ref={ref}
+      // gravityScale={-9}
+    >
+      <BallCollider args={[6]} />
+    </RigidBody>
+  );
+}
+
+export function CirclesS(props: any) {
+  const connectors = new Array(20).fill({}).map((_, index) => ({ index }));
+  return (
+    <>
+      <Physics timeStep="vary" gravity={[0, 0, 0]}>
+        <Pointer />
+        {connectors.map((sphereProps, i) => (
+          <Sphere key={i} {...sphereProps} index={i} />
+        ))}
+      </Physics>
+      <Environment resolution={256}>
+        <group rotation={[-Math.PI / 3, 0, 1]}>
+          <Lightformer
+            form="circle"
+            intensity={100}
+            rotation-x={Math.PI / 2}
+            position={[0, 5, -9]}
+            scale={2}
+          />
+          <Lightformer
+            form="circle"
+            intensity={2}
+            rotation-y={Math.PI / 2}
+            position={[-5, 1, -1]}
+            scale={2}
+          />
+          <Lightformer
+            form="circle"
+            intensity={2}
+            rotation-y={Math.PI / 2}
+            position={[-5, -1, -1]}
+            scale={2}
+          />
+          <Lightformer
+            form="circle"
+            intensity={2}
+            rotation-y={-Math.PI / 2}
+            position={[10, 1, 0]}
+            scale={8}
+          />
+          <Lightformer
+            form="ring"
+            color="#4060ff"
+            intensity={80}
+            onUpdate={(self) => self.lookAt(0, 0, 0)}
+            position={[10, 10, 0]}
+            scale={10}
+          />
+        </group>
+      </Environment>
+    </>
+  );
 }
 
 function Model(props: any) {
@@ -81,6 +267,7 @@ export default function Scene({ hearts }: Props) {
       }}
     >
       <DirectionalLights isDaylightTheme={isDaylightTheme} />
+      <CirclesS />
       <Suspense fallback={<Loader />}>
         {autoRotateModel && !isCameraMotionPath && (
           <OrbitControls
