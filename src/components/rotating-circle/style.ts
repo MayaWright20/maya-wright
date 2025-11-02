@@ -69,7 +69,7 @@ export const Styled_Container_Rotating = styled.div<PageLabel>`
       height: 100%;
       animation: textRotation 12s linear infinite;
       font-family: ${({ theme }) =>
-        theme?.fonts?.primary || 'Arial, sans-serif'};
+         'Arial, sans-serif'};
 
       &:hover {
         animation-play-state: paused;
