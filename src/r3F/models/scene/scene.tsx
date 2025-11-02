@@ -3,14 +3,7 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { easing } from "maath";
 import { Suspense, useContext, useRef } from "react";
-import {
-  Cloud,
-  Clouds,
-  Grid,
-  OrbitControls,
-  Sky,
-  Stars,
-} from "@react-three/drei";
+import { Cloud, Grid, OrbitControls, Sky, Stars } from "@react-three/drei";
 import DirectionalLights from "../lights/directional-lights";
 import Face from "../face/face";
 import * as THREE from "three";
@@ -115,35 +108,34 @@ export default function Scene({ hearts }: Props) {
             infiniteGrid
           />
         )}
-        <Clouds material={THREE.MeshBasicMaterial}>
-          <Cloud
-            segments={40}
-            bounds={[10, 2, 100]}
-            volume={10}
-            color="white"
-            position={[60, 60, 20]}
-          />
-          <Cloud
-            segments={10}
-            bounds={[60, 60, 20]}
-            seed={1}
-            scale={5}
-            volume={20}
-            color="white"
-            fade={100}
-            position={[60, 60, 20]}
-          />
-          <Cloud
-            segments={10}
-            bounds={[-50, -10, -10]}
-            seed={1}
-            scale={5}
-            volume={20}
-            color="white"
-            fade={100}
-            position={[60, 60, 20]}
-          />
-        </Clouds>
+        <Cloud
+          segments={40}
+          bounds={[10, 2, 100]}
+          volume={10}
+          color="white"
+          position={[60, 60, 20]}
+        />
+        <Cloud
+          segments={10}
+          bounds={[60, 60, 20]}
+          seed={1}
+          scale={5}
+          volume={20}
+          color="white"
+          fade={100}
+          position={[60, 60, 20]}
+        />
+        <Cloud
+          segments={10}
+          bounds={[-50, -10, -10]}
+          seed={1}
+          scale={5}
+          volume={20}
+          color="white"
+          fade={100}
+          position={[60, 60, 20]}
+        />
+
         <Stars
           radius={50}
           depth={50}
