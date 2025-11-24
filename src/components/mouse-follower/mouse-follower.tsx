@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react';
-import { Styled_Circle_Wrapper, Styled_Container } from './style';
-import { COLORS } from '@/constants/colors';
-import { usePersistStore } from '@/store/store';
+import { useEffect, useRef } from "react";
+import { Styled_Circle_Wrapper, Styled_Container } from "./style";
+import { COLORS } from "@/constants/colors";
+import { usePersistStore } from "@/store/store";
 
 const CIRCLE_COUNT = 30;
 const circlesArray = Array.from({ length: CIRCLE_COUNT });
@@ -25,12 +25,12 @@ export default function MouseFollower() {
       positions.current[0] = { x, y };
     };
 
-    window.addEventListener('mousemove', handleMove);
-    window.addEventListener('touchmove', handleMove, { passive: true });
+    window.addEventListener("mousemove", handleMove);
+    window.addEventListener("touchmove", handleMove, { passive: true });
 
     return () => {
-      window.removeEventListener('mousemove', handleMove);
-      window.removeEventListener('touchmove', handleMove);
+      window.removeEventListener("mousemove", handleMove);
+      window.removeEventListener("touchmove", handleMove);
     };
   }, []);
 
@@ -61,10 +61,10 @@ export default function MouseFollower() {
           ref={(el) => {
             circleRefs.current[index] = el;
           }}
-          $width={isDaylightTheme ? 15 : 7}
+          $width={7}
           $index={index}
-          $showBlur={isDaylightTheme}
-          $circleColor={`${COLORS.daylight_theme_green}`}
+          $showBlur={true}
+          $circleColor={"#03039b"}
         />
       ))}
     </Styled_Container>

@@ -1,5 +1,5 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 interface State {
   playModelActions: boolean;
@@ -24,7 +24,7 @@ export const usePersistStore = create<State>()(
         set(() => ({ autoRotateModel: state })),
     }),
     {
-      name: 'storage',
+      name: "storage",
     }
   )
 );
