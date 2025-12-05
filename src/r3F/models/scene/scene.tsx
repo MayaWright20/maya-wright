@@ -106,7 +106,7 @@ export default function Scene({ hearts }: Props) {
         )} */}
         <OrbitControls enableZoom={false} enablePan={false} autoRotate={true} />
         {isCameraMotionPath && <CameraPath />}
-        {isCameraMotionPath && <Projects3DText text="projects" />}
+        {/* {isCameraMotionPath && <Projects3DText text="projects" />} */}
         <Face />
         <Model />
 

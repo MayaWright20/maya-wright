@@ -21,7 +21,7 @@ import { IsNavOpenContext } from "../../context/nav-bar/isNavOpenContext";
 import MouseFollower from "@/components/mouse-follower/mouse-follower";
 import { usePersistStore } from "../../store/store";
 import { IsCameraMotionPathsControlContext } from "../../context/r3f/isCameraMotionPathsControlContext";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 
 const AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS = [
@@ -191,8 +191,10 @@ export default function HomeScreen() {
       }, 1000);
     }
   };
+  const pathname = usePathname();
 
   const onClickPageTag = () => {
+    console.log(pathname);
     setIsNavOpen(false);
   };
 
@@ -203,13 +205,11 @@ export default function HomeScreen() {
           <ModelActionsContext.Provider value={cellIndex}>
             <MouseFollower />
             <Styled_Container>
-              <button onClick={() => goToProjectsHandler()}>
-                <p>Projects</p>
-              </button>
               <Scene hearts={cellIndex === 1} />
             </Styled_Container>
             <PageLabel
-              onClick={() => onClickPageTag()}
+              title={`Projects`}
+              onClick={() => goToProjectsHandler()}
               isPageLoaded={hasScreenLoaded}
             />
           </ModelActionsContext.Provider>

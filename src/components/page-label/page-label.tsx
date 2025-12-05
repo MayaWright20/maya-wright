@@ -1,16 +1,17 @@
-import RotatingCircle from '../rotating-circle/rotating-circle';
+import RotatingCircle from "../rotating-circle/rotating-circle";
 
 interface Props {
   isPageLoaded: boolean;
   onClick: () => void;
+  title: String;
 }
 
-export default function PageLabel({ isPageLoaded, onClick }: Props) {
+export default function PageLabel({ isPageLoaded, onClick, title }: Props) {
   return (
     <RotatingCircle
       isPageLoaded={isPageLoaded}
       onClick={onClick}
-      text={'Maya Wright ◉ Maya Wright ◉ '}
+      text={`${title} ◉ ${title} ◉ `}
     />
   );
 }
