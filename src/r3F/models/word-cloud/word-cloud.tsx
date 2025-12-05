@@ -7,9 +7,9 @@ import { Router, useRouter } from "next/router";
 import Link from "next/link";
 
 interface Item {
-  url: String;
-  isMobile: Boolean;
-  href: String;
+  url: string;
+  isMobile: boolean;
+  href: string;
 }
 
 // Array of image URLs - replace these with your actual image paths
@@ -166,11 +166,11 @@ export function Cloud({ count = 4, radius = 5 }) {
 
   return images.map(([pos, item], index) => (
     <Word
-      onClick={() => window.open(item.href, "_blank")}
+      onClick={() => window.open((item as Item).href, "_blank")}
       key={index}
       position={pos}
-      imageUrl={typeof item === "string" ? item : item.url}
-      isMobile={typeof item === "string" ? true : item.isMobile}
+      imageUrl={typeof item === "string" ? item : (item as Item).url}
+      isMobile={typeof item === "string" ? true : (item as Item).isMobile}
     />
   ));
 }
