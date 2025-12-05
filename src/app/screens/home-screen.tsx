@@ -173,9 +173,12 @@ export default function HomeScreen() {
 
   const goToProjectsHandler = () => {
     setTimeout(() => {
-      router.push("/projects");
-      setIsCameraMotion(false);
-    }, 3600);
+      setIsCameraMotion(true);
+      setTimeout(() => {
+        router.push("/projects");
+        setIsCameraMotion(false);
+      }, 3600);
+    }, 1000);
   };
 
   const onClickNavItem = (isNavClosed: boolean) => {
@@ -200,101 +203,10 @@ export default function HomeScreen() {
           <ModelActionsContext.Provider value={cellIndex}>
             <MouseFollower />
             <Styled_Container>
-              <h1 style={{ color: "rgb(4, 29, 53)" }}>Projects</h1>
-              {/* <BurgerMenu
-                isNavOpen={isNavOpen}
-                onClick={() => toggleIsNavOpen()}
-                ariaLabel="Navigation bar"
-                tabIndex={hasScreenLoaded ? 0 : -1}
-                onClickNavItem={(isNavClosed: boolean) =>
-                  onClickNavItem(isNavClosed)
-                }
-              /> */}
-              {/* <Styled_Auto_Actions_Play_Switch
-                $isPageLoaded={hasScreenLoaded}
-                $isNavOpen={isNavOpen}
-              >
-                <Switch
-                  ariaLabel={AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS}
-                  tabIndex={switchButtonTabIndex}
-                  innerColor={`${COLORS.bright_blue}`}
-                  middleColor={
-                    isDaylightTheme ? `${COLORS.light_grey}` : 'black'
-                  }
-                  outterColor={`${COLORS.bright_red}`}
-                  outterHeight={'20px'}
-                  items={AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS}
-                  isActive={playModelActions ? 0 : 1}
-                  onClick={(index) => setPlayModelActionsSwitch(index)}
-                />
-              </Styled_Auto_Actions_Play_Switch>
-              <Styled_Daylight_Theme_Switch
-                $isPageLoaded={hasScreenLoaded}
-                $isNavOpen={isNavOpen}
-              >
-                <Switch
-                  vertical
-                  ariaLabel={AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS}
-                  tabIndex={switchButtonTabIndex}
-                  innerColor={`${COLORS.bright_orange}`}
-                  middleColor={
-                    isDaylightTheme ? `${COLORS.light_grey}` : 'black'
-                  }
-                  outterColor={`${COLORS.bright_green}`}
-                  outterHeight={'20px'}
-                  items={AUTOPLAY_MODEL_ACTIONS_SWITCH_LABELS}
-                  isActive={!isDaylightTheme ? 0 : 1}
-                  onClick={(index) => daylightSwitchHandler(index)}
-                />
-              </Styled_Daylight_Theme_Switch> */}
-              {/* <Styled_AutoRotate_Switch
-                $isPageLoaded={hasScreenLoaded}
-                $isNavOpen={isNavOpen}
-              >
-                <Switch
-                  ariaLabel={AUTOROTATE_LABELS}
-                  tabIndex={switchButtonTabIndex}
-                  innerColor={`${COLORS.bright_green}`}
-                  middleColor={
-                    isDaylightTheme ? `${COLORS.light_grey}` : 'black'
-                  }
-                  outterColor={`${COLORS.bright_purple}`}
-                  outterHeight={'20px'}
-                  items={AUTOROTATE_LABELS}
-                  isActive={autoRotateModel ? 0 : 1}
-                  onClick={(index) => setAutoPlaySwitch(index)}
-                />
-              </Styled_AutoRotate_Switch> */}
+              <button onClick={() => goToProjectsHandler()}>
+                <p>Projects</p>
+              </button>
               <Scene hearts={cellIndex === 1} />
-              {/* <Styled_Face_Actions_Carousel
-                $isShowCarousel={playModelActions}
-                $isPageLoaded={hasScreenLoaded}
-                $isNavOpen={isNavOpen}
-              >
-                <div className="face-actions-carousel">
-                  <Carousel
-                    ariaLabel={FACIAL_EXPRESSIONS}
-                    tabIndex={carouselTabIndex}
-                    innerColor={
-                      playModelActions
-                        ? `${COLORS.fuchia_pink}`
-                        : `${COLORS.light_blue}`
-                    }
-                    middleColor={
-                      isDaylightTheme ? `${COLORS.light_grey}` : 'black'
-                    }
-                    outterColor={
-                      playModelActions
-                        ? `${COLORS.bright_blue}`
-                        : `${COLORS.light_blue}`
-                    }
-                    outterHeight={'20px'}
-                    items={FACIAL_EXPRESSIONS}
-                    isActive={cellIndex}
-                    onClick={(index) => actionIndex(index)}
-                  />
-                </div>
-              </Styled_Face_Actions_Carousel> */}
             </Styled_Container>
             <PageLabel
               onClick={() => onClickPageTag()}

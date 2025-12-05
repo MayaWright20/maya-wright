@@ -4,12 +4,14 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { easing } from "maath";
 import { Suspense, useContext, useRef } from "react";
 import {
+  Center,
   Cloud,
   Clouds,
   Grid,
   OrbitControls,
   Sky,
   Stars,
+  Text3D,
 } from "@react-three/drei";
 import DirectionalLights from "../lights/directional-lights";
 import Face from "../face/face";
@@ -26,7 +28,7 @@ interface Props {
   hearts: boolean;
 }
 
-function Model(props: any) {
+export function Model(props: any) {
   const group = useRef<any>(0);
   const light = useRef<any>(0);
 
@@ -102,10 +104,12 @@ export default function Scene({ hearts }: Props) {
             autoRotate={autoRotateModel && isDaylightTheme}
           />
         )} */}
+        <OrbitControls enableZoom={false} enablePan={false} autoRotate={true} />
         {isCameraMotionPath && <CameraPath />}
-        {isCameraMotionPath && <Projects3DText />}
+        {isCameraMotionPath && <Projects3DText text="projects" />}
         <Face />
         <Model />
+
         {/* <Sky
           distance={450000}
           sunPosition={[0, isDaylightTheme ? 1 : 0, 0]}

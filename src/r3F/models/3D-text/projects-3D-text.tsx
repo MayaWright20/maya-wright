@@ -1,6 +1,6 @@
-import { Center, Text3D } from '@react-three/drei';
-import { COLORS } from '@/constants/colors';
-import { usePersistStore } from '@/store/store';
+import { Center, Text3D } from "@react-three/drei";
+import { COLORS } from "@/constants/colors";
+import { usePersistStore } from "@/store/store";
 
 const textOptions = {
   size: 0.15,
@@ -13,15 +13,11 @@ const textOptions = {
   bevelSegments: 5,
 };
 
-export default function Projects3DText() {
+export default function Projects3DText({ text }: { text: string }) {
   const { isDaylightTheme } = usePersistStore();
   return (
-    <Center top>
-      <Text3D font="/Inter_Bold.json" {...textOptions}>
-        Projects
-        {isDaylightTheme && <meshPhongMaterial color={COLORS.dark_green} />}
-        {!isDaylightTheme && <meshNormalMaterial />}
-      </Text3D>
-    </Center>
+    <Text3D font="/Inter_Bold.json" {...textOptions}>
+      {text}
+    </Text3D>
   );
 }
