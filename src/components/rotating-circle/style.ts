@@ -11,7 +11,7 @@ export const Styled_Container_Rotating = styled.div<PageLabel>`
   div {
     position: absolute;
     background-color: rgba(255, 255, 255, 0);
-    color: white;
+    color: #c8b610;
     font-weight: 900;
     text-align: center;
     cursor: pointer;
@@ -45,7 +45,7 @@ export const Styled_Container_Rotating = styled.div<PageLabel>`
 
       &:hover {
         transform: scale(1.05);
-        border-color: rgba(255, 255, 255, 0.8);
+        border-color: rgba(164, 18, 18, 0.8);
 
         .text {
           animation-duration: 8s;
@@ -92,7 +92,7 @@ export const Styled_Container_Rotating = styled.div<PageLabel>`
       user-select: none;
       transition: all 0.2s ease;
       color: ${({ $is_daylight_theme, $night_blue_white }) =>
-        !$is_daylight_theme ? 'white' : 'inherit'};
+        !$is_daylight_theme ? 'rgb(80,117,158)' : 'inherit'};
 
       ${({ $is_daylight_theme }) =>
         $is_daylight_theme &&

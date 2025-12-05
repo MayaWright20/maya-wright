@@ -8,6 +8,14 @@ export const Styled_Container = styled.div`
   display: flex;
   overflow: hidden;
   z-index: ${Z_INDEXES.level_minus_9999};
+
+  p {
+  color:#244d7f;
+  left: 70%;
+  bottom: 10%;
+  position: absolute;
+  font-size: clamp(1rem, 1vw, 1.5rem) 
+  }
 `;
 
 interface StyledFaceActionsCarousel {

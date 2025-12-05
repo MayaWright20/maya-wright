@@ -23,7 +23,7 @@ export const Styled_Circle_Wrapper = styled.div<StyledCircleWrapperProps>`
   width: ${({ $index, $width }) => $width - $index * 0.5}px;
   aspect-ratio: 1;
   background-color: ${({ $showBlur, $circleColor }) =>
-    $showBlur ? '#ff3ab7' : '#f39f03'};
+    $showBlur ? '#3aebff' : '#f39f03'};
   border-radius: 50%;
   pointer-events: none;
   z-index: ${({ $index }) => -$index};
@@ -32,7 +32,7 @@ export const Styled_Circle_Wrapper = styled.div<StyledCircleWrapperProps>`
 
   /* Neon glow effect - only when $showBlur is false */
   box-shadow: ${({ $showBlur, $circleColor }) =>
-    !$showBlur
+    $showBlur
       ? `0 0 5px ${$circleColor},
     0 0 2px ${$circleColor},
     0 0 3px ${$circleColor},
@@ -42,7 +42,7 @@ export const Styled_Circle_Wrapper = styled.div<StyledCircleWrapperProps>`
       : 'none'};
 
   animation: ${({ $showBlur }) =>
-    !$showBlur ? 'neonPulse 2s ease-in-out infinite alternate' : 'none'};
+    $showBlur ? 'neonPulse 2s ease-in-out infinite alternate' : 'none'};
 
   @keyframes neonPulse {
     from {

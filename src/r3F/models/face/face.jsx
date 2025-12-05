@@ -12,6 +12,8 @@ export function Face() {
   const { group, nodes, materials, actions } = ModelConstructor();
   const actionsArr = ModelActions();
 
+  console.log("nodes", nodes)
+
   const actionIndex = useContext(ModelActionsContext);
   const { playModelActions, isDaylightTheme } = usePersistStore();
 
@@ -19,15 +21,15 @@ export function Face() {
   const [scale, setScale] = useState(0);
 
   useEffect(() => {
-    if (isDaylightTheme) {
-      materials.Material.color.r = 0.30929309129714966;
-      materials.Material.color.g = 1;
-      materials.Material.color.b = 0;
-    } else {
-      materials.Material.color.b = 1;
-      materials.Material.color.g = 0.7;
-      materials.Material.color.r = 0.7;
-    }
+    // if (isDaylightTheme) {
+    //   materials.Material.color.r = 1
+    //   materials.Material.color.g = 1;
+    //   materials.Material.color.b = 1;
+    // } else {
+      materials.Material.color.b = 0.7;
+      materials.Material.color.g = 0.3;
+      materials.Material.color.r = 0.1;
+    // }
   }, [isDaylightTheme]);
 
   useLayoutEffect(() => {

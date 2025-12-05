@@ -1,7 +1,7 @@
-import { COLORS } from '@/constants/colors';
-import { Styled_Container_Rotating } from './style';
-import { useEffect, useRef } from 'react';
-import { usePersistStore } from '@/store/store';
+import { COLORS } from "@/constants/colors";
+import { Styled_Container_Rotating } from "./style";
+import { useEffect, useRef } from "react";
+import { usePersistStore } from "@/store/store";
 
 interface Props {
   isPageLoaded?: boolean;
@@ -19,12 +19,12 @@ export default function RotatingCircle({ isPageLoaded, onClick, text }: Props) {
       const radius = 40; // Distance from center
 
       // Clear existing content
-      textElement.innerHTML = '';
+      textElement.innerHTML = "";
 
       // Create spans for each character
-      const chars = text.split('');
+      const chars = text.split("");
       chars.forEach((char, i) => {
-        const span = document.createElement('span');
+        const span = document.createElement("span");
         span.textContent = char;
 
         // Calculate angle for each character
@@ -35,13 +35,13 @@ export default function RotatingCircle({ isPageLoaded, onClick, text }: Props) {
         const x = Math.cos(radian) * radius;
         const y = Math.sin(radian) * radius;
 
-        span.style.position = 'absolute';
-        span.style.left = '50%';
-        span.style.top = '50%';
+        span.style.position = "absolute";
+        span.style.left = "50%";
+        span.style.top = "50%";
         span.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px) rotate(${
           angle + 90
         }deg)`;
-        span.style.transformOrigin = 'center';
+        span.style.transformOrigin = "center";
 
         textElement.appendChild(span);
       });
@@ -50,8 +50,8 @@ export default function RotatingCircle({ isPageLoaded, onClick, text }: Props) {
 
   return (
     <Styled_Container_Rotating
-      $is_daylight_theme={isDaylightTheme}
-      $night_blue_white={COLORS.night_blue_white}
+      $is_daylight_theme={false}
+      $night_blue_white={"pink"}
       $isPageLoaded={isPageLoaded ?? false}
       $bright_green={COLORS.bright_green}
       onClick={onClick}

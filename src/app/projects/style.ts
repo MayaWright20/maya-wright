@@ -6,8 +6,7 @@ interface StyledContainer {
 }
 
 export const Styled_Container = styled.div<StyledContainer>`
-  background-color: ${({ $isDaylightTheme }) =>
-    $isDaylightTheme ? COLORS.daylight_theme_green : 'black'};
+  background-color: #031020;
   width: 100%;
   min-height: 100vh;
   color: ${({ $isDaylightTheme }) => ($isDaylightTheme ? 'white' : 'white')};

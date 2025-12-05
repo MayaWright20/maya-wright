@@ -4,12 +4,14 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { easing } from "maath";
 import { Suspense, useContext, useRef } from "react";
 import {
+  Center,
   Cloud,
   Clouds,
   Grid,
   OrbitControls,
   Sky,
   Stars,
+  Text3D,
 } from "@react-three/drei";
 import DirectionalLights from "../lights/directional-lights";
 import Face from "../face/face";
@@ -26,7 +28,7 @@ interface Props {
   hearts: boolean;
 }
 
-function Model(props: any) {
+export function Model(props: any) {
   const group = useRef<any>(0);
   const light = useRef<any>(0);
 
@@ -83,39 +85,48 @@ export default function Scene({ hearts }: Props) {
         position: "absolute",
         height: "100%",
         width: "100%",
-        backgroundColor: COLORS.blender_grey,
+        backgroundColor: "#03000f",
         zIndex: -9999,
       }}
+      camera={{ position: [0, 0, 10], fov: 20 }}
     >
-      <DirectionalLights isDaylightTheme={isDaylightTheme} />
+      {/* <DirectionalLights isDaylightTheme={isDaylightTheme} /> */}
+      <directionalLight
+        position={[0, -35, 20]}
+        intensity={0.5}
+        color={"#d60ddaff"}
+      />
       <Suspense fallback={<Loader />}>
-        {autoRotateModel && !isCameraMotionPath && (
+        {/* {autoRotateModel && !isCameraMotionPath && (
           <OrbitControls
             enableZoom={false}
             enablePan={false}
             autoRotate={autoRotateModel && isDaylightTheme}
           />
-        )}
+        )} */}
+        <OrbitControls enableZoom={false} enablePan={false} autoRotate={true} />
         {isCameraMotionPath && <CameraPath />}
-        {isCameraMotionPath && <Projects3DText />}
+        {/* {isCameraMotionPath && <Projects3DText text="projects" />} */}
         <Face />
         <Model />
-        <Sky
+
+        {/* <Sky
           distance={450000}
           sunPosition={[0, isDaylightTheme ? 1 : 0, 0]}
           inclination={0}
           azimuth={0.25}
-        />
-        <FloralBackground />
-        {!isDaylightTheme && (
+        /> */}
+        {/* <FloralBackground /> */}
+        {/* {!isDaylightTheme && (
           <Grid
             position={[0, -0.9, 0]}
             args={[30.5, 10.5]}
             cellSize={30.5}
             infiniteGrid
+            cellColor={"#0eda1f"}
           />
-        )}
-        <Clouds material={THREE.MeshBasicMaterial}>
+        )} */}
+        {/* <Clouds material={THREE.MeshBasicMaterial}>
           <Cloud
             segments={40}
             bounds={[10, 2, 100]}
@@ -152,7 +163,7 @@ export default function Scene({ hearts }: Props) {
           saturation={5}
           fade
           speed={1}
-        />
+        /> */}
       </Suspense>
     </Canvas>
   );
