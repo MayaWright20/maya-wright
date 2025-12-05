@@ -74,6 +74,16 @@ const imageUrls: Item[] = [
     isMobile: false,
     href: "https://www.casamigos.com/en-us/cocktails",
   },
+  {
+    url: "/images/linkedin.png",
+    isMobile: false,
+    href: "https://www.linkedin.com/in/maya-wright-2b7922168/",
+  },
+  {
+    url: "/images/github.png",
+    isMobile: false,
+    href: "https://github.com/MayaWright20",
+  },
 ];
 
 function Word({
